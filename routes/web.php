@@ -29,3 +29,10 @@ Route::prefix('quan-ly-hoc-sinh')->group(function () {
 Route::prefix('quan-ly-khoi')->group(function () {
     Route::get('/','KhoiController@index')->name('quan-ly-khoi-index');
 });
+
+
+Route::prefix('cong-viec-hang-ngay')->group(function () {
+    Route::view('/diem-danh/den-sang','diem-danh.diem-danh-den-ban-sang')->name('test1');
+    Route::view('/diem-danh/den-chieu','diem-danh.diem-danh-den-ban-chieu')->name('test2');
+    Route::view('/diem-danh/ve','diem-danh.diem-danh-ve')->name('test3');
+});
