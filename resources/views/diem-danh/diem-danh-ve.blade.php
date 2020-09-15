@@ -39,7 +39,7 @@
             <div class="tab-content">
                 <div class="tab-pane active " id="m_tabs_12_1" role="tabpanel">
                     <table id="table1"
-                        class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer">
+                        class="table table-striped- table-bordered table-hover table-checkable responsive no-wrap dataTable dtr-inline collapsed">
                         <thead>
                         <tr>
                             <th>STT</th>
