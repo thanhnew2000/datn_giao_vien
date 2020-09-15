@@ -1,12 +1,43 @@
 @extends('layouts.main')
 @section('title', "Đơn xin nghỉ học")
 @section('content')
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="m-subheader__title m-subheader__title--separator">Đơn xin nghỉ học</h3>
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                <li class="m-nav__item m-nav__item--home">
+                    <a href="#" class="m-nav__link m-nav__link--icon">
+                        <i class="m-nav__link-icon la la-home"></i>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="" class="m-nav__link">
+                        <span class="m-nav__link-text">DataTables</span>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="" class="m-nav__link">
+                        <span class="m-nav__link-text">Basic</span>
+                    </a>
+                </li>
+                <li class="m-nav__separator">-</li>
+                <li class="m-nav__item">
+                    <a href="" class="m-nav__link">
+                        <span class="m-nav__link-text">Scrollable Tables</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
 <div class="m-content">
     <div class="row">
 
         <div class="col-xl-12">
-
-
             <!--begin::Portlet-->
             <div class="m-portlet m-portlet--tabs m-portlet--success m-portlet--head-solid-bg m-portlet--bordered">
                 <div class="m-portlet__head">
@@ -33,9 +64,9 @@
                 </div>
                 <div class="m-portlet__body">
                     <div class="tab-content">
-                        <div class="tab-pane active table table-striped- table-bordered table-hover table-checkable dataTable no-footer"
+                        <div class="tab-pane active"
                             id="m_tabs_12_1" role="tabpanel">
-                            <table id="table1">
+                            <table id="table1" class="table table-striped- table-bordered table-hover table-checkable responsive no-wrap dataTable dtr-inline collapsed">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
@@ -61,9 +92,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane table table-striped- table-bordered table-hover table-checkable dataTable no-footer"
+                        <div class="tab-pane"
                             id="m_tabs_12_2" role="tabpanel">
-                            <table id="table2">
+                            <table id="table2" class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
@@ -99,9 +130,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane table table-striped- table-bordered table-hover table-checkable dataTable no-footer"
+                        <div class="tab-pane"
                             id="m_tabs_12_3" role="tabpanel">
-                            <table id="table3">
+                            <table id="table3" class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer">
                                 <thead>
                                     <tr>
                                         <th>STT</th>
@@ -179,11 +210,17 @@
                                             readonly>
                                     </div>
                                     <div class="form-group">
-                                        <textarea class="form-control" cols="100" rows="10" readonly>
+                                        <textarea class="form-control" cols="100" rows="5" readonly>
                                             Cháu bị ốm
                                         </textarea>
                                     </div>
                                     
+                                    <div class="form-group">
+                                         <label for="message-text" class="form-control-label"><b>Phản hồi:</b></label>
+                                        <textarea class="form-control" cols="100" rows="5" readonly>
+                                           ...
+                                        </textarea>
+                                    </div>
                                 </div>
                                 <div class="modal-footer pull-center">
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Xác nhận</button>

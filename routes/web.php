@@ -37,4 +37,5 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
     Route::view('/diem-danh/ve','diem-danh.diem-danh-ve')->name('test3');
 
     Route::view('/don-xin-nghi-hoc','don-xin-nghi-hoc.index')->name('test4');
+    Route::view('/don-dan-thuoc','don-dan-thuoc.index')->name('test5');
 });
