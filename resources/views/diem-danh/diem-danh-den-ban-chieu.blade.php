@@ -26,7 +26,7 @@
                     <li class="m-portlet__nav-item">
                         <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
                             <span>
-                            <span>Cập nhật</span>
+                                <span>Cập nhật</span>
                             </span>
                         </a>
                     </li>
@@ -37,13 +37,13 @@
         <div class="m-portlet__body">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link "  href="{{ route('test1')}}">
+                    <a class="nav-link " href="{{ route('test1')}}">
                         <i class="la la-exclamation-triangle"></i> Sáng
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link active"  href="{{ route('test2')}}">
+                    <a class="nav-link active" href="{{ route('test2')}}">
                         <i class="la la-cloud-download"></i> Chiều
                     </a>
                 </li>
@@ -51,9 +51,11 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="m_tabs_1_1" role="tabpanel">
 
-                    <table class="table table-striped- table-bordered table-hover table-checkable responsive no-wrap dataTable dtr-inline collapsed" id="table1">
+                    <table
+                        class="table table-striped- table-bordered table-hover table-checkable responsive no-wrap dataTable dtr-inline collapsed"
+                        id="table1">
                         <thead>
-                             <tr>
+                            <tr>
                                 <th>STT</th>
                                 <th>Họ Tên</th>
                                 <th>Avatar</th>
@@ -71,33 +73,36 @@
                                 <td><img src="" alt="avatar"></td>
                                 <td>16/02/1998</td>
                                 <td><input type="radio" name="tick-1" checked></td>
-								<td><input type="radio" name="tick-1"></td>
-								<td><input type="radio" name="tick-1"></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><input type="radio" name="tick-1"></td>
                                 <td><textarea></textarea></td>
-							</tr>
-							<tr>
+                            </tr>
+                            <tr>
                                 <td>2</td>
                                 <td>Nguyễn Văn Phúc</td>
                                 <td><img src="" alt="avatar"></td>
                                 <td>16/02/1998</td>
                                 <td><input type="radio" name="tick-2" checked></td>
-								<td><input type="radio" name="tick-2"></td>
-								<td><input type="radio" name="tick-2"></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><input type="radio" name="tick-2"></td>
                                 <td><textarea></textarea></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <div class="tab-pane" id="m_tabs_1_3" role="tabpanel">
-                </div>
 
             </div>
             <div class="m-separator m-separator--dashed"></div>
-            <ul class="nav nav-tabs" role="tablist">
 
 
-
+            <div class="col m--align-center">
+                <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                    <span>
+                        <span>Cập nhật</span>
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 

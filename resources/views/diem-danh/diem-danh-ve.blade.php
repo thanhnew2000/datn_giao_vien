@@ -73,8 +73,14 @@
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
+            <div class="col m--align-center">
+                <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                    <span>
+                        <span>Cập nhật</span>
+                    </span>
+                </a>
+            </div>
 
-            <ul class="nav nav-tabs" role="tablist">
 
                 <div class="modal fade" id="m_modal_4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
