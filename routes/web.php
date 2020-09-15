@@ -40,3 +40,5 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
     Route::view('/don-dan-thuoc','don-dan-thuoc.index')->name('test5');
     Route::view('/loi-nhan','loi-nhan.index')->name('test6');
 });
+
+Route::get('test', 'DiemDanhDen\DiemDanhDenController@test');
