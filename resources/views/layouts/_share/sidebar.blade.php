@@ -64,7 +64,7 @@
                         <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('test5') }}" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Đơn dặn thuốc</span></a></li>
-                        <li class="m-menu__item " aria-haspopup="true"><a href="" class="m-menu__link "><i
+                        <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('test6') }}" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Lời nhắn</span></a></li>
                         <li class="m-menu__item " aria-haspopup="true"><a href="" class="m-menu__link "><i

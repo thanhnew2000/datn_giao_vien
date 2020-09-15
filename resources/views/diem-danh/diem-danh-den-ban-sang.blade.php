@@ -210,12 +210,16 @@
                     </table>
                 </div>
 
-                <div class="tab-pane" id="m_tabs_1_3" role="tabpanel">
-                </div>
 
             </div>
             <div class="m-separator m-separator--dashed"></div>
-            <ul class="nav nav-tabs" role="tablist">
+            <div class="col m--align-center">
+                <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                    <span>
+                        <span>Cập nhật</span>
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 
