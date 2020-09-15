@@ -51,7 +51,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="m_tabs_1_1" role="tabpanel">
 
-                    <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                    <table class="table table-striped- table-bordered table-hover table-checkable" id="table1">
                         <thead>
                             <tr>
                                 <th>STT</th>
@@ -62,9 +62,6 @@
                                 <th>Nghỉ Có Phép</th>
                                 <th>Nghỉ Không Phép</th>
                                 <th>Ghi chú</th>
-                                <th></th>
-                                <th></th>
-                                <th></th>
 
                             </tr>
                         </thead>
@@ -78,9 +75,6 @@
                                 <td><input type="radio" name="tick-1"></td>
                                 <td><input type="radio" name="tick-1"></td>
                                 <td><textarea></textarea></td>
-                                <td style="visibility: hidden;"></td>
-                                <td style="visibility: hidden;"></td>
-                                <td nowrap style="visibility: hidden;"></td>
                             </tr>
                             <tr>
                                 <td>2</td>
@@ -91,9 +85,126 @@
                                 <td><input type="radio" name="tick-2"></td>
                                 <td><input type="radio" name="tick-2"></td>
                                 <td><textarea></textarea></td>
-                                <td style="visibility: hidden;"></td>
-                                <td style="visibility: hidden;"></td>
-                                <td nowrap style="visibility: hidden;"></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Văn Phúc</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-1" checked></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Nguyễn Văn Hiếu</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-2" checked></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Văn Phúc</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-1" checked></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Nguyễn Văn Hiếu</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-2" checked></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Văn Phúc</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-1" checked></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Nguyễn Văn Hiếu</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-2" checked></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Văn Phúc</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-1" checked></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Nguyễn Văn Hiếu</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-2" checked></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Văn Phúc</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-1" checked></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Nguyễn Văn Hiếu</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-2" checked></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>Nguyễn Văn Phúc</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-1" checked></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><input type="radio" name="tick-1"></td>
+                                <td><textarea></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Nguyễn Văn Hiếu</td>
+                                <td><img src="" alt="avatar"></td>
+                                <td>16/02/1998</td>
+                                <td><input type="radio" name="tick-2" checked></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><input type="radio" name="tick-2"></td>
+                                <td><textarea></textarea></td>
                             </tr>
                         </tbody>
                     </table>
@@ -113,4 +224,18 @@
 
 </div>
 
+@endsection
+@section('script')
+
+<script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
+<!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
+<script>
+    $(document).ready(function () {
+        $('#table1').DataTable({
+            "pageLength": 100
+        });
+    });
+
+</script>
 @endsection

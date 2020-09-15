@@ -37,8 +37,10 @@
         <div class="m-portlet__body">
 
             <div class="tab-content">
-                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-                    <thead>
+                <div class="tab-pane active " id="m_tabs_12_1" role="tabpanel">
+                    <table id="table1"
+                        class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer">
+                        <thead>
                         <tr>
                             <th>STT</th>
                             <th>Họ Tên</th>
@@ -49,12 +51,10 @@
                             <th>Nghỉ</th>
                             <th>Thông tin</th>
                             <th>Ghi chú</th>
-                            <th></th>
-                            <th></th>
 
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         <tr>
                             <td>1</td>
                             <td>Nguyễn Văn Phúc</td>
@@ -66,25 +66,10 @@
                             <td><button type="button" class="btn btn-warning" data-toggle="modal"
                                     data-target="#m_modal_4">Chi tiết</button></td>
                             <td><textarea></textarea></td>
-                            <td style="visibility: hidden;"></td>
-                            <td nowrap style="visibility: hidden;"></td>
                         </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>Nguyễn Văn Phúc</td>
-                            <td>haha</td>
-                            <td>16/02/1998</td>
-                            <td><input type="radio" name="tick-1" checked></td>
-                            <td><input type="radio" name="tick-1"></td>
-                            <td><input type="radio" name="tick-1"></td>
-                            <td><button type="button" class="btn btn-warning" data-toggle="modal"
-                                    data-target="#m_modal_4">Chi tiết</button></td>
-                            <td><textarea></textarea></td>
-                            <td style="visibility: hidden;"></td>
-                            <td nowrap style="visibility: hidden;"></td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div class="m-separator m-separator--dashed"></div>
@@ -137,4 +122,18 @@
 </div>
 </div>
 
+@endsection
+@section('script')
+
+<script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
+<!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
+<script>
+    $(document).ready(function () {
+        $('#table1').DataTable({
+            "pageLength": 100
+        });
+    });
+
+</script>
 @endsection

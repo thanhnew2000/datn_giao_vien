@@ -26,6 +26,7 @@
 		{{--  style style  --}}
 		@include('layouts._share.style')
 		{{--  endstyle style  --}}
+		@yield('style')
 	</head>
 
 	<!-- end::Head -->
@@ -52,6 +53,7 @@
 
 					<!--start content -->
 					@yield('content')
+					@yield('script')
 					<!--end content -->		
 					
 				</div>
@@ -85,6 +87,7 @@
 		  {{--  script  --}}
 		  @include('layouts._share.script')
 		  {{--  endscript  --}}
+	
 
 		<!--end::Page Scripts -->
 	</body>
