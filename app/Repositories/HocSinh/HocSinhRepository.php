@@ -3,13 +3,13 @@
 
 namespace App\Repositories\HocSinh;
 use Illuminate\Support\Facades\DB;
-use App\Repositories\BaseRepository;
+use App\Repositories\BaseModelRepository;
 use App\Models\HocSinh;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 
-class HocSinhRepository extends BaseRepository
+class HocSinhRepository extends BaseModelRepository
 {
     protected $model;
     public function __construct(
@@ -19,8 +19,8 @@ class HocSinhRepository extends BaseRepository
         $this->model = $model;
     }
 
-    public function getTable(){
-		return 'hoc_sinh';
+    public function getModel(){
+		return HocSinh::class;
     }
     public function getHocSinhDiemDanhDenSang()
     {
@@ -29,10 +29,6 @@ class HocSinhRepository extends BaseRepository
             ->where('giao_vien.user_id', $id)->first();
    
         $students = $this->model::where('lop_id',$giao_vien_user->lop_id)->get();
-        foreach($students as $item){
-            echo $item->ten;
-            echo "<br>";
-        }
-        return 1;
+        return $students;
     }
 }

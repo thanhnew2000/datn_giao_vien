@@ -1,26 +1,26 @@
 <?php
 
 
-namespace App\Repositories\DiemDanhDen;
+namespace App\Repositories\DiemDanhVe;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\BaseModelRepository;
-use App\Models\DiemDanhDen;
+use App\Models\DiemDanhVe;
 use Carbon\Carbon;
 
 
 
-class DiemDanhDenRepository extends BaseModelRepository
+class DiemDanhVeRepository extends BaseModelRepository
 {
     protected $model;
     public function __construct(
-        DiemDanhDen $model
+        DiemDanhVe $model
     ) {
         parent::__construct();
         $this->model = $model;
     }
 
     public function getModel(){
-		return DiemDanhDen::class;
+		return DiemDanhVe::class;
     }
     
     public function getWhere($currrenDate){

@@ -32,13 +32,24 @@ Route::prefix('quan-ly-khoi')->group(function () {
 
 
 Route::prefix('cong-viec-hang-ngay')->group(function () {
-    Route::view('/diem-danh/den-sang','diem-danh.diem-danh-den-ban-sang')->name('test1');
-    Route::view('/diem-danh/den-chieu','diem-danh.diem-danh-den-ban-chieu')->name('test2');
-    Route::view('/diem-danh/ve','diem-danh.diem-danh-ve')->name('test3');
+  
 
     Route::view('/don-xin-nghi-hoc','don-xin-nghi-hoc.index')->name('test4');
     Route::view('/don-dan-thuoc','don-dan-thuoc.index')->name('test5');
     Route::view('/loi-nhan','loi-nhan.index')->name('test6');
+
+
+
+    Route::prefix('diem-danh')->group(function () {
+        Route::get('ban-sang','DiemDanhDen\DiemDanhDenController@showDiemDanhSang')->name('diem_danh_ban_sang.create');
+        Route::post('ban-sang','DiemDanhDen\DiemDanhDenController@postDiemDanhSang')->name('diem_danh_ban_sang.store');
+
+        Route::get('ban-chieu','DiemDanhDen\DiemDanhDenController@showDiemDanhChieu')->name('diem_danh_ban_chieu.create');
+        Route::post('ban-chieu','DiemDanhDen\DiemDanhDenController@postDiemDanhChieu')->name('diem_danh_ban_chieu.store');
+
+        Route::get('ve','DiemDanhVe\DiemDanhVeController@showDiemDanhVe')->name('diem_danh_ve.create');
+        Route::post('ve','DiemDanhVe\DiemDanhVeController@postDiemDanhVe')->name('diem_danh_ve.store');
+    });
 });
 
-Route::get('test', 'DiemDanhDen\DiemDanhDenController@test');
+

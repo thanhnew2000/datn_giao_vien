@@ -37,13 +37,13 @@
         <div class="m-portlet__body">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('test1')}}">
+                    <a class="nav-link active" href="{{ route('diem_danh_ban_sang.create')}}">
                         <i class="la la-exclamation-triangle"></i> Sáng
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('test2')}}">
+                    <a class="nav-link" href="{{ route('diem_danh_ban_chieu.create')}}">
                         <i class="la la-cloud-download"></i> Chiều
                     </a>
                 </li>
@@ -55,6 +55,7 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
+                                <th>Mã Số</th>
                                 <th>Họ Tên</th>
                                 <th>Avatar</th>
                                 <th>Ngày Sinh</th>
@@ -66,146 +67,45 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn Phúc</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-1" checked></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nguyễn Văn Hiếu</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-2" checked></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn Phúc</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-1" checked></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nguyễn Văn Hiếu</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-2" checked></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn Phúc</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-1" checked></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nguyễn Văn Hiếu</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-2" checked></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn Phúc</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-1" checked></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nguyễn Văn Hiếu</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-2" checked></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn Phúc</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-1" checked></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nguyễn Văn Hiếu</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-2" checked></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn Phúc</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-1" checked></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nguyễn Văn Hiếu</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-2" checked></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn Phúc</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-1" checked></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><input type="radio" name="tick-1"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Nguyễn Văn Hiếu</td>
-                                <td><img src="" alt="avatar"></td>
-                                <td>16/02/1998</td>
-                                <td><input type="radio" name="tick-2" checked></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><input type="radio" name="tick-2"></td>
-                                <td><textarea></textarea></td>
-                            </tr>
+
+                            @if ($students != null || count($students) > 0)
+                                @foreach ($students as $item)
+                                @php
+                                        $date=date_create($item->ngay_sinh);
+                                @endphp
+                                    <tr>
+                                        <td>{{ $index++ }}<input type="hidden" name="id_{{ $item->id }}" value="{{ $item->id }}"></td>
+                                        <td>{{ $item->ma_hoc_sinh }}</td>
+                                        <td>{{ $item->ten }}</td>
+                                        <td><img src="{{ $item->avatar }}" alt="avatar"></td>
+                                        <td>{{ date_format($date,"d/m/Y") }}</td>
+                                        <td><input type="radio" value="1" name="{{ $item->id }}" checked="true"></td>
+                                        <td><input type="radio" value="2" name="{{ $item->id }}"></td>
+                                        <td><input type="radio" value="3" name="{{ $item->id }}"></td>
+                                        <td><textarea name="chu_thich_{{ $item->id }}"></textarea></td>
+                                    </tr>
+                                @endforeach
+                            @endif
+
+                            @if ($edit != null && count($edit) > 0)
+                            @foreach ($edit as $item)
+                                    @php
+                                    $date=date_create($item->ngay_sinh);
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $index++ }}<input type="hidden" name="id_{{ $item->id }}" value="{{ $item->id }}"></td>
+                                        <td>{{ $item->ma_hoc_sinh }}</td>
+                                        <td>{{ $item->ten }}</td>
+                                        <td><img src="{{ $item->avatar }}" alt="avatar"></td>
+                                        <td>{{ date_format($date,"d/m/Y") }}</td>
+                                        <td><input type="radio" value="1" name="{{ $item->id }}" {{ ($item->trang_thai == 1)?'checked':'' }}></td>
+                                        <td><input type="radio" value="2" name="{{ $item->id }}" {{ ($item->trang_thai == 2)?'checked':'' }}></td>
+                                        <td><input type="radio" value="3" name="{{ $item->id }}" {{ ($item->trang_thai == 3)?'checked':'' }}></td>
+                                        <td><textarea name="chu_thich_{{ $item->id }}">{{ $item->chu_thich }}</textarea></td>
+                                    </tr>
+                            @endforeach
+                            @endif
+                           
                         </tbody>
                     </table>
                 </div>
@@ -214,11 +114,11 @@
             </div>
             <div class="m-separator m-separator--dashed"></div>
             <div class="col m--align-center">
-                <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                <button onclick="submitData()" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
                     <span>
                         <span>Cập nhật</span>
                     </span>
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -240,6 +140,28 @@
             "pageLength": 100
         });
     });
+
+    function submitData(){
+        var statusList = $('input[type=radio]:checked');
+        var data = [];
+        for(i=0;i<statusList.length;i++) {
+			
+                std = {
+                    'hoc_sinh_id': $('[name=id_'+$(statusList[i]).attr('name')+']').val(),
+                    'giao_vien_id': "{{ \Illuminate\Support\Facades\Auth::id() }}",
+					'trang_thai': $(statusList[i]).val(),
+					'chu_thich': $('[name=chu_thich_'+$(statusList[i]).attr('name')+']').val()
+				}
+				data.push(std)
+			}
+			console.log(data)
+            $.post('{{ route('diem_danh_ban_sang.store') }}', {
+				'_token': "{{ csrf_token() }}",
+				'data': JSON.stringify(data)
+			}, function(dt) {
+                location.reload()
+			})
+    }
 
 </script>
 @endsection
