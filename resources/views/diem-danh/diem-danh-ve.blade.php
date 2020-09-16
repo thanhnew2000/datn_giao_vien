@@ -43,6 +43,7 @@
                         <thead>
                         <tr>
                             <th>STT</th>
+                            <th>Mã Số</th>
                             <th>Họ Tên</th>
                             <th>Avatar</th>
                             <th>Ngày Sinh</th>
@@ -55,18 +56,26 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Nguyễn Văn Phúc</td>
-                            <td>haha</td>
-                            <td>16/02/1998</td>
-                            <td><input type="radio" name="tick-1" checked></td>
-                            <td><input type="radio" name="tick-1"></td>
-                            <td><input type="radio" name="tick-1"></td>
-                            <td><button type="button" class="btn btn-warning" data-toggle="modal"
-                                    data-target="#m_modal_4">Chi tiết</button></td>
-                            <td><textarea></textarea></td>
-                        </tr>
+                            @if ($students != null || count($students) > 0)
+                            @foreach ($students as $item)
+                            @php
+                                    $date=date_create($item->ngay_sinh);
+                            @endphp
+                                <tr>
+                                    <td>{{ $index++ }}<input type="hidden" name="id_{{ $item->id }}" value="{{ $item->id }}"></td>
+                                    <td>{{ $item->ma_hoc_sinh }}</td>
+                                    <td>{{ $item->ten }}</td>
+                                    <td><img src="{{ $item->avatar }}" alt="avatar"></td>
+                                    <td>{{ date_format($date,"d/m/Y") }}</td>
+                                    <td><input type="radio" value="1" name="{{ $item->id }}" checked="true"></td>
+                                    <td><input type="radio" value="2" name="{{ $item->id }}"></td>
+                                    <td><input type="radio" value="3" name="{{ $item->id }}"></td>
+                                    <td><button type="button" class="btn btn-warning" data-toggle="modal"
+                                        data-target="#m_modal_4">Chi tiết</button></td>
+                                    <td><textarea name="chu_thich_{{ $item->id }}"></textarea></td>
+                                </tr>
+                            @endforeach
+                        @endif
                         </tbody>
                     </table>
                 </div>

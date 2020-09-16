@@ -49,10 +49,10 @@
                                     class="m-menu__ver-arrow la la-angle-right"></i></a>
                             <div class="m-menu__submenu "><span class="m-menu__arrow"></span>
                                 <ul class="m-menu__subnav">
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('test1') }}" class="m-menu__link "><i
+                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('diem_danh_ban_sang.create') }}" class="m-menu__link "><i
                                                 class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                                 class="m-menu__link-text">Điểm danh đến</span></a></li>
-                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('test3') }}" class="m-menu__link "><i
+                                    <li class="m-menu__item " aria-haspopup="true"><a href="{{ route('diem_danh_ve.create') }}" class="m-menu__link "><i
                                                 class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                                 class="m-menu__link-text">Điểm danh về</span></a></li>
                                 </ul>
