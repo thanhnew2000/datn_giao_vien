@@ -74,7 +74,8 @@
                                         $date=date_create($item->ngay_sinh);
                                 @endphp
                                     <tr>
-                                        <td>{{ $index++ }}<input type="hidden" name="id_{{ $item->id }}" value="{{ $item->id }}"></td>
+                                        <td>{{ $index++ }}<input type="hidden" name="id_{{ $item->id }}" value="{{ $item->id }}">
+                                            <input type="hidden" name="lop_{{ $item->id }}" value="{{ $item->lop_id }}"></td>
                                         <td>{{ $item->ma_hoc_sinh }}</td>
                                         <td>{{ $item->ten }}</td>
                                         <td><img src="{{ $item->avatar }}" alt="avatar"></td>
@@ -93,7 +94,8 @@
                                     $date=date_create($item->ngay_sinh);
                                     @endphp
                                     <tr>
-                                        <td>{{ $index++ }}<input type="hidden" name="id_{{ $item->id }}" value="{{ $item->id }}"></td>
+                                        <td>{{ $index++ }}<input type="hidden" name="id_{{ $item->id }}" value="{{ $item->id }}">
+                                            <input type="hidden" name="lop_{{ $item->id }}" value="{{ $item->lop_id }}"></td>
                                         <td>{{ $item->ma_hoc_sinh }}</td>
                                         <td>{{ $item->ten }}</td>
                                         <td><img src="{{ $item->avatar }}" alt="avatar"></td>
@@ -153,12 +155,13 @@
                     'hoc_sinh_id': $('[name=id_'+$(statusList[i]).attr('name')+']').val(),
                     'giao_vien_id': "{{ \Illuminate\Support\Facades\Auth::id() }}",
 					'trang_thai': $(statusList[i]).val(),
-					'chu_thich': $('[name=chu_thich_'+$(statusList[i]).attr('name')+']').val()
+					'chu_thich': $('[name=chu_thich_'+$(statusList[i]).attr('name')+']').val(),
+                    'lop_id': $('[name=lop_' + $(statusList[i]).attr('name') + ']').val()
 				}
 				data.push(std)
 			}
 			console.log(data)
-            $.post('{{ route('diem_danh_ban_chieu.store') }}', {
+            $.post('{{ route("diem_danh_ban_chieu.store") }}', {
 				'_token': "{{ csrf_token() }}",
 				'data': JSON.stringify(data)
 			}, function(dt) {
