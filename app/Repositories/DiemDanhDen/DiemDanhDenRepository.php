@@ -53,4 +53,16 @@ class DiemDanhDenRepository extends BaseModelRepository
         }
         return $response = ['data' => $data, 'code' => $code];
     }
+
+    public function editData($lop_id, $type)
+    {
+        $mydate = new \DateTime();
+        $mydate->modify('+7 hours');
+        $currrenDate = $mydate->format('Y-m-d');
+
+        return $this->model::whereDate('created_at', '=', $currrenDate)
+            ->where('lop_id', $lop_id)
+            ->where('type', $type)
+            ->get();
+    }
 }

@@ -24,7 +24,7 @@
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <button class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                        <button onclick="button" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
                             <span>
                                 <span>Cập nhật</span>
                             </span>
@@ -97,7 +97,7 @@
                                     <input type="hidden" name="lop_{{ $item->id }}" value="{{ $item->lop_id }}"></td>
                                 <td>{{ $item->student->ma_hoc_sinh }}</td>
                                 <td>{{ $item->student->ten }}</td>
-                                <td><img src="{{ $item->avatar }}" alt="avatar"></td>
+                                <td><img src="{{ $item->student->avatar }}" alt="avatar"></td>
                                 <td>{{ date_format($date,"d/m/Y") }}</td>
                                 <td><input type="radio" value="1" name="{{ $item->id }}"
                                         {{ ($item->trang_thai == 1)?'checked':'' }}></td>
@@ -113,7 +113,7 @@
                                     @endif
                                     @endforeach
                                 </td>
-                                <td><textarea name="chu_thich_{{ $item->id }}">{{ $item->chu_thich }}</textarea></td>
+                                <td><textarea name="chu_thich_{{ $item->id }}">{{ $item->chu_thich ? $item->chu_thich : '' }}</textarea></td>
                             </tr>
                             @endforeach
                             @endif

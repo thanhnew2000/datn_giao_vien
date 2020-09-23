@@ -37,11 +37,11 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
     Route::view('/loi-nhan', 'loi-nhan.index')->name('test6');
 
     Route::prefix('diem-danh')->group(function () {
-        Route::get('ban-sang', 'DiemDanhDen\DiemDanhDenController@showDiemDanhSang')->name('diem_danh_ban_sang.create');
-        Route::post('ban-sang', 'DiemDanhDen\DiemDanhDenController@postDiemDanhSang')->name('diem_danh_ban_sang.store');
+        Route::get('ban-sang', 'DiemDanhDen\DiemDanhDenController@showDiemDanh')->name('diem_danh_ban_sang.create');
+        Route::post('ban-sang', 'DiemDanhDen\DiemDanhDenController@postDiemDanh')->name('diem_danh_ban_sang.store');
 
-        Route::get('ban-chieu', 'DiemDanhDen\DiemDanhDenController@showDiemDanhChieu')->name('diem_danh_ban_chieu.create');
-        Route::post('ban-chieu', 'DiemDanhDen\DiemDanhDenController@postDiemDanhChieu')->name('diem_danh_ban_chieu.store');
+        Route::get('ban-chieu', 'DiemDanhDen\DiemDanhDenController@showDiemDanh')->name('diem_danh_ban_chieu.create');
+        Route::post('ban-chieu', 'DiemDanhDen\DiemDanhDenController@postDiemDanh')->name('diem_danh_ban_chieu.store');
 
         Route::get('ve', 'DiemDanhVe\DiemDanhVeController@showDiemDanhVe')->name('diem_danh_ve.create');
         Route::post('ve', 'DiemDanhVe\DiemDanhVeController@postDiemDanhVe')->name('diem_danh_ve.store');
