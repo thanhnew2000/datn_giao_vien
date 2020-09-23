@@ -1,13 +1,9 @@
 <?php
 
-
 namespace App\Repositories\DiemDanhVe;
-use Illuminate\Support\Facades\DB;
-use App\Repositories\BaseModelRepository;
+
 use App\Models\DiemDanhVe;
-use Carbon\Carbon;
-
-
+use App\Repositories\BaseModelRepository;
 
 class DiemDanhVeRepository extends BaseModelRepository
 {
@@ -19,36 +15,36 @@ class DiemDanhVeRepository extends BaseModelRepository
         $this->model = $model;
     }
 
-    public function getModel(){
-		return DiemDanhVe::class;
-    }
-    
-    public function getWhere($currrenDate){
-       return $this->model::where('created_at','>=',$currrenDate)->get();
+    public function getModel()
+    {
+        return DiemDanhVe::class;
     }
 
-    public function createdOrUpdate($data = [], $type = null)
+    public function createdOrUpdate($data = [])
     {
         $mydate = new \DateTime();
         $mydate->modify('+7 hours');
         $currrenDate = $mydate->format('Y-m-d');
-        foreach($data as $item)
-        {
-            $result = $this->model::where('ngay_diem_danh_den','=', $currrenDate)
-            ->where('hoc_sinh_id',$item->hoc_sinh_id)
-            ->where('type',$type)
-            ->first();
-            if(!$result){
+        $code = 201;
+
+        foreach ($data as $item) {
+            $result = $this->model::where('ngay_diem_danh_ve', '=', $currrenDate)
+                ->where('hoc_sinh_id', $item->hoc_sinh_id)
+                ->first();
+            if (!$result) {
+                $code = 200;
                 $data_create = $this->model::create(
-                [
-                 'ngay_diem_danh_den' => $currrenDate,
-                 'hoc_sinh_id' => $item->hoc_sinh_id,
-                 'type' => $type,
-                 'giao_vien_id' => $item->giao_vien_id,
-                 'trang_thai' => $item->trang_thai,
-                 'chu_thich' => $item->chu_thich
-                ]);
-            }else{
+                    [
+                        'ngay_diem_danh_ve' => $currrenDate,
+                        'hoc_sinh_id' => $item->hoc_sinh_id,
+                        'giao_vien_id' => $item->giao_vien_id,
+                        'trang_thai' => $item->trang_thai,
+                        'chu_thich' => $item->chu_thich,
+                        'nguoi_don_ho_id' => $item->nguoi_don_ho_id,
+                        'lop_id' => $item->lop_id,
+                        'created_at' => $currrenDate,
+                    ]);
+            } else {
                 $result->giao_vien_id = $item->giao_vien_id;
                 $result->trang_thai = $item->trang_thai;
                 $result->chu_thich = $item->chu_thich;
@@ -56,6 +52,17 @@ class DiemDanhVeRepository extends BaseModelRepository
             }
         }
 
-          return $data;
+        return $response = ['data' => $data, 'code' => $code];
+    }
+
+    public function editData($lop_id)
+    {
+        $mydate = new \DateTime();
+        $mydate->modify('+7 hours');
+        $currrenDate = $mydate->format('Y-m-d');
+
+        return $this->model::whereDate('created_at', '=', $currrenDate)
+            ->where('lop_id', $lop_id)
+            ->get();
     }
 }

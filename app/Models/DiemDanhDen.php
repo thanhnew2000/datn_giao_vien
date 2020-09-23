@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\HocSinh;
 use Illuminate\Database\Eloquent\Model;
 
 class DiemDanhDen extends Model
@@ -13,6 +14,11 @@ class DiemDanhDen extends Model
         'giao_vien_id',
         'chu_thich',
         'trang_thai',
-        'type'
+        'type',
+        'lop_id',
     ];
+    public function student()
+    {
+        return $this->belongsTo(HocSinh::class, 'hoc_sinh_id', 'id');
+    }
 }
