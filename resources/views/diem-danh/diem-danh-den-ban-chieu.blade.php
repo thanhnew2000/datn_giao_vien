@@ -166,7 +166,7 @@
 				'_token': "{{ csrf_token() }}",
 				'data': JSON.stringify(data)
 			}, function(dt) {
-                // location.reload()
+                location.reload()
 			})
     }
 
