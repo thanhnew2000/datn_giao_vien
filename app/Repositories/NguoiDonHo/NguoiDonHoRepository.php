@@ -24,8 +24,8 @@ class NguoiDonHoRepository extends BaseModelRepository
     public function getInfo()
     {
         $time_now = Carbon::now()->toDateString();
-        return $this->model::where('date_start', '<=', $time_now)
-            ->where('date_end', '>=', $time_now)
+        return $this->model::whereDate('date_start', '<=', $time_now)
+            ->whereDate('date_end', '>=', $time_now)
             ->get();
     }
 
