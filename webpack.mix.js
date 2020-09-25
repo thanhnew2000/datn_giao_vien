@@ -40,18 +40,16 @@ mix.styles(
         "public/vendors/chartist/dist/chartist.min.css",
         "public/vendors/sweetalert2/dist/sweetalert2.min.css",
         "public/vendors/socicon/css/socicon.css",
-        "public/vendors/vendors/line-awesome/css/line-awesome.css",
-        "public/vendors/vendors/flaticon/css/flaticon.css",
         "public/vendors/vendors/metronic/css/styles.css",
         "public/vendors/vendors/fontawesome5/css/all.min.css",
-        "public/assets/vendors/custom/datatables/datatables.bundle.css",
 
-        
+        "public/assets/vendors/custom/datatables/datatables.bundle.css"
     ],
     "public/css/all.css"
 )
     .scripts(
         [
+            "public/assets/jquery/jquery.min.js",
             "public/assets/vendors/base/vendors.bundle.js",
             "public/assets/demo/base/scripts.bundle.js",
             "public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js",
@@ -74,7 +72,6 @@ mix.styles(
             "public/vendors/js/framework/components/plugins/forms/bootstrap-switch.init.js",
             "public/vendors/vendors/bootstrap-multiselectsplitter/bootstrap-multiselectsplitter.min.js",
             "public/vendors/bootstrap-select/dist/js/bootstrap-select.js",
-            "public/vendors/select2/dist/js/select2.full.js",
             "public/vendors/typeahead.js/dist/typeahead.bundle.js",
             "public/vendors/handlebars/dist/handlebars.js",
             "public/vendors/inputmask/dist/jquery.inputmask.bundle.js",
@@ -96,7 +93,7 @@ mix.styles(
             "public/vendors/js/framework/components/plugins/forms/jquery-validation.init.js",
             "public/vendors/bootstrap-notify/bootstrap-notify.min.js",
             "public/vendors/js/framework/components/plugins/base/bootstrap-notify.init.js",
-            "public/vendors/toastr/build/toastr.min.js",
+            // "public/vendors/toastr/build/toastr.min.js",
             "public/vendors/jstree/dist/jstree.js",
             "public/vendors/raphael/raphael.js",
             "public/vendors/morris.js/morris.js",
@@ -110,16 +107,13 @@ mix.styles(
             "public/vendors/es6-promise-polyfill/promise.min.js",
             "public/vendors/sweetalert2/dist/sweetalert2.min.js",
             "public/vendors/js/framework/components/plugins/base/sweetalert2.init.js",
-            "public/vendors/wizard/wizard.js",
-            "public/assets/demo/custom/crud/wizard/wizard.js",
+            // "public/vendors/wizard/wizard.js",
+            // "public/assets/demo/custom/crud/wizard/wizard.js",
             "public/assets/snippets/custom/pages/user/login.js",
+            "public/vendors/jquery-validation/dist/jquery.validate.min.js",
 
-            "public/assets/demo/default/base/scripts.bundle.js",
             "public/assets/vendors/custom/datatables/datatables.bundle.js",
-            "public/assets/demo/default/custom/crud/datatables/basic/headers.js",
-
-
-            
+            "public/assets/demo/default/custom/crud/datatables/basic/headers.js"
         ],
         "public/js/all.js"
     )
