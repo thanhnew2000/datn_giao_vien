@@ -220,12 +220,12 @@
             data.push(std)
         }
         console.log(data)
-        $.post('{{ route("diem_danh_ve.store") }}', {
-            '_token': "{{ csrf_token() }}",
-            'data': JSON.stringify(data)
-        }, function (dt) {
+        // $.post('{{ route("diem_danh_ve.store") }}', {
+        //     '_token': "{{ csrf_token() }}",
+        //     'data': JSON.stringify(data)
+        // }, function (dt) {
             // location.reload() 
-        })
+        // })
     }
 
 </script>
