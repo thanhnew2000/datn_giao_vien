@@ -12,6 +12,7 @@ class DiemDanhVe extends Model
         'ngay_diem_danh_ve',
         'hoc_sinh_id',
         'giao_vien_id',
+        'user_id',
         'chu_thich',
         'trang_thai',
         'phu_huynh',

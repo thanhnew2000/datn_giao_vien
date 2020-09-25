@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', "Điểm danh đếnn ban sáng")
+@section('title', "Điểm danh đến ban sáng")
 @section('content')
 <div class="m-content">
     <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30"
@@ -162,7 +162,7 @@
 				'_token': "{{ csrf_token() }}",
 				'data': JSON.stringify(data)
 			}, function(dt) {
-                // location.reload()
+                location.reload()
 			})
     }
 
