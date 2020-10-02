@@ -47,3 +47,12 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
         Route::post('ve', 'DiemDanhVe\DiemDanhVeController@postDiemDanhVe')->name('diem_danh_ve.store');
     });
 });
+
+Route::prefix('quan-ly-suc_khoe')->group(function () {
+    Route::get('/', 'SucKhoeController@index')->name('quan-suc-khoe-index');
+    Route::post('/check-dot-kham-suc-khoe', 'SucKhoeController@checkdot')->name('quan-suc-khoe-check-dot');
+    Route::get('/create', 'SucKhoeController@create')->name('quan-suc-khoe-create');
+    Route::post('/store', 'SucKhoeController@store')->name('quan-suc-khoe-store');
+    Route::get('/edit/{id}', 'SucKhoeController@edit')->name('quan-suc-khoe-edit');
+    Route::post('/update/{id}', 'SucKhoeController@update')->name('quan-suc-khoe-update');
+});
