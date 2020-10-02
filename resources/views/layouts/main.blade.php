@@ -53,7 +53,6 @@
 
 					<!--start content -->
 					@yield('content')
-					@yield('script')
 					<!--end content -->		
 					
 				</div>
@@ -87,6 +86,7 @@
 		  {{--  script  --}}
 		  @include('layouts._share.script')
 		  {{--  endscript  --}}
+		  @yield('script')
 	
 
 		<!--end::Page Scripts -->
