@@ -38,6 +38,7 @@ class DiemDanhVeRepository extends BaseModelRepository
                         'ngay_diem_danh_ve' => $currrenDate,
                         'hoc_sinh_id' => $item->hoc_sinh_id,
                         'giao_vien_id' => $item->giao_vien_id,
+                        'user_id' => $item->user_id,
                         'trang_thai' => $item->trang_thai,
                         'chu_thich' => $item->chu_thich,
                         'nguoi_don_ho_id' => $item->nguoi_don_ho_id,

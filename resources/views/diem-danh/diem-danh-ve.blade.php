@@ -62,9 +62,10 @@
                             $date=date_create($item->ngay_sinh);
                             @endphp
                             <tr>
-                                <td>{{ $index++ }}<input type="hidden" name="id_{{ $item->id }}"
-                                        value="{{ $item->id }}">
-                                    <input type="hidden" name="lop_{{ $item->id }}" value="{{ $item->lop_id }}"></td>
+                                <td>{{ $index++ }}
+                                    <input type="hidden" name="id_{{ $item->id }}"  value="{{ $item->id }}">
+                                    <input type="hidden" name="lop_{{ $item->id }}" value="{{ $item->lop_id }}">
+                                    <input type="hidden" name="user_{{ $item->id }}"  value="{{ $item->user_id }}"></td>
                                 <td>{{ $item->ma_hoc_sinh }}</td>
                                 <td>{{ $item->ten }}</td>
                                 <td><img src="{{ $item->avatar }}" alt="avatar"></td>
@@ -92,9 +93,10 @@
                             $date=date_create($item->student->ngay_sinh);
                             @endphp
                             <tr>
-                                <td>{{ $index++ }}<input type="hidden" name="id_{{ $item->id }}"
-                                        value="{{ $item->id }}">
-                                    <input type="hidden" name="lop_{{ $item->id }}" value="{{ $item->lop_id }}"></td>
+                                <td>{{ $index++ }}
+                                    <input type="hidden" name="id_{{ $item->id }}" value="{{ $item->hoc_sinh_id }}">
+                                    <input type="hidden" name="lop_{{ $item->id }}" value="{{ $item->lop_id }}">
+                                    <input type="hidden" name="user_{{ $item->id }}"  value="{{ $item->user_id }}"></td>
                                 <td>{{ $item->student->ma_hoc_sinh }}</td>
                                 <td>{{ $item->student->ten }}</td>
                                 <td><img src="{{ $item->student->avatar }}" alt="avatar"></td>
@@ -131,12 +133,10 @@
                 </button>
             </div>
            @php
-               $modals = ($students != null || count($students)) ? $students : $edit;
+               $modals = ($students != null && count($students) > 0) ? $students : $edit;
            @endphp
-            @if ($modals != null || count($modals) > 0)
+            @if ($modals != null && count($modals) > 0)
             @foreach ($modals as $item)
-
-
             @foreach ($nguoi_don_ho as $curros)
             @if ($curros->user_id == $item->user_id)
             <div class="modal fade" id="{{ 'm_modal_'.$item->user_id}}" tabindex="-1" role="dialog"
@@ -154,17 +154,17 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="recipient-name" class="form-control-label">Họ và Tên:</label>
-                                <input type="text" class="form-control" id="recipient-name"
+                                <input type="text" class="form-control"
                                     value="{{ $curros->ten_nguoi_don_ho }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="message-text" class="form-control-label">Số điện thoại:</label>
-                                <input type="text" class="form-control" id="recipient-name"
+                                <input type="text" class="form-control" 
                                     value="{{ $curros->phone_number }}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="message-text" class="form-control-label">Số CMND/TCC:</label>
-                                <input type="text" class="form-control" id="recipient-name" value="{{ $curros->cmtnd }}"
+                                <input type="text" class="form-control"  value="{{ $curros->cmtnd }}"
                                     readonly>
                             </div>
                             <div class="form-group">
@@ -210,6 +210,7 @@
 
             std = {
                 'hoc_sinh_id': $('[name=id_' + $(statusList[i]).attr('name') + ']').val(),
+                'user_id': $('[name=user_' + $(statusList[i]).attr('name') + ']').val(),
                 'giao_vien_id': "{{ \Illuminate\Support\Facades\Auth::id() }}",
                 'trang_thai': $(statusList[i]).val(),
                 'chu_thich': $('[name=chu_thich_' + $(statusList[i]).attr('name') + ']').val(),
@@ -224,7 +225,7 @@
             '_token': "{{ csrf_token() }}",
             'data': JSON.stringify(data)
         }, function (dt) {
-            // location.reload() 
+            location.reload() 
         })
     }
 
