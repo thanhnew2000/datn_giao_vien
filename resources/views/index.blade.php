@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', "Hệ thống PolyKids")
+@section('title', "Trang chủ")
 {{--  @section('content')
 <!-- BEGIN: Subheader -->
 <div class="m-subheader ">
