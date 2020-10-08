@@ -91,6 +91,7 @@
 	
 
 		<!--end::Page Scripts -->
+		@include('layouts._share.notify')
 	</body>
 
 	<!-- end::Body -->

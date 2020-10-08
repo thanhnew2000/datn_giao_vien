@@ -56,3 +56,14 @@ Route::prefix('quan-ly-suc_khoe')->group(function () {
     Route::get('/edit/{id}', 'SucKhoeController@edit')->name('quan-suc-khoe-edit');
     Route::post('/update/{id}', 'SucKhoeController@update')->name('quan-suc-khoe-update');
 });
+
+Route::group(['middleware' => ['web', 'auth']], function () {
+
+    Route::prefix('thong-bao')->group(function () {
+        Route::get('/', 'ThongBaoController@index')->name('thong-bao.index');
+        Route::get('/{id}', 'ThongBaoController@showThongBao')->name('thong-bao.show')->where('id', '[0-9]+');;
+    });
+
+    Route::post('changeType', 'NotificationController@changeType')->name('notification.changeType');
+
+});
