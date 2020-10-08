@@ -40,4 +40,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\NguoiDonHo');
     }
+
+    public function ThongBao()
+    {
+        return $this->hasMany('App\Models\ThongBao');
+    }
 }
