@@ -9,7 +9,7 @@
 		</title>
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-
+		
 		<!--begin::Web font -->
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 		<script>
@@ -20,7 +20,13 @@
             }
           });
         </script>
-
+		@section('style')
+			<style>
+				.m-body .m-content{
+					padding: 10px 20px;
+				}
+			</style>
+		@endsection
 		<!--end::Web font -->
 
 		{{--  style style  --}}
@@ -50,7 +56,8 @@
 
 				<!-- END: Left Sidebar -->
 				<div class="m-grid__item m-grid__item--fluid m-wrapper">
-
+					
+				
 					<!--start content -->
 					@yield('content')
 					<!--end content -->		

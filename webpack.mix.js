@@ -50,6 +50,7 @@ mix.styles(
     .scripts(
         [
             "public/assets/jquery/jquery.min.js",
+            "public/assets/demo/default/custom/crud/datatables/basic/scrollable.js",
             "public/assets/vendors/base/vendors.bundle.js",
             "public/assets/demo/base/scripts.bundle.js",
             "public/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js",

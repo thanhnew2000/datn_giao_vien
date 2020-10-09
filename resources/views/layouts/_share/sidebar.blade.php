@@ -187,7 +187,7 @@
                             >
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="" class="m-menu__link "
+                            <a href="{{ route('test7') }}" class="m-menu__link "
                                 ><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"
                                     ><span></span></i
@@ -259,11 +259,11 @@
                         </li>
 
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="" class="m-menu__link "
+                            <a href="{{ route('danh-sach-lop-index') }}" class="m-menu__link "
                                 ><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"
                                     ><span></span></i
-                                ><span class="m-menu__link-text">item</span></a
+                                ><span class="m-menu__link-text">Danh sách lớp</span></a
                             >
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
