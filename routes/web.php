@@ -29,12 +29,18 @@ Route::prefix('quan-ly-hoc-sinh')->group(function () {
 Route::prefix('quan-ly-khoi')->group(function () {
     Route::get('/', 'KhoiController@index')->name('quan-ly-khoi-index');
 });
+Route::prefix('danh-sach-lop')->group(function () {
+    Route::get('/', 'LopController@index')->name('danh-sach-lop-index');
+});
+
 
 Route::prefix('cong-viec-hang-ngay')->group(function () {
 
     Route::view('/don-xin-nghi-hoc', 'don-xin-nghi-hoc.index')->name('test4');
     Route::view('/don-dan-thuoc', 'don-dan-thuoc.index')->name('test5');
     Route::view('/loi-nhan', 'loi-nhan.index')->name('test6');
+    Route::view('/hoat-dong-hoc', 'hoat-dong-hoc.index')->name('test7');
+
 
     Route::prefix('diem-danh')->group(function () {
         Route::get('ban-sang', 'DiemDanhDen\DiemDanhDenController@showDiemDanh')->name('diem_danh_ban_sang.create');
