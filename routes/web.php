@@ -53,3 +53,23 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
         Route::post('ve', 'DiemDanhVe\DiemDanhVeController@postDiemDanhVe')->name('diem_danh_ve.store');
     });
 });
+
+Route::prefix('quan-ly-suc_khoe')->group(function () {
+    Route::get('/', 'SucKhoeController@index')->name('quan-suc-khoe-index');
+    Route::post('/check-dot-kham-suc-khoe', 'SucKhoeController@checkdot')->name('quan-suc-khoe-check-dot');
+    Route::get('/create', 'SucKhoeController@create')->name('quan-suc-khoe-create');
+    Route::post('/store', 'SucKhoeController@store')->name('quan-suc-khoe-store');
+    Route::get('/edit/{id}', 'SucKhoeController@edit')->name('quan-suc-khoe-edit');
+    Route::post('/update/{id}', 'SucKhoeController@update')->name('quan-suc-khoe-update');
+});
+
+Route::group(['middleware' => ['web', 'auth']], function () {
+
+    Route::prefix('thong-bao')->group(function () {
+        Route::get('/', 'ThongBaoController@index')->name('thong-bao.index');
+        Route::get('/{id}', 'ThongBaoController@showThongBao')->name('thong-bao.show')->where('id', '[0-9]+');;
+    });
+
+    Route::post('changeType', 'NotificationController@changeType')->name('notification.changeType');
+
+});
