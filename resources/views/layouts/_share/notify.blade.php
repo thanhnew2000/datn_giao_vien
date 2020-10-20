@@ -43,7 +43,7 @@
             }
         }
         $('#box-notification').html(content);
-        var notifi_html = count ? `<span class="m-nav__link-badge m-badge m-badge--danger">${count}</span>` : '';
+        var notifi_html = count ? `<span class="m-nav__link-badge m-badge m-badge--danger">${count}+</span>` : '';
         $('#count_number_notifi').html(notifi_html);
     });
 
@@ -79,6 +79,7 @@
     }
 
     $('#m_topbar_notification_icon').on('click',function(){
+        $('#count_number_notifi').html('');
         db.once('value', function(snap) {
             var res = Object.values(snap.val());
             res.forEach(element => {
