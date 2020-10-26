@@ -52,14 +52,14 @@
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        LỚP HOA MAI
+                        {{ $lopHoc->ten_lop }}
                     </h3>
                 </div>
             </div>
         </div>
         <div class="m-portlet__body">
             <div class="row">
-                @forelse ($data as $item)
+                @forelse ($lopHoc->Student as $item)
                     <div class="col-xs-12 col-sm-4 col-md-3 pt-3">
                         <!--begin::Portlet-->
                         <div class="m-portlet m-portlet--tab drop-me" data-toggle="popover" title="Thông tin cá nhân">

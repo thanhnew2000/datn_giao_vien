@@ -12,7 +12,6 @@ class LopController extends Controller
     public function index(){
         $giaoVien = GiaoVien::where('user_id', Auth::user()->id)->first();
         $lopHoc = LopHoc::where('id', $giaoVien->lop_id)->first();
-        $data = $lopHoc->Student;
-        return view('danh-sach-lop.index',compact('data'));
+        return view('danh-sach-lop.index',compact('lopHoc'));
     }
 }
