@@ -1,133 +1,94 @@
 @extends('layouts.main')
 @section('title', "Danh sách lớp")
 @section('content')
+<style>
+ 
+.drop-me {
+  cursor: pointer;
+  box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
+  border-radius: 2rem;
+  transition: 0.5s;
+}
+.drop-me:hover {
+  box-shadow: 0px 1rem 1.5rem rgba(0,0,0,0.5);
+  transform: scale(1.1);
+
+}
+.card{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 300px 20px 10px;
+    grid-template-areas: "image" "text" "status";
+
+    font-family: roboto;
+    border-radius: 2rem;
+    text-align: center;
+}
+.card-image{
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    background-size: cover;
+}
+.card-text{
+    grid-area: text;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+
+.m-portlet {
+    font-size: 1rem;
+    color: #404040;
+    font-family: Montserrat, sans-serif;
+    background-image: linear-gradient(to bottom right, #ff9eaa 0% 10%, #e860ff 95% 100%);
+ }
+
+</style>
+
 <div class="m-content">
-    <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30"
-        role="alert">
-        <div class="m-alert__icon">
-            <i class="flaticon-presentation m--font-success"></i>
-        </div>
-        <div class="m-alert__text">
-            LỚP HOA LY 2
-        </div>
-    </div>
-    <!--begin::Portlet-->
-    <div class="m-portlet m-portlet--mobile">
+
+    <div class="m-portlet p-5">
         <div class="m-portlet__head">
             <div class="m-portlet__head-caption">
                 <div class="m-portlet__head-title">
                     <h3 class="m-portlet__head-text">
-                        DANH SÁCH LỚP
+                        {{ $lopHoc->ten_lop }}
                     </h3>
                 </div>
             </div>
-            
         </div>
         <div class="m-portlet__body">
-            
-            <div class="tab-content">
-                <div class="tab-pane active" id="m_tabs_1_1" role="tabpanel">
-
-                    <table class="table table-striped- table-bordered table-hover table-checkable responsive no-wrap dataTable dtr-inline collapsed" id="table1">
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Mã Số</th>
-                                <th>Họ Tên</th>
-                                <th>Ảnh</th>
-                                <th>Ngày Sinh</th>
-                                <th>Giới Tính</th>
-                                <th>Số điện thoại</th>
-                                <th>Thao Tác</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        
-                                    <tr>
-                                        <td>1</td>
-                                        <td>PH07533</td>
-                                        <td>Phạm Trung Hiếu</td>
-                                        <td><img width="150px" height="150px" src="https://images.unsplash.com/photo-1600611861240-80ec554d1039?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=674&q=80" alt=""></td>
-                                        <td>1/10/2000</td>
-                                        <td>Nam</td>
-                                        <td>0922333333</td>
-                                        <td><a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--pill m-btn--air">
-                                            <span>
-                                                <i class="fa flaticon-apps"></i>
-                                                <span>Chi tiết</span>
-                                            </span>
-                                        </a></td>
-                                    </tr>
-                        
-                                    <tr>
-                                        <td>2</td>
-                                        <td>PH02929</td>
-                                        <td>Nguyễn Trung Hiếu</td>
-                                        <td><img width="150px" height="150px" src="https://images.unsplash.com/photo-1600611861240-80ec554d1039?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=674&q=80" alt=""></td>
-                                        <td>2/2/2000</td>
-                                        <td>Nam</td>
-                                        <td>0292929222</td>
-                                      <td><a href="#" class="btn btn-outline-success m-btn m-btn--icon m-btn--pill m-btn--air">
-                                        <span>
-                                            <i class="fa flaticon-apps"></i>
-                                            <span>Chi tiết</span>
-                                        </span>
-                                    </a></td>
-                                    </tr>
-                           
-                           
-                        </tbody>
-                    </table>
-                </div>
-
-
+            <div class="row">
+                @forelse ($lopHoc->Student as $item)
+                    <div class="col-xs-12 col-sm-4 col-md-3 pt-3">
+                        <!--begin::Portlet-->
+                        <div class="m-portlet m-portlet--tab drop-me" data-toggle="popover" title="Thông tin cá nhân">
+                            <div class="card">
+                                <div class="card-image" style="background-image: url('https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');">
+                                </div>
+                                <div class="card-text">
+                                    {{ $item->ten}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="d-flex justify-content-center">
+                        <div class="m-demo " data-code-preview="true" data-code-html="true" data-code-js="false">
+                            <div class="m-demo__preview">
+                                <h3>
+                                  Lớp học hiện tại chưa có học sinh
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                @endforelse
+                
             </div>
-            
         </div>
     </div>
 
-    <!--end::Portlet-->
-</div>
-
 </div>
 
 @endsection
-@section('script')
 
-<script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
-<!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
-<script>
-    $(document).ready(function () {
-        $('#table1').DataTable({
-            "pageLength": 100
-        });
-    });
-
-    function submitData(){
-        var statusList = $('input[type=radio]:checked');
-        var data = [];
-        for(i=0;i<statusList.length;i++) {
-			
-                std = {
-                    'hoc_sinh_id': $('[name=id_'+$(statusList[i]).attr('name')+']').val(),
-                    'giao_vien_id': "{{ \Illuminate\Support\Facades\Auth::id() }}",
-					'trang_thai': $(statusList[i]).val(),
-					'chu_thich': $('[name=chu_thich_'+$(statusList[i]).attr('name')+']').val(),
-                    'lop_id': $('[name=lop_' + $(statusList[i]).attr('name') + ']').val()
-				}
-				data.push(std)
-			}
-			console.log(data)
-            $.post('{{ route("diem_danh_ban_sang.store") }}', {
-				'_token': "{{ csrf_token() }}",
-				'data': JSON.stringify(data)
-			}, function(dt) {
-                location.reload()
-			})
-    }
-
-</script>
-@endsection
