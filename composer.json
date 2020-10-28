@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
         "quanvt/laravel-firebase-sync": "^1.0",
+        "tightenco/ziggy": "^0.9.4",
         "jacobbennett/pjax": "~1.0"
     },
     "require-dev": {
