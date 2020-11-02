@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Http;
 
 class AlbumController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $response = Http::get(config('common.DB_HOST_STORAGE') . '/api/album?lop_id=' . Auth::user()->profile->lop_id);
         $data = $response->json();
@@ -38,7 +38,7 @@ class AlbumController extends Controller
             'item_images' => $array_images,
             'auth_id' => $album->auth_id,
             'lop_id' => $album->lop_id,
-            'content' => $album->content
+            'title' => $album->title
         ];
         return view('album.show',compact('data'));  
     }

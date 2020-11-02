@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Album extends Model
 {
     protected $table = "album";
-    protected $fillable = ['content', 'item_images'];
+    protected $fillable = ['title', 'item_images'];
 }

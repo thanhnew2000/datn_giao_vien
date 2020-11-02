@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Masonry Layout con CSS Grid</title>
+    <link rel="shortcut icon" type="image/x-icon" href="https://kidsonline.edu.vn/wp-content/themes/kids-online/assets/images/favicon.png">
+    <title>Album</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <style>
@@ -161,6 +162,7 @@
 </head>
 <body>
     <a href="{{ route('album.index') }}"><i class="fas fa-arrow-circle-left" style="font-size: 3rem; color: blue"></i></a>
+    <center><h2>"{{ $data->title }}"</h2></center>
     <div class="gallery" id="gallery">
       @forelse ($data->item_images as $item)
         <div class="gallery-item">
