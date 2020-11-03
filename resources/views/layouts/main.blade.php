@@ -94,14 +94,15 @@
 		<!-- begin::Quick Nav -->
 
 		  {{--  script  --}}
-		  @include('layouts._share.script')
-		  {{--  endscript  --}}
-		  @yield('script')
+		  
 	
 
 		<!--end::Page Scripts -->
+		
+		@include('layouts._share.script')
 		@include('layouts._share.notify')
-
+		{{--  endscript  --}}
+		@yield('script')
      <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 	</body>
 

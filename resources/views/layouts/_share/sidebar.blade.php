@@ -167,7 +167,7 @@
                             >
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ route('test5') }}" class="m-menu__link "
+                            <a href="{{ route('don-dan-thuoc') }}" class="m-menu__link "
                                 ><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"
                                     ><span></span></i
