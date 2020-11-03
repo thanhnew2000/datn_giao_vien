@@ -60,16 +60,16 @@ class HoatDongController extends Controller
         if($duoiFile == 'xls' || $duoiFile == 'xlsx'){
                 $spreadsheet = IOFactory::load($_FILES['file']['tmp_name']);
                 $writer = new \PhpOffice\PhpSpreadsheet\Writer\Pdf\Mpdf($spreadsheet);
-                $writer->save("file_pdf/excel/".$nameFile.'pdf');
-                $link_file_pdf = 'file_pdf/excel/'.$nameFile.'pdf';
+                $writer->save("file_pdf/excel/".$nameFile.'.pdf');
+                $link_file_pdf = 'file_pdf/excel/'.$nameFile.'.pdf';
         }else{
                 $domPdfPath = base_path('vendor/dompdf/dompdf');
                 \PhpOffice\PhpWord\Settings::setPdfRendererPath($domPdfPath);
                 \PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF');
                 $Content = \PhpOffice\PhpWord\IOFactory::load($_FILES['file']['tmp_name']);
                 $PDFWriter = \PhpOffice\PhpWord\IOFactory::createWriter($Content,'PDF');
-                $PDFWriter->save('file_pdf/word/'.$nameFile.'pdf'); 
-                $link_file_pdf = 'file_pdf/word/'.$nameFile.'pdf';
+                $PDFWriter->save('file_pdf/word/'.$nameFile.'.pdf'); 
+                $link_file_pdf = 'file_pdf/word/'.$nameFile.'.pdf';
         }
         $dateCreate = [
             'id_gv' => $giao_vien->id,
