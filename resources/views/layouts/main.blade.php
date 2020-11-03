@@ -3,7 +3,9 @@
 
 	<!-- begin::Head -->
 	<head>
+		@routes()
 		<meta charset="utf-8" />
+		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<title>
 			@yield('title')
 		</title>
@@ -20,12 +22,16 @@
                 sessionStorage.fonts = true;
             }
           });
-        </script>
+		</script>
+
 		@section('style')
 			<style>
 				.m-body .m-content{
 					padding: 10px 20px;
 				}
+				.m-portlet__body{
+      			    min-height: 500px;
+    			}
 			</style>
 		@endsection
 		<!--end::Web font -->
@@ -39,7 +45,7 @@
 	<!-- end::Head -->
 
 	<!-- begin::Body -->
-	<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
+	<body id="" class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-aside-left--minimize m-brand--minimize m-footer--push m-aside--offcanvas-default">
 		<div id="progressbar"  style="width: 0%"></div>
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
@@ -56,7 +62,7 @@
 				@include('layouts._share.sidebar')
 
 				<!-- END: Left Sidebar -->
-				<div class="m-grid__item m-grid__item--fluid m-wrapper">
+				<div class="m-grid__item m-grid__item--fluid m-wrapper" id="pjax-container">
 					
 				
 					<!--start content -->
@@ -101,9 +107,16 @@
 		
 		@include('layouts._share.script')
 		@include('layouts._share.notify')
+<<<<<<< HEAD
 		{{--  endscript  --}}
 		@yield('script')
      <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+=======
+
+	 <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+	 <!-- <script type="text/javascript" src="{{asset('pjax/jquery.pjax.js')}}"></script> -->
+	 <!-- <script type="text/javascript" src="{{asset('pjax/setup-pjax.js')}}"></script> -->
+>>>>>>> c788bbc7fd9bf711780c1de546f2d5406ad9a380
 	</body>
 
 	<!-- end::Body -->
