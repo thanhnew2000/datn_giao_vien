@@ -187,7 +187,7 @@
                             >
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ route('test7') }}" class="m-menu__link "
+                            <a href="{{ route('hoat-dong-hoc-index') }}" class="m-menu__link "
                                 ><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"
                                     ><span></span></i
