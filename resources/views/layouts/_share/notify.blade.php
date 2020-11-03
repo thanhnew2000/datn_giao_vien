@@ -3,6 +3,10 @@
         background: #d0e7ff;
     }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/vi.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     var firebaseConfig = {
         apiKey: "AIzaSyCixF05x85kh6pkORyLCA8S2cVHAp5xFhQ",
@@ -24,6 +28,17 @@
         var count = 0;
         for (let i = res.length - 1; i >= 0; i--) {
             if (res[i].user_id == '{{ Illuminate\Support\Facades\Auth::id() }}') {
+                // axios.get('https://httpbin.org/get')
+                // .then(function (response) {
+                //    console.log('apitsst',response.data)
+                // })
+                // .catch(function (error) {
+                //     // handle error
+                //     console.log(error);
+                // })
+                // .then(function () {
+                //     // always executed
+                // });
                 count = res[i].type == 1 ? ++count : count;
                 let relativeTime = getMinimalisticRelativeTime(res[i].created_at);
                 content += `
@@ -86,6 +101,6 @@
                 }
             });
         });
-    })
+    });
 
 </script>
