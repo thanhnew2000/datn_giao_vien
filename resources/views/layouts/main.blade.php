@@ -100,17 +100,23 @@
 		<!-- begin::Quick Nav -->
 
 		  {{--  script  --}}
-		  @include('layouts._share.script')
-		  {{--  endscript  --}}
-		  @yield('script')
+		  
 	
 
 		<!--end::Page Scripts -->
+		
+		@include('layouts._share.script')
 		@include('layouts._share.notify')
+<<<<<<< HEAD
+		{{--  endscript  --}}
+		@yield('script')
+     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
+=======
 
 	 <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 	 <!-- <script type="text/javascript" src="{{asset('pjax/jquery.pjax.js')}}"></script> -->
 	 <!-- <script type="text/javascript" src="{{asset('pjax/setup-pjax.js')}}"></script> -->
+>>>>>>> c788bbc7fd9bf711780c1de546f2d5406ad9a380
 	</body>
 
 	<!-- end::Body -->

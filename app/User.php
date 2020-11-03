@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\GiaoVien;
 
 class User extends Authenticatable
 {

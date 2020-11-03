@@ -1,6 +1,7 @@
 <?php
 return [
-    'DB_HOST_STORAGE' => "http://127.0.0.1:8000", 
+    'key_firebase' => 'AAAA0i5VEtw:APA91bGn6K6XM-GK2RHqFVi7W3Iz3JqLcCrz7wgmfI2Ab2TcKWn1fzdyDJumPtmEaR7NP2udSTBEGKbhIyuO46jPF_hrB9MSPkgo9KnO-mqBy6kAmNtPFq60hLUAUVwT8Ul_5LWvWUvB',
+    'DB_HOST_STORAGE' => "http://127.0.0.1:8000",
     'paginate_size' => [
         'default' => 10,
         'list' => [10, 20, 50, 100],
