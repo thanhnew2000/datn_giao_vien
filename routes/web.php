@@ -21,6 +21,7 @@ Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')-
 Route::get('/home', function(){
     return view('index');
 })->name('home');
+Route::get('/logout','Auth\AuthController@getLogout')->name('get.logout');
 
 Route::prefix('quan-ly-hoc-sinh')->group(function () {
     Route::get('/', 'QuanlyHocSinhController@index')->name('quan-ly-hoc-sinh-index');
