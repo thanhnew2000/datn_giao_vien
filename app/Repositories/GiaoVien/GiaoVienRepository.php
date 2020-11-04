@@ -34,7 +34,7 @@ class GiaoVienRepository extends BaseModelRepository
 
     public function getGVTheoIdUser($id)
     {
-        $query = $this->table->where('user_id', $id)->first();
+        $query = $this->model->where('user_id', $id)->first();
         return $query;
     }
 

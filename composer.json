@@ -9,16 +9,20 @@
     "license": "MIT",
     "require": {
         "php": "^7.2.5",
+        "barryvdh/laravel-dompdf": "^0.8.7",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^6.3",
+        "jacobbennett/pjax": "~1.0",
         "kreait/firebase-php": "^4.0",
         "laravel/framework": "^7.24",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
+        "mpdf/mpdf": "^8.0",
+        "phpoffice/phpspreadsheet": "^1.15",
+        "phpoffice/phpword": "^0.17.0",
         "quanvt/laravel-firebase-sync": "^1.0",
-        "tightenco/ziggy": "^0.9.4",
-        "jacobbennett/pjax": "~1.0"
+        "tightenco/ziggy": "^0.9.4"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
