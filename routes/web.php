@@ -46,7 +46,7 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
         Route::post('/get-info-phan-hoi', 'DonDanThuocController@infoPhanHoi')->name('info-phan-hoi');
     });
     Route::view('/loi-nhan', 'loi-nhan.index')->name('test6');
-    Route::view('/hoat-dong-hoc', 'hoat-dong-hoc.index')->name('test7');
+    // Route::view('/hoat-dong-hoc', 'hoat-dong-hoc.index')->name('test7');
 
 
     Route::prefix('diem-danh')->group(function () {
@@ -58,6 +58,12 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
 
         Route::get('ve', 'DiemDanhVe\DiemDanhVeController@showDiemDanhVe')->name('diem_danh_ve.create');
         Route::post('ve', 'DiemDanhVe\DiemDanhVeController@postDiemDanhVe')->name('diem_danh_ve.store');
+    });
+
+
+    Route::prefix('hoat-dong-hoc')->group(function () {
+         Route::get('/', 'HoatDongController@index')->name('hoat-dong-hoc-index');
+         Route::post('nhap-file-hoat-dong', 'HoatDongController@store')->name('nhap-file-hoat-dong');
     });
 });
 
