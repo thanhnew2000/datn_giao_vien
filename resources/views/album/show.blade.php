@@ -166,7 +166,7 @@
     <div class="gallery" id="gallery">
       @forelse ($data->item_images as $item)
         <div class="gallery-item">
-          <div class="content"><img src="{{ $item }}" alt=""></div>
+          <div class="content"><img src="{{ asset($item) }}" alt=""></div>
         </div>
       @empty
 
