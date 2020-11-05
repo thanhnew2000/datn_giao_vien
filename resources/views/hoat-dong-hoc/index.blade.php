@@ -54,7 +54,12 @@
                                     <i class="flaticon-clipboard"></i>NHẬN XÉT
                                 </a>
                             </li>
-                            
+                            <li class="nav-item m-tabs__item">
+                                <a class="nav-link m-tabs__link" href="" data-toggle="modal" data-target="#modalNhapFile"">
+                                    <i class="flaticon-clipboard"></i>XUẤT FILE NHẬP HOẠT ĐỘNG
+                                </a>
+                            </li>
+
                         </ul>
                         <ul class="m-portlet__nav ">
                             <li class="m-portlet__nav-item">
@@ -132,7 +137,14 @@
                         
                     </div>
                 </div>
+  
                 <div class="m-portlet__body">
+                     @if (session('status'))
+                        <div class="alert alert-success">
+                            <h5>Đã gửi file thành công !</h5>
+                        </div>
+                    @endif
+
                     <div class="tab-content">
                         <div class="tab-pane active" id="m_tabs_12_1" role="tabpanel">
                             <div class="m-timeline-1 m-timeline-1--fixed">
@@ -463,6 +475,44 @@
                 </div>
             </div>
 
+
+
+
+
+            {{-- thanhnv 11/3/2020 --}}
+            <form action="{{route('nhap-file-hoat-dong')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div class="modal fade" id="modalNhapFile" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Nhập file hoạt động </h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-md-4">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Tuần</span>
+                                </div>
+                            <input type="text" value="{{$numberNextWeek}}" name="tuan" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                            </div>
+                        </div>
+                            <div class="input-group mb-3 ml-3">
+                                <input type="file" id="file_import_id" name="file">
+                            </div>
+
+                        <input type="text" hidden value="{{ Auth::user()->id }}" name="user_id">
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Nhập file</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
             <!--end::Portlet-->
         </div>
     </div>
@@ -476,6 +526,7 @@
 
 <script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
+
 <!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
 <script>
     $(document).ready(function () {

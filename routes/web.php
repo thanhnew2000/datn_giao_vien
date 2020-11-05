@@ -21,6 +21,7 @@ Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')-
 Route::get('/home', function(){
     return view('index');
 })->name('home');
+Route::get('/logout','Auth\AuthController@getLogout')->name('get.logout');
 
 Route::prefix('quan-ly-hoc-sinh')->group(function () {
     Route::get('/', 'QuanlyHocSinhController@index')->name('quan-ly-hoc-sinh-index');
@@ -45,7 +46,7 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
         Route::post('/get-info-phan-hoi', 'DonDanThuocController@infoPhanHoi')->name('info-phan-hoi');
     });
     Route::view('/loi-nhan', 'loi-nhan.index')->name('test6');
-    Route::view('/hoat-dong-hoc', 'hoat-dong-hoc.index')->name('test7');
+    // Route::view('/hoat-dong-hoc', 'hoat-dong-hoc.index')->name('test7');
 
 
     Route::prefix('diem-danh')->group(function () {
@@ -57,6 +58,12 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
 
         Route::get('ve', 'DiemDanhVe\DiemDanhVeController@showDiemDanhVe')->name('diem_danh_ve.create');
         Route::post('ve', 'DiemDanhVe\DiemDanhVeController@postDiemDanhVe')->name('diem_danh_ve.store');
+    });
+
+
+    Route::prefix('hoat-dong-hoc')->group(function () {
+         Route::get('/', 'HoatDongController@index')->name('hoat-dong-hoc-index');
+         Route::post('nhap-file-hoat-dong', 'HoatDongController@store')->name('nhap-file-hoat-dong');
     });
 });
 
@@ -79,5 +86,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('changeType', 'NotificationController@changeType')->name('notification.changeType');
 
     Route::get('/album-anh', 'AlbumController@index')->name('album.index');
+    Route::get('/album-anh/fillter', 'AlbumController@fillter')->name('album.fillter');
     Route::get('/album-anh/{id}', 'AlbumController@show')->name('album.show');
+    Route::post('storeAlbum', 'AlbumController@store')->name('album.store');
+    Route::post('fileUpload', 'AlbumController@fileUpload')->name('album.upload');
+    Route::get('removeUpload', 'AlbumController@removeUpload')->name('album.remove');
 });
