@@ -111,8 +111,6 @@
 		
 		@yield('script')
      <script src="https://sp.zalo.me/plugins/sdk.js"></script>
-
-	 <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 	 <!-- <script type="text/javascript" src="{{asset('pjax/jquery.pjax.js')}}"></script> -->
 	 <!-- <script type="text/javascript" src="{{asset('pjax/setup-pjax.js')}}"></script> -->
 	</body>
