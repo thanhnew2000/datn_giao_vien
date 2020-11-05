@@ -86,5 +86,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('changeType', 'NotificationController@changeType')->name('notification.changeType');
 
     Route::get('/album-anh', 'AlbumController@index')->name('album.index');
+    Route::get('/album-anh/fillter', 'AlbumController@fillter')->name('album.fillter');
     Route::get('/album-anh/{id}', 'AlbumController@show')->name('album.show');
+    Route::post('storeAlbum', 'AlbumController@store')->name('album.store');
+    Route::post('fileUpload', 'AlbumController@fileUpload')->name('album.upload');
+    Route::get('removeUpload', 'AlbumController@removeUpload')->name('album.remove');
 });

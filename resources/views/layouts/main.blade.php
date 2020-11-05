@@ -105,7 +105,11 @@
 
 		<!--end::Page Scripts -->
 		
-		@include('layouts._share.script')
+		{{--  script  --}}
+		  @include('layouts._share.script')
+		{{--  endscript  --}}
+		
+		@yield('script')
 		@include('layouts._share.notify')
 
 	 <script src="https://sp.zalo.me/plugins/sdk.js"></script>
