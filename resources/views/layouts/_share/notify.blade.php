@@ -3,9 +3,6 @@
         background: #d0e7ff;
     }
 </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/vi.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
 <script>
     var firebaseConfig = {
         apiKey: "AIzaSyCixF05x85kh6pkORyLCA8S2cVHAp5xFhQ",
@@ -27,11 +24,22 @@
         var count = 0;
         for (let i = res.length - 1; i >= 0; i--) {
             if (res[i].user_id == '{{ Illuminate\Support\Facades\Auth::id() }}') {
+                // axios.get('https://httpbin.org/get')
+                // .then(function (response) {
+                //    console.log('apitsst',response.data)
+                // })
+                // .catch(function (error) {
+                //     // handle error
+                //     console.log(error);
+                // })
+                // .then(function () {
+                //     // always executed
+                // });
                 count = res[i].type == 1 ? ++count : count;
                 let relativeTime = getMinimalisticRelativeTime(res[i].created_at);
                 content += `
                             <div data-id="${res[i].id}" 
-                                 data-href="${res[i].route}" 
+                                 data-href='${res[i].route}'
                                  data-type="${res[i].type}"
                                  onclick="linkTo(this)" 
                                  class="fc-event fc-event-external ${res[i].type == 1 ? 'fc-start m-fc-event--primary':''} m--margin-bottom-15 ui-draggable ui-draggable-handle item-notifi">
@@ -50,10 +58,14 @@
     function linkTo(element) {
         let data_id = element.getAttribute('data-id');
         let data_href = element.getAttribute('data-href');
+        let link = JSON.parse(data_href);
+        // console.log(link)
         let data_type = element.getAttribute('data-type');
         let str_after_replace = data_href.replace('http://', '');
         var href = str_after_replace.substr(str_after_replace.indexOf("/"), str_after_replace.length - 1)
-        window.location.href = href;
+        console.log(route(link.route_name, link.params))
+
+        window.location.href = route(link.route_name, link.params);
 
         if(data_type == 1 || data_type == '1'){
             isRead(data_id, 2);
@@ -88,6 +100,5 @@
                 }
             });
         });
-    })
-
+    });
 </script>

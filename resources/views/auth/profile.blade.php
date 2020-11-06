@@ -12,7 +12,7 @@
 											</div>
 											<div class="m-card-profile__pic">
 												<div class="m-card-profile__pic-wrapper">
-													<img src="{{ Auth::user()->avatar ? asset('upload/' . Auth::user()->avatar) : 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&background=random' }}" alt="" />
+													<img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&background=random' }}" class="m--img-rounded m--marginless" alt="" />
 												</div>
 											</div>
 											<div class="m-card-profile__details">

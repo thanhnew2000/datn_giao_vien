@@ -62,13 +62,13 @@
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
                             <a
-                                href="components/base/state.html"
+                                href="{{ route('album.index') }}"
                                 class="m-menu__link "
                                 ><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"
                                     ><span></span></i
                                 ><span class="m-menu__link-text"
-                                    >Đăng tải thông báo</span
+                                    >Album ảnh</span
                                 ></a
                             >
                         </li>
@@ -167,7 +167,7 @@
                             >
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ route('test5') }}" class="m-menu__link "
+                            <a href="{{ route('don-dan-thuoc') }}" class="m-menu__link "
                                 ><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"
                                     ><span></span></i
@@ -187,7 +187,7 @@
                             >
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ route('test7') }}" class="m-menu__link "
+                            <a href="{{ route('hoat-dong-hoc-index') }}" class="m-menu__link "
                                 ><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"
                                     ><span></span></i
