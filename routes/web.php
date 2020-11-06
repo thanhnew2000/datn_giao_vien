@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::get('/', function () {
-    return view('index');
-})->middleware('auth', 'web')->name('app');
+Route::get('/', function () { return view('index');})->middleware('auth', 'web')->name('app');
 Auth::routes();
-Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('auth.profile');
-Route::get('/home', function(){
-    return view('index');
-})->name('home');
+Route::get('/home', function(){ return view('index');})->name('home');
+Route::group(['middleware' => ['web','auth']], function () {
+        Route::get('profile/{id}', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('profile');
+        Route::get('/doi-mat-khau','Auth\AuthController@changePasswordForm')->name('doi-mat-khau');
+        Route::post('/update-mat-khau','Auth\AuthController@changePassword')->name('update-mat-khau');
+});
+
 
 Route::prefix('quan-ly-hoc-sinh')->group(function () {
     Route::get('/', 'QuanlyHocSinhController@index')->name('quan-ly-hoc-sinh-index');
@@ -75,3 +76,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('changeType', 'NotificationController@changeType')->name('notification.changeType');
 
 });
+
+     

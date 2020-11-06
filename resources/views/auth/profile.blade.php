@@ -12,7 +12,7 @@
 											</div>
 											<div class="m-card-profile__pic">
 												<div class="m-card-profile__pic-wrapper">
-													<img src="../assets/app/media/img/users/user4.jpg" alt="" />
+													<img src="{{ Auth::user()->avatar ? asset('upload/' . Auth::user()->avatar) : 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&background=random' }}" alt="" />
 												</div>
 											</div>
 											<div class="m-card-profile__details">
@@ -42,6 +42,12 @@
 													<span class="m-nav__link-text">Học vấn</span>
 												</a>
 											</li>
+											<li class="m-nav__item">
+                                                        <a href="{{route('doi-mat-khau')}}" class="m-nav__link">
+                                                            <i class="m-nav__link-icon  flaticon-lock"></i>
+                                                            <span class="m-nav__link-text">Đổi mật khẩu</span>
+                                                        </a>
+                                                    </li>
 										</ul>
 										<div class="m-portlet__body-separator"></div>
 										
@@ -51,7 +57,7 @@
 							<div class="col-xl-9 col-lg-8">
 								<div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
 									<div class="m-portlet__head">
-										<div class="m-portlet__head-tools">
+									<div class="m-portlet__head-tools">
 											<ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
 												<li class="nav-item m-tabs__item">
 													<a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab">
@@ -59,6 +65,8 @@
 														Thông tin
 													</a>
 												</li>
+												
+												
 											</ul>
 										</div>
 									
@@ -67,11 +75,6 @@
 										<div class="tab-pane active" id="m_user_profile_tab_1">
 											<form class="m-form m-form--fit m-form--label-align-right">
 												<div class="m-portlet__body">
-													<div class="form-group m-form__group m--margin-top-10 m--hide">
-														<div class="alert m-alert m-alert--default" role="alert">
-															The example form below demonstrates common HTML form elements that receive updated styles from Bootstrap with additional classes.
-														</div>
-													</div>
 													<div class="form-group m-form__group row" id="thongtincanhan">
 														<div class="col-10 ml-auto">
 															<h3 class="m-form__section">Thông tin cá nhân</h3>
@@ -80,31 +83,32 @@
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">Họ và tên</label>
 														<div class="col-7">
-														<input class="form-control m-input border-0" type="text" value="{{ Auth::user()->name }}">
+														<input class="form-control m-input border-0" disabled type="text" value="{{$giao_vien->ten}}">
 														</div>
 													</div>
+													
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">Ngày sinh</label>
 														<div class="col-7">
-															<input class="form-control m-input border-0" type="text" value="{{ Auth::user()->profile->ngay_sinh }}">
+															<input class="form-control m-input border-0" disabled type="text" value="{{$giao_vien->ngay_sinh }}">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">Giới tính</label>
 														<div class="col-7">
-															<input class="form-control m-input border-0" type="text" value="{{ Auth::user()->profile->gioi_tinh == 1 ? 'Nam' :'Nữ' }}">
+															<input class="form-control m-input border-0" disabled type="text" value="{{ $giao_vien->gioi_tinh == 0 ? 'Nam' :'Nữ' }}">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">Phone</label>
 														<div class="col-7">
-															<input class="form-control m-input border-0" type="text" value="{{ Auth::user()->profile->dien_thoai }}">
+															<input class="form-control m-input border-0" disabled type="text" value="{{ $giao_vien->dien_thoai }}">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">Địa chỉ</label>
 														<div class="col-7">
-															<input class="form-control m-input border-0" type="text" value="{{ Auth::user()->profile->dien_thoai }}">
+															<input class="form-control m-input border-0"disabled type="text" value="{{ $giao_vien->noi_o_hien_tai_so_nha }}">
 														</div>
 													</div>
 													<span id="hocvan"></span>
@@ -117,30 +121,32 @@
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">Chuyên môn</label>
 														<div class="col-7">
-															<input class="form-control m-input border-0" type="text" value="{{ Auth::user()->profile->chuyen_mon }}">
+															<input class="form-control m-input border-0"disabled type="text" value="{{ $giao_vien->chuyen_mon }}">
 														</div>
 													</div>
 													<div class="form-group m-form__group row">
 														<label for="example-text-input" class="col-2 col-form-label">Năm tốt nghiệp</label>
 														<div class="col-7">
-															<input class="form-control m-input border-0" type="text" value="{{ Auth::user()->profile->nam_tot_nghiep }}">
+															<input class="form-control m-input border-0" disabled type="text" value="{{ $giao_vien->nam_tot_nghiep }}">
 														</div>
 													</div>
 												</div>
+												
 												<div class="m-portlet__foot m-portlet__foot--fit">
 													<div class="m-form__actions">
 														<div class="row">
 															<div class="col-2">
 															</div>
-															<div class="col-7">
-																<button type="reset" class="btn btn-accent m-btn m-btn--air m-btn--custom">Save changes</button>&nbsp;&nbsp;
+															<!-- <div class="col-7">
+																<button type="button" class="btn btn-accent m-btn m-btn--air m-btn--custom">Save changes</button>&nbsp;&nbsp;
 																<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">Cancel</button>
-															</div>
+															</div> -->
 														</div>
 													</div>
 												</div>
 											</form>
 										</div>
+										
 									</div>
 								</div>
 							</div>

@@ -12,6 +12,7 @@ use Mail;
 use Illuminate\Support\Str;
 use Hash;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Models\GiaoVien;
 use App\Services\Auth\AuthService;
 
 class AuthController extends Controller
@@ -45,9 +46,46 @@ class AuthController extends Controller
 
     }
 
-    public function profile()
+    public function profile($id)
     {
-        $auth = Auth::user();
-        return view('auth.profile',compact('auth'));
+        $giao_vien=GiaoVien::find($id);
+        return view('auth.profile',compact('giao_vien'));
     }
+   public function changePasswordForm() 
+    {
+        return view('auth.change_password');
+    }
+  public function changePassword(Request $request)
+  {
+    if (!(Hash::check($request->get('current_password'), Auth::user()->password))) {
+        return redirect()->back()
+            ->with("error","Mật khẩu cũ bạn vừa nhập không chính xác!Vui lòng kiểm tra lại."); 
+    }
+
+    if(strcmp($request->get('current_password'), $request->get('new_password')) == 0){
+        return redirect()->back()
+            ->with("error","Mật khẩu mới không được trùng với mật khẩu hiện tại của bạn.Vui lòng chọn một mật khẩu khác.");
+    }
+
+    $request->validate([
+        'current_password' => ['required'],
+        'new_password' => ['required','regex:/^[a-z0-9_-]{7,50}$/','min:8'],
+        'password_confirmation' => ['same:new_password'],
+    ],
+     [
+        'current_password.required'=>'Bạn chưa nhập mật khẩu cũ',
+        'new_password.required'=>'Bạn chưa nhập mật khẩu mới.',
+        'password_confirmation.same'=>'Mật khẩu không khớp.',
+        'new_password.regex'=>'Mật khẩu bao gồm các kí tự a-Z, 0-9!'  , 
+        'new_password.min'=>'Mật khẩu tối thiểu 8 kí tự! '
+       ]
+
+);
+    
+    User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+    Auth::logout();
+    return redirect()->route('login')->with("success_password","Đăng nhập lại để tiếp tục");
+   
+  }
+ 
 }

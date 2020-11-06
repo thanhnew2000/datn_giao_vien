@@ -590,7 +590,7 @@
                                 m-dropdown-toggle="click">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-topbar__userpic">
-                                        <img src="{!! asset('assets/app/media/img/users/user4.jpg') !!}"
+                                        <img src="{{ Auth::user()->avatar ? ('../upload/' . Auth::user()->avatar) : 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&background=random' }}"
                                             class="m--img-rounded m--marginless" alt="" />
                                     </span>
                                     <span class="m-topbar__username m--hide">Nick</span>
@@ -603,7 +603,7 @@
                                             style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                                             <div class="m-card-user m-card-user--skin-dark">
                                                 <div class="m-card-user__pic">
-                                                    <img src="{!! asset('storage/'.Auth::user()->avatar) !!}"
+                                                    <img src="{{ Auth::user()->avatar ? asset('upload/' . Auth::user()->avatar) : 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&background=random' }}" 
                                                         class="m--img-rounded m--marginless" alt="" />
 
                                                     <!--
@@ -625,41 +625,47 @@
                                                         <span class="m-nav__section-text">Section</span>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="{{ route('auth.profile') }}" class="m-nav__link">
+                                                        <a href="{{ route('profile', ['id' =>Auth::user()->id]) }}" class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                             <span class="m-nav__link-title">
                                                                 <span class="m-nav__link-wrap">
-                                                                    <span class="m-nav__link-text">My Profile</span>
-                                                                    <span class="m-nav__link-badge"><span
+                                                                    <span class="m-nav__link-text">Thông tin tài khoản</span>
+                                                                     <span class="m-nav__link-badge"><span
                                                                             class="m-badge m-badge--success">2</span></span>
                                                                 </span>
                                                             </span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="header/profile.html" class="m-nav__link">
+                                                        <a href="#" class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-share"></i>
-                                                            <span class="m-nav__link-text">Activity</span>
+                                                            <span class="m-nav__link-text">Hoạt động</span>
                                                         </a>
                                                     </li>
-                                                    <li class="m-nav__item">
+                                                    <!-- <li class="m-nav__item">
                                                         <a href="header/profile.html" class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-chat-1"></i>
                                                             <span class="m-nav__link-text">Messages</span>
                                                         </a>
-                                                    </li>
+                                                    </li> -->
                                                     <li class="m-nav__separator m-nav__separator--fit">
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="header/profile.html" class="m-nav__link">
+                                                        <a href="#" class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-info"></i>
                                                             <span class="m-nav__link-text">FAQ</span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="header/profile.html" class="m-nav__link">
+                                                        <a href="#" class="m-nav__link">
                                                             <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                            <span class="m-nav__link-text">Support</span>
+                                                            <span class="m-nav__link-text">Hỗ trợ</span>
+                                                        </a>
+                                                    </li>
+                                                      <li class="m-nav__item">
+                                                        <a href="{{route('doi-mat-khau')}}" class="m-nav__link">
+                                                            <i class="m-nav__link-icon  flaticon-lock"></i>
+                                                            <span class="m-nav__link-text">Đổi mật khẩu</span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__separator m-nav__separator--fit">
