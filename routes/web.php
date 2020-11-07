@@ -81,6 +81,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
 
     Route::prefix('thong-bao')->group(function () {
         Route::get('/', 'ThongBaoController@index')->name('thong-bao.index');
+        Route::get('/create', 'ThongBaoController@create')->name('thong-bao.create');
+        Route::post('/store', 'ThongBaoController@store')->name('thong-bao.store');
+
         Route::get('/{id}', 'ThongBaoController@showThongBao')->name('thong-bao.show')->where('id', '[0-9]+');;
     });
 

@@ -119,7 +119,6 @@ class DonDanThuocController extends Controller
         // dd($thong_tin_nguoi_nhan->id);
         $nguoi_phan_hoi_id = $request->nguoi_phan_hoi_id;
         $noi_dung = $request->noi_dung;
-        $device = 'fiuTWIB5Rt6ZpPYn76zXVc:APA91bFmBH1cNZMx-ZqfXumM8ktE4UbGbJHKA02IQXCfI6KPeYFg75i9pyl8WE17IY_7aeM6iN-LAt4xsaioVGJqctiXpnE5PXMG5EynbMV1OO52LChV5sDBelAMO177RflYna52Ca_q';
         PhanHoiDonThuoc::create($data);
         $thongbao=[];
         $thongbao['title'] ='Trả lời đơn dặn thuốc';
@@ -129,10 +128,11 @@ class DonDanThuocController extends Controller
         $thongbao['auth_id'] =$nguoi_phan_hoi_id;
         $this->NotificationRepository->create($thongbao);
         
+        $data_thong_bao['device'] = 'fiuTWIB5Rt6ZpPYn76zXVc:APA91bFmBH1cNZMx-ZqfXumM8ktE4UbGbJHKA02IQXCfI6KPeYFg75i9pyl8WE17IY_7aeM6iN-LAt4xsaioVGJqctiXpnE5PXMG5EynbMV1OO52LChV5sDBelAMO177RflYna52Ca_q';
         $data_thong_bao['title'] = 'Giáo viên đã phản hồi về đơn dặn thuốc của bạn';
         $data_thong_bao['content'] = $noi_dung;
 
-        $this->NotificationRepository->notificationApp($device,$data_thong_bao);
+        $this->NotificationRepository->notificationApp($data_thong_bao);
         return 'thành công';
     }
 
