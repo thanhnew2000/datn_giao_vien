@@ -26,7 +26,7 @@
 												<span class="m-nav__section-text">Section</span>
 											</li>
 											<li class="m-nav__item">
-												<a href="{{route('profile', ['id' =>Auth::user()->id])}}" class="m-nav__link" id="target_thongtincanhan">
+												<a href="{{route('profile')}}" class="m-nav__link" id="target_thongtincanhan">
 													<i class="m-nav__link-icon flaticon-profile-1"></i>
 													<span class="m-nav__link-title">
 														<span class="m-nav__link-wrap">

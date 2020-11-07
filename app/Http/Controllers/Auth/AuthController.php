@@ -46,10 +46,11 @@ class AuthController extends Controller
 
     }
 
-    public function profile($id)
-    {
-        $giao_vien=GiaoVien::find($id);
-        return view('auth.profile',compact('giao_vien'));
+    public function profile()
+    {   $user=Auth::user()->id;
+        
+        $giao_vien=GiaoVien::find($user);
+        return view('auth.profile',compact('giao_vien','user'));
     }
    public function changePasswordForm() 
     {
