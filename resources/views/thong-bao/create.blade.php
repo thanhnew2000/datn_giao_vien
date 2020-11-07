@@ -13,12 +13,6 @@
                             <span class="m-portlet__head-icon m--hide">
                                 <i class="flaticon-statistics"></i>
                             </span>
-                            <h3 class="m-portlet__head-text text-sussces">
-                                <span>Click để thêm người nhận thông báo</span>
-                                <button class="btn btn-outline-accent m-btn m-btn--icon btn-sm m-btn--icon-only m-btn--pill m-btn--air" data-toggle="modal" data-target="#m_modal_4">
-                                    <i class="la la-user-plus"></i>
-                                </button> 
-                            </h3>
                                    
                             <h2 class="m-portlet__head-label m-portlet__head-label--accent">
                                 <span class="m-portlet__head-icon text-warning">
@@ -149,13 +143,45 @@
     }
 
     function postData() {
-        console.log($("[name=title]").val())
-        axios.post("{{route('thong-bao.store')}}",{
+        let err_title = $("[name='title']").val() == "" ? false : true;
+        let err_content = editor.getData() == "" ? false : true;
+        if (!err_title) {
+            Swal.fire({
+            title: 'Tiêu đề!',
+            input: 'text',
+            showCloseButton: true,
+            showCancelButton: true,
+            inputValidator: (value) => {
+                    if (!value) {
+                        return 'Hãy nhập Tiêu đề!'  
+                    }else{
+                        $("[name='title']").val(value)
+                    }
+                }
+            })
+        } else if (!err_content) {
+            Swal.fire({
+            position: "top",
+            icon: "warning",
+            title: "Hãy nhập Nội Dung Thông Báo",
+            showConfirmButton: false,
+            timer: 3000,
+            showCloseButton: true,
+            });
+        }else {
+            Swal.showLoading()
+            axios.post("{{route('thong-bao.store')}}",{
             'title' : $("[name=title]").val(),
             'content': editor.getData(),
         })
         .then(function (response) {
-            // handle success
+            Swal.fire({
+                // position: 'top-end',
+                icon: 'success',
+                title: 'Gửi thông báo thành công',
+                showConfirmButton: false,
+                timer: 1500
+                })
             console.log(response);
         })
         .catch(function (error) {
@@ -165,6 +191,31 @@
         .then(function () {
             // always executed
         });
+        }
     }
+    // function postData() {
+    //     console.log($("[name=title]").val())
+    //     axios.post("{{route('thong-bao.store')}}",{
+    //         'title' : $("[name=title]").val(),
+    //         'content': editor.getData(),
+    //     })
+    //     .then(function (response) {
+    //         Swal.fire({
+    //             // position: 'top-end',
+    //             icon: 'success',
+    //             title: 'Gửi thông báo thành công',
+    //             showConfirmButton: false,
+    //             timer: 1500
+    //             })
+    //         console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //         // handle error
+    //         console.log(error);
+    //     })
+    //     .then(function () {
+    //         // always executed
+    //     });
+    // }
 </script>
 @endsection

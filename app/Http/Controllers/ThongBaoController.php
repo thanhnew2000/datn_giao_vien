@@ -29,6 +29,7 @@ class ThongBaoController extends Controller
     public function index()
     {
         $data = [];
+        dd(ThongBao::all());
         $thongBao = ThongBao::where('user_id', Auth::id())
                             ->orWhere('user_id',0)
                             ->get();
@@ -78,6 +79,6 @@ class ThongBaoController extends Controller
             $list_device[$key] = $data_send_device;
         }
         JobGuiThongBao::dispatch($list_id_hoc_sinh->toArray(),$list_device->toArray(),$content,$this->NotificationRepository);
-        return view('thong-bao.create');
+        return 'thành công';
     }
 }
