@@ -26,23 +26,28 @@ class NotificationRepository extends BaseModelRepository
     }
 
 
-    public function notificationApp($to_device,$data)
+    public function notificationApp($data)
     {
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'key='.config('common.key_firebase')
-        ])->post('https://fcm.googleapis.com/fcm/send', [
-                "to" => $to_device,
-                "notification" => [
-                  "title"=> $data['title'],
-                  "body"=> $data['content']
+        foreach ($data as $key => $value) {
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                'Authorization' => 'key='.config('common.key_firebase')
+            ])->post('https://fcm.googleapis.com/fcm/send', [
+                    "to" => $value['device'],
+                    "notification" => [
+                      "title"=> $value['title'],
+                      "body"=> $value['content']
+                    ],
+                    "data"=> [
+                      "story_id"=> "story_12345",
+                      'type'=>"add_donho"
+                    ],
+                    
+                  
                 ],
-                "data"=> [
-                  "story_id"=> "story_12345",
-                  'type'=>"add_donho"
-                ]
-              
-        ]);
-    }
+            );
+        }
+        }
+       
 
 }
