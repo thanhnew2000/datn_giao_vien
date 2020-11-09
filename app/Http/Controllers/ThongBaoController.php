@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Jobs\JobGuiThongBao;
 use App\Repositories\GiaoVien\GiaoVienRepository;
 use App\Repositories\NotificationRepository;
+use App\Models\Notification;
 use App\Models\NoiDungThongBao;
 
 class ThongBaoController extends Controller
@@ -50,21 +51,25 @@ class ThongBaoController extends Controller
 
     public function create()
     {
-        return view('thong-bao.create');
+        $data = Auth::user()->profile->Lop->Student()->get();
+        return view('thong-bao.create',compact('data'));
     }
 
     public function store(Request $request)
     {
         $content = $request->all();
+        unset($content['list_id_hoc_sinh']);
+        $list_id_hoc_sinh = $request->list_id_hoc_sinh;
         $content['auth_id'] = Auth::id();
         $content['type'] = 1;
         $content['route'] = 'tin_tuc';
-        $list_id_hoc_sinh = Auth::user()->profile->Lop->Student()->select('hoc_sinh.id as user_id')->get();
 
+        $list_id_hoc_sinh_save_noti=[];
         foreach ($list_id_hoc_sinh as $key => $value) {
-            $data_notifi = collect([$value->toArray(),$content]);
+            $user_id =['user_id'=>$value];
+            $data_notifi = collect([$user_id,$content]);
             $data_save_notifi = $data_notifi->collapse();
-            $list_id_hoc_sinh[$key]=$data_save_notifi;
+            $list_id_hoc_sinh_save_noti[$key]=$data_save_notifi->toArray();
         }
       
         $list_device = Auth::user()->profile->Lop->Student->map(function($student)
@@ -77,8 +82,19 @@ class ThongBaoController extends Controller
             $data_send_device = $data_device->collapse();
             $list_device[$key] = $data_send_device;
         }
-        JobGuiThongBao::dispatch($list_id_hoc_sinh->toArray(),$list_device->toArray(),$content,$this->NotificationRepository);
-        return view('thong-bao.create');
+        $id_noi_dung_thong_bao = $this->NoiDungThongBaoRepository->create($content)->id;
+
+        $list_id_hoc_sinh_save_thong_bao = [];
+
+        foreach ($list_id_hoc_sinh as $key => $value) {
+            $user_id =['user_id'=>$value,'thongbao_id'=>$id_noi_dung_thong_bao];
+            array_push($list_id_hoc_sinh_save_thong_bao,$user_id);
+        }
+        // ThongBao::insert($list_id_hoc_sinh_save_thong_bao);
+        // dd(1);
+
+        JobGuiThongBao::dispatch($list_id_hoc_sinh_save_noti,$list_id_hoc_sinh_save_thong_bao,$list_device->toArray(),$content,$this->NotificationRepository);
+        return 'thành công';
     }
 
     /* Danh sách thông báo Giáo Viên Gửi tới Phụ Huynh.

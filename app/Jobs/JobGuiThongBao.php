@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Notification;
-use App\Repositories\NotificationRepository;
+use App\Models\ThongBao;
 class JobGuiThongBao implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -19,13 +19,15 @@ class JobGuiThongBao implements ShouldQueue
      * @return void
      */
     protected $data_save_notifi;
+    protected $data_save_thong_bao;
     protected $data_send_device;
     protected $content;
     protected $NotificationRepository;
 
-    public function __construct($data_save_notifi, $data_send_device, $content,$NotificationRepository)
+    public function __construct($data_save_notifi,$data_save_thong_bao, $data_send_device, $content,$NotificationRepository)
     {
         $this->data_send_device = $data_send_device;
+        $this->data_save_thong_bao = $data_save_thong_bao;
         $this->data_save_notifi = $data_save_notifi;
         $this->content = $content;
         $this->NotificationRepository = $NotificationRepository;
@@ -39,6 +41,7 @@ class JobGuiThongBao implements ShouldQueue
     public function handle()
     {
         Notification::insert($this->data_save_notifi);
+        ThongBao::insert($this->data_save_thong_bao);
         $this->NotificationRepository->notificationApp($this->data_send_device);
 
         
