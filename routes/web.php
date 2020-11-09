@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::get('/', function () {
-    return view('index');
-})->middleware('auth', 'web')->name('app');
+Route::get('/', function () { return view('index');})->middleware('auth', 'web')->name('app');
 Auth::routes();
-Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('auth.profile');
-Route::get('/home', function(){
-    return view('index');
-})->name('home');
+Route::get('/home', function(){ return view('index');})->name('home');
+Route::group(['middleware' => ['web','auth']], function () {
+        Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('profile');
+        Route::get('/doi-mat-khau','Auth\AuthController@changePasswordForm')->name('doi-mat-khau');
+        Route::post('/update-mat-khau','Auth\AuthController@changePassword')->name('update-mat-khau');
+});
+
 Route::get('/logout','Auth\AuthController@getLogout')->name('get.logout');
 
 Route::prefix('quan-ly-hoc-sinh')->group(function () {
@@ -82,8 +83,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/', 'ThongBaoController@index')->name('thong-bao.index');
         Route::get('/create', 'ThongBaoController@create')->name('thong-bao.create');
         Route::post('/store', 'ThongBaoController@store')->name('thong-bao.store');
-
-        Route::get('/{id}', 'ThongBaoController@showThongBao')->name('thong-bao.show')->where('id', '[0-9]+');;
+        Route::get('/{id}', 'ThongBaoController@showThongBao')->name('thong-bao.show')->where('id', '[0-9]+');
+        Route::get('/thong-bao-da-gui', 'ThongBaoController@thongBaoDaGui')->name('thong-bao.da-gui');
+        Route::get('/show/{id}', 'ThongBaoController@showThongBaoGuiDi')->name('thong-bao.showThongBaoGuiDi')->where('id', '[0-9]+');
+        Route::post('/remove', 'ThongBaoController@remove')->name('thong-bao.remove');
+        Route::post('/xoa-thong-bao-gui-di', 'ThongBaoController@removeThongBaoGuiDi')->name('thong-bao.removeThongBaoGuiDi');
     });
 
     Route::post('changeType', 'NotificationController@changeType')->name('notification.changeType');
@@ -95,3 +99,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('fileUpload', 'AlbumController@fileUpload')->name('album.upload');
     Route::get('removeUpload', 'AlbumController@removeUpload')->name('album.remove');
 });
+
+     
