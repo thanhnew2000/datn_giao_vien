@@ -82,8 +82,11 @@ Route::group(['middleware' => ['web', 'auth']], function () {
         Route::get('/', 'ThongBaoController@index')->name('thong-bao.index');
         Route::get('/create', 'ThongBaoController@create')->name('thong-bao.create');
         Route::post('/store', 'ThongBaoController@store')->name('thong-bao.store');
-
-        Route::get('/{id}', 'ThongBaoController@showThongBao')->name('thong-bao.show')->where('id', '[0-9]+');;
+        Route::get('/{id}', 'ThongBaoController@showThongBao')->name('thong-bao.show')->where('id', '[0-9]+');
+        Route::get('/thong-bao-da-gui', 'ThongBaoController@thongBaoDaGui')->name('thong-bao.da-gui');
+        Route::get('/show/{id}', 'ThongBaoController@showThongBaoGuiDi')->name('thong-bao.showThongBaoGuiDi')->where('id', '[0-9]+');
+        Route::post('/remove', 'ThongBaoController@remove')->name('thong-bao.remove');
+        Route::post('/xoa-thong-bao-gui-di', 'ThongBaoController@removeThongBaoGuiDi')->name('thong-bao.removeThongBaoGuiDi');
     });
 
     Route::post('changeType', 'NotificationController@changeType')->name('notification.changeType');
