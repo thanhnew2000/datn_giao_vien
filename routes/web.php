@@ -13,14 +13,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::get('/', function () {
-    return view('index');
-})->middleware('auth', 'web')->name('app');
+Route::get('/', function () { return view('index');})->middleware('auth', 'web')->name('app');
 Auth::routes();
-Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('auth.profile');
-Route::get('/home', function(){
-    return view('index');
-})->name('home');
+Route::get('/home', function(){ return view('index');})->name('home');
+Route::group(['middleware' => ['web','auth']], function () {
+        Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('profile');
+        Route::get('/doi-mat-khau','Auth\AuthController@changePasswordForm')->name('doi-mat-khau');
+        Route::post('/update-mat-khau','Auth\AuthController@changePassword')->name('update-mat-khau');
+});
+
 Route::get('/logout','Auth\AuthController@getLogout')->name('get.logout');
 
 Route::prefix('quan-ly-hoc-sinh')->group(function () {
@@ -95,3 +96,5 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('fileUpload', 'AlbumController@fileUpload')->name('album.upload');
     Route::get('removeUpload', 'AlbumController@removeUpload')->name('album.remove');
 });
+
+     
