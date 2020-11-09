@@ -44,7 +44,7 @@
             >
                 <a href="javascript:;" class="m-menu__link m-menu__toggle"
                     ><i class="m-menu__link-icon flaticon-layers"></i
-                    ><span class="m-menu__link-text">Thông báo & Tin tức</span
+                    ><span class="m-menu__link-text">Thông báo & Album</span
                     ><i class="m-menu__ver-arrow la la-angle-right"></i
                 ></a>
                 <div class="m-menu__submenu ">
@@ -58,6 +58,18 @@
                                 ><span class="m-menu__link-text"
                                     >Base</span
                                 ></span
+                            >
+                        </li>
+                        <li class="m-menu__item " aria-haspopup="true">
+                            <a
+                                href="{{ route('thong-bao.index') }}"
+                                class="m-menu__link "
+                                ><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"
+                                    ><span></span></i
+                                ><span class="m-menu__link-text"
+                                    >Thông báo chung</span
+                                ></a
                             >
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
@@ -222,14 +234,6 @@
                                 ></a
                             >
                         </li>
-                        <li class="m-menu__item " aria-haspopup="true">
-                            <a href="" class="m-menu__link "
-                                ><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"
-                                    ><span></span></i
-                                ><span class="m-menu__link-text">item</span></a
-                            >
-                        </li>
                     </ul>
                 </div>
             </li>
@@ -264,14 +268,6 @@
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"
                                     ><span></span></i
                                 ><span class="m-menu__link-text">Danh sách lớp</span></a
-                            >
-                        </li>
-                        <li class="m-menu__item " aria-haspopup="true">
-                            <a href="" class="m-menu__link "
-                                ><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"
-                                    ><span></span></i
-                                ><span class="m-menu__link-text">item</span></a
                             >
                         </li>
                     </ul>
