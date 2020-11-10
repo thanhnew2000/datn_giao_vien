@@ -3,17 +3,8 @@
         background: #d0e7ff;
     }
 </style>
+<script src="{{ asset('config_firebase/firebaseConfig.js') }}"></script>
 <script>
-    var firebaseConfig = {
-        apiKey: "AIzaSyCixF05x85kh6pkORyLCA8S2cVHAp5xFhQ",
-        authDomain: "notify-1f812.firebaseapp.com",
-        databaseURL: "https://notify-1f812.firebaseio.com",
-        projectId: "notify-1f812",
-        storageBucket: "notify-1f812.appspot.com",
-        messagingSenderId: "902720459484",
-        appId: "1:902720459484:web:897b722d3b1e9143f9da19",
-        measurementId: "G-RVQZG7D065",
-    };
     firebase.initializeApp(firebaseConfig);
     var db = firebase.database().ref().child("notification").orderByChild("user_id");
 
@@ -22,8 +13,9 @@
         console.log(res);
         var content = '';
         var count = 0;
+        var flat = 0;
         for (let i = res.length - 1; i >= 0; i--) {
-            if (res[i].user_id == '{{ Illuminate\Support\Facades\Auth::id() }}') {
+            if (res[i].user_id == '{{ Illuminate\Support\Facades\Auth::id() }}' || res[i].user_id == 0) {
                 // axios.get('https://httpbin.org/get')
                 // .then(function (response) {
                 //    console.log('apitsst',response.data)
@@ -36,6 +28,7 @@
                 //     // always executed
                 // });
                 count = res[i].type == 1 ? ++count : count;
+                if(res[i].bell == 1){flat = 1}
                 let relativeTime = getMinimalisticRelativeTime(res[i].created_at);
                 content += `
                             <div data-id="${res[i].id}" 
@@ -53,6 +46,7 @@
         $('#box-notification').html(content);
         var notifi_html = count ? `<span class="m-nav__link-badge m-badge m-badge--danger">${count}+</span>` : '';
         $('#count_number_notifi').html(notifi_html);
+        flat == 1 ? $('.notify-bell').addClass('make-bellring') : $('.notify-bell').removeClass('make-bellring');
     });
 
     function linkTo(element) {
