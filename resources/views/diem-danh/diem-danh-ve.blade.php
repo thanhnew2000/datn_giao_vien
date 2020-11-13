@@ -62,9 +62,9 @@
                                 <td><input type="radio" value="3" name="{{ $item->id }}"></td>
                                 <td>
                                     @foreach ($nguoi_don_ho as $curros)
-                                    @if ($curros->user_id == $item->user_id)
+                                    @if ($curros->user_id == $item->id)
                                     <input type="hidden" name="nguoi_don_ho{{ $item->id }}" value="{{ $curros->id }}">
-                                    <i style="cursor: pointer" class="text-warning flaticon-exclamation-1" data-toggle="modal" data-target="{{ '#m_modal_'.$item->user_id}}"></i>
+                                    <i style="cursor: pointer" class="text-warning flaticon-exclamation-1" data-toggle="modal" data-target="{{ '#m_modal_'.$item->id}}"></i>
                                         
                                     @endif
                                     @endforeach
@@ -96,10 +96,10 @@
                                         {{ ($item->trang_thai == 3)?'checked':'' }}></td>
                                 <td>
                                     @foreach ($nguoi_don_ho as $curros)
-                                    @if ($curros->user_id == $item->user_id)
-                                    <button type="button" class="btn btn-warning" data-toggle="modal"
-                                        data-target="{{ '#m_modal_'.$item->user_id}}"><i class="flaticon-exclamation-1"></i>
-                                        </button>
+                                    @if ($curros->user_id == $item->hoc_sinh_id)
+                                    <input type="hidden" name="nguoi_don_ho{{ $item->hoc_sinh_id }}" value="{{ $curros->hoc_sinh_id }}">
+                                    <i style="cursor: pointer" class="text-warning flaticon-exclamation-1" data-toggle="modal" data-target="{{ '#m_modal_'.$item->hoc_sinh_id}}"></i>
+                                       
                                         
                                     @endif
                                     @endforeach
@@ -126,9 +126,12 @@
            @endphp
             @if ($modals != null && count($modals) > 0)
             @foreach ($modals as $item)
+            @php
+                $id_hoc_sinh = $item->hoc_sinh_id ? $item->hoc_sinh_id : $item->id;
+            @endphp
             @foreach ($nguoi_don_ho as $curros)
-            @if ($curros->user_id == $item->user_id)
-            <div class="modal fade" id="{{ 'm_modal_'.$item->user_id}}" tabindex="-1" role="dialog"
+            @if ($curros->user_id == $id_hoc_sinh)
+            <div class="modal fade" id="{{ 'm_modal_'.$id_hoc_sinh }}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
