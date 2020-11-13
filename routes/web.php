@@ -33,10 +33,6 @@ Route::prefix('quan-ly-hoc-sinh')->group(function () {
 Route::prefix('quan-ly-khoi')->group(function () {
     Route::get('/', 'KhoiController@index')->name('quan-ly-khoi-index');
 });
-Route::prefix('danh-sach-lop')->group(function () {
-    Route::get('/', 'LopController@index')->name('danh-sach-lop-index');
-});
-
 
 Route::prefix('cong-viec-hang-ngay')->group(function () {
 
@@ -78,6 +74,9 @@ Route::prefix('quan-ly-suc_khoe')->group(function () {
 });
 
 Route::group(['middleware' => ['web', 'auth']], function () {
+    Route::prefix('danh-sach-lop')->group(function () {
+        Route::get('/', 'LopController@index')->name('danh-sach-lop-index');
+    });
 
     Route::prefix('thong-bao')->group(function () {
         Route::get('/', 'ThongBaoController@index')->name('thong-bao.index');
