@@ -48,4 +48,24 @@
             43% { -webkit-transform: rotateZ(0); }
             100% { -webkit-transform: rotateZ(0); }
         }
+        @media (max-width: 575px) {
+                .respon_logo {
+                width: 50%;
+                }
+        }
+        @media (min-width: 576px) and (max-width: 767.98px) {
+                .respon_logo {
+                width: 50%;
+                }
+        }
+        @media (min-width: 768px) and (max-width: 991.98px) {
+                .respon_logo {
+                width: 50%;
+                }
+        }
+        @media (min-width: 992px) {
+                .respon_logo {
+                width: 100%;
+                }
+        }     
 </style>

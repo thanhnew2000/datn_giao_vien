@@ -133,10 +133,11 @@
                                     </div>
                                 </form>
                             </div>
-
+                            <br>
                             <div class="form-group">
                                 <button class="btn btn-success pull-right" onclick="formSubmit()">ĐĂNG</button>
                             </div>
+                            <br>
 
                         </div>
 

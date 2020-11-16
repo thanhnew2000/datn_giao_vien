@@ -8,6 +8,7 @@
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
                         <a href="{{ route('home') }}" class="m-brand__logo-wrapper">
                             <img alt="CoolKids"
+                                class="respon_logo"
                                 src="{!! asset('images/coolkids.png') !!}" style="max-width: 100%;
                                 display: block;
                                 height: auto;" />
@@ -137,7 +138,7 @@
                                                 <div class="m-card-user__details">
                                                     <span
                                                         class="m-card-user__name m--font-weight-500">{{ Auth::user()->name }}</span>
-                                                    <a href="" class="m-card-user__email m--font-weight-300 m-link">
+                                                    <a href="#" class="m-card-user__email m--font-weight-300 m-link">
                                                         {{ Auth::user()->email }}</a>
                                                 </div>
                                             </div>
@@ -154,39 +155,11 @@
                                                             <span class="m-nav__link-title">
                                                                 <span class="m-nav__link-wrap">
                                                                     <span class="m-nav__link-text">Thông tin tài khoản</span>
-                                                                     <span class="m-nav__link-badge"><span
-                                                                            class="m-badge m-badge--success">2</span></span>
                                                                 </span>
                                                             </span>
                                                         </a>
                                                     </li>
                                                     <li class="m-nav__item">
-                                                        <a href="#" class="m-nav__link">
-                                                            <i class="m-nav__link-icon flaticon-share"></i>
-                                                            <span class="m-nav__link-text">Hoạt động</span>
-                                                        </a>
-                                                    </li>
-                                                    <!-- <li class="m-nav__item">
-                                                        <a href="header/profile.html" class="m-nav__link">
-                                                            <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                            <span class="m-nav__link-text">Messages</span>
-                                                        </a>
-                                                    </li> -->
-                                                    <li class="m-nav__separator m-nav__separator--fit">
-                                                    </li>
-                                                    <li class="m-nav__item">
-                                                        <a href="#" class="m-nav__link">
-                                                            <i class="m-nav__link-icon flaticon-info"></i>
-                                                            <span class="m-nav__link-text">FAQ</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="m-nav__item">
-                                                        <a href="#" class="m-nav__link">
-                                                            <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                            <span class="m-nav__link-text">Hỗ trợ</span>
-                                                        </a>
-                                                    </li>
-                                                      <li class="m-nav__item">
                                                         <a href="{{route('doi-mat-khau')}}" class="m-nav__link">
                                                             <i class="m-nav__link-icon  flaticon-lock"></i>
                                                             <span class="m-nav__link-text">Đổi mật khẩu</span>
