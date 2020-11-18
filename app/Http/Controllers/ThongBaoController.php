@@ -93,7 +93,7 @@ class ThongBaoController extends Controller
         // ThongBao::insert($list_id_hoc_sinh_save_thong_bao);
         // dd(1);
 
-        JobGuiThongBao::dispatch($list_id_hoc_sinh_save_noti,$list_id_hoc_sinh_save_thong_bao,$list_device->toArray(),$content,$this->NotificationRepository)->delay(now()->addMinutes(1));
+        JobGuiThongBao::dispatch($list_id_hoc_sinh_save_noti,$list_id_hoc_sinh_save_thong_bao,$list_device->toArray(),$content,$this->NotificationRepository);
         return 'thành công';
     }
 
