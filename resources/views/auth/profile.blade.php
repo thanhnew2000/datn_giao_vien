@@ -31,7 +31,6 @@
 													<span class="m-nav__link-title">
 														<span class="m-nav__link-wrap">
 															<span class="m-nav__link-text">Thông tin cá nhân</span>
-															<span class="m-nav__link-badge"><span class="m-badge m-badge--success">2</span></span>
 														</span>
 													</span>
 												</a>
