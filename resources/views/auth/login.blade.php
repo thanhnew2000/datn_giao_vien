@@ -116,6 +116,11 @@
                             <div class="form-group m-form__group">
                                 <input class="form-control m-input" type="text" placeholder="Email" name="email"
                                     id="m_email" autocomplete="off">
+                                <div class="col m--align-right m-login__form-right">
+                                        <a  href="{{ route('otp.forget_password') }}" class="m-link">
+                                            {{ __('Thử cách khác') }}
+                                        </a>
+                                </div>
                             </div>
                             <div class="m-login__form-action">
                                 <button type="submit"
