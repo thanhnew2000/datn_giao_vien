@@ -2,11 +2,14 @@ let newItems = false
 let host_name = window.location.hostname
 firebase.database().ref("phan_hoi_don_thuoc").on("child_added", function(snapshot) {
     if (newItems) {
+
         axios.post(url_get_info_phan_hoi, {
                 'type': snapshot.val().type,
                 'nguoi_phan_hoi_id': snapshot.val().nguoi_phan_hoi_id,
             })
             .then(function(response) {
+                // alert(1)
+                console.log(response.data)
                 if(snapshot.val().type == 2){
                     var anh_nguoi_phan_hoi = response.data.anh;
                     var ten_nguoi_phan_hoi = 'Giáo viên: '+response.data.ten;
