@@ -43,7 +43,7 @@ class JobGuiThongBao implements ShouldQueue
         Notification::insert($this->data_save_notifi);
         ThongBao::insert($this->data_save_thong_bao);
         $this->NotificationRepository->notificationApp($this->data_send_device);
-
+        Log::info('Showing user profile for user:', ['user' => $this->data_send_device]);
         
     }
 }
