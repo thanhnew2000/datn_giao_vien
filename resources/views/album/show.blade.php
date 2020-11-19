@@ -175,7 +175,7 @@
       @forelse ($data->item_images as $item)
         <div class="gallery-item">
           <div style="position: relative;">
-            <i class="fad fa-trash" data-image="{{ $item }}" data-id="{{ $data->id }}" style="position: absolute; color: red; z-index: 100; right: 5%; top: 1rem; display: block;" onclick="removeFuc(this)"></i>
+            <i class="fad fa-trash" data-image="{{ $item }}" data-id="{{ $data->id }}" style="position: absolute; color:black; z-index: 100; right: 5%; top: 1rem; display: block;" onclick="removeFuc(this)"></i>
           </div>
           <div class="content">
             <img src="{{ asset($item) }}"></div>
