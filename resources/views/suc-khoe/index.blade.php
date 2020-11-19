@@ -58,6 +58,8 @@
                                                 <option
                                                 @if (isset($params['dot_id']))
                                                     {{ ($params['dot_id'] == $item->id) ? "selected" : "" }}
+                                                @else
+                                                    {{ ($dot->id == $item->id) ? "selected" : "" }}
                                                 @endif
                                                 value="{{$item->id}}">
                                                 {{$item->ten_dot}} - {{date("d/m/Y", strtotime($item->thoi_gian))}}</option>
@@ -103,7 +105,7 @@
         
     </div>
     <section class="action-nav d-flex align-items-center justify-content-between mt-4 mb-4">
-        <div class="col-lg-6" style="text-align: right">
+        <div class="col-lg-12" style="text-align: right">
 
           
                 <button type="button" class="btn btn-info .bg-info" onclick="CheckDot()">Thêm mới</button>
@@ -111,6 +113,21 @@
         </div>
     </section>
     <div id="thongbao"></div>
+    @if(count($hoc_sinh)==0)
+    <div class="m-alert m-alert--icon m-alert--icon-solid m-alert--outline alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="m-alert__icon">
+            <i class="flaticon-exclamation-1"></i>
+            <span></span>
+        </div>
+        <div class="m-alert__text">
+            <strong>Thông báo!</strong> Đã có đợt sức khỏe mới nhất vui lòng thêm sức khỏe cho học sinh.
+        </div>
+        <div class="m-alert__close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            </button>
+        </div>
+    </div>
+    @endif
     <div class="m-portlet">
         <div class="m-portlet__body table-responsive">
             <table class="table m-table m-table--head-bg-success">

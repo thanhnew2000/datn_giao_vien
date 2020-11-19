@@ -246,7 +246,7 @@
                     <span>Hủy</span>
                 </span>
             </a>
-            <a href="#" onclick="SubmitSucKhoe()" class="btn btn-success m-btn m-btn--icon">
+            <a href="#" onclick="SubmitSucKhoe({{$lop_id_gv->lop_id}})" class="btn btn-success m-btn m-btn--icon">
                 <span>
                     <span>Thêm mới</span>
                     <i class="la la-plus"></i>
@@ -266,7 +266,7 @@
   var dot_id = "{{$dot->id}}";
   var url_index = "{{route('quan-suc-khoe-index')}}";
   var array = []; 
-    function SubmitSucKhoe(){
+    function SubmitSucKhoe(lop_id_gv){
         $('#preload').css('display','block')
        var data = $('tr')
        for (let index = 0; index < data.length; index++) {
@@ -283,7 +283,8 @@
               chieu_cao: chieu_cao_hs,
               can_nang: can_nang_hs,
               hoc_sinh_id: hoc_sinh_id_hs,
-              dot_id: dot_id
+              dot_id: dot_id,
+              lop_id:lop_id_gv
           }
           array.push(obj);
        }
