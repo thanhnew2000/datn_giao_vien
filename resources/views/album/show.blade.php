@@ -8,6 +8,12 @@
     <title>Album</title>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css">      
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.10.1/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         body {
           background-color: #eee;
@@ -22,7 +28,7 @@
           top: 0;
           width: 100%;
           height: 100%;
-          z-index: 1;
+          z-index: 1000;
         }
         .full .content {
           background-color: rgba(0,0,0,0.75) !important;
@@ -161,18 +167,57 @@
     </style>
 </head>
 <body>
-    <a href="{{ route('album.index') }}"><i class="fas fa-arrow-circle-left" style="font-size: 3rem; color: blue"></i></a>
-    <center><h2>"{{ $data->title }}"</h2></center>
+  <center><h2>"<span contenteditable="true" id="album-title">{{ $data->title }}</span>"</h2></center>
+  <a href="{{ route('album.index') }}"><i class="fas fa-arrow-circle-left" style="font-size: 2rem; color: blue"></i></a>
+  <i class="far fa-plus-circle"  data-toggle="modal" data-target="#myModal" style="font-size: 2rem; color: greenyellow; cursor: pointer;"></i>
+
     <div class="gallery" id="gallery">
       @forelse ($data->item_images as $item)
         <div class="gallery-item">
-          <div class="content"><img src="{{ asset($item) }}" alt=""></div>
+          <div style="position: relative;">
+            <i class="fad fa-trash" data-image="{{ $item }}" data-id="{{ $data->id }}" style="position: absolute; color:black; z-index: 100; right: 5%; top: 1rem; display: block;" onclick="removeFuc(this)"></i>
+          </div>
+          <div class="content">
+            <img src="{{ asset($item) }}"></div>
         </div>
       @empty
 
       @endforelse
     </div>
+
     
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Thêm ảnh</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="form-group">
+              <form action="" class="dropzone" method="post" enctype="multipart/form-data">
+                  {!! csrf_field() !!}
+                  <div class="dz-message needsclick">
+                      <i class="far fa-image text-warning" style="font-size: 5rem"></i>
+                  </div>
+              </form>
+          </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" onclick="formSubmit()">Thêm</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 
     <script>
       function myFunction(id) {
@@ -211,13 +256,164 @@
         }
       });
       window.addEventListener('resize', resizeAll);
-      gallery.querySelectorAll('.gallery-item').forEach(function (item) {
+      gallery.querySelectorAll('.gallery-item .content').forEach(function (item) {
           item.addEventListener('click', function () {        
-              item.classList.toggle('full');        
+              item.parentElement.classList.toggle('full');        
           });
       });
 
+      function removeFuc(e) {
+            Swal.fire({
+                title: 'Bạn muốn xóa ảnh?',
+                icon: 'warning',
+                showCancelButton: false,
+                showCloseButton: true,
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axios.post("{{ route('album.removeImage') }}", {
+                        id: e.getAttribute('data-id'),
+                        image: e.getAttribute('data-image'),
+                    }).then(res => {
+                        if (res.data.code == 1) {
+                          const Toast = Swal.mixin({
+                              toast: true,
+                              position: 'top-end',
+                              showConfirmButton: false,
+                              timer: 2000,
+                              timerProgressBar: true,
+                              didOpen: (toast) => {
+                                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                              }
+                          })
+                          Toast.fire({
+                              icon: 'success',
+                              title: 'Đã xóa khỏi Album'
+                          })
+                          e.parentElement.parentElement.remove();
+                        } else {
+                            location.reload()
+                        }
+                    })
+                }
+            })
+      }
+
+      $('#album-title').on('blur',function(){
+            updateTitle();
+      })
+
+      $('#album-title').keypress(function(event) {
+        if (event.keyCode == 13 || event.which == 13) {
+              event.preventDefault();
+              updateTitle();  
+              $('#album-title').blur();
+        }
+      });
+      function updateTitle(){
+            axios.post("{{ route('album.updateTitle') }}", {
+                  id: "{{ $data->id }}",
+                  title: $('#album-title').text()
+            })
+      }
+
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.10.1/sweetalert2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      function formSubmit() {
+          let item_images = "{{ $data->item_images[0] }}";
+          let str_url_image = item_images.substr(0, item_images.lastIndexOf('\/') + 1)
+
+          images = [];
+          imageDataArray.map(function (vale) {
+              images.push(str_url_image + vale);
+          })
+
+          let data = {
+              id: "{{ $data->id }}",
+              images_add: JSON.stringify(images),
+              images_loop: JSON.stringify(imageDataArray),
+              url_image: str_url_image
+          }
+          axios.post("{{ route('album.addImage') }}", data)
+              .then(res => {
+                  if (res.data.code == 1) {
+                      const Toast = Swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 2000,
+                          timerProgressBar: true,
+                          didOpen: (toast) => {
+                              toast.addEventListener('mouseenter', Swal.stopTimer)
+                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          }
+                      })
+                      Toast.fire({
+                          icon: 'success',
+                          title: 'Thêm thành công'
+                      })
+                      location.reload()
+                  }
+              })
+      }
+      Dropzone.autoDiscover = false;
+      var acceptedFileTypes = "image/*";
+      var imageDataArray = [];
+      var fileList = new Array;
+      var i = 0;
+
+      $(function () {
+          uploader = new Dropzone(".dropzone", {
+              url: "{{ route('album.upload') }}",
+              paramName: "file",
+              uploadMultiple: false,
+              acceptedFiles: "image/*,video/*,audio/*",
+              addRemoveLinks: true,
+              forceFallback: false,
+              maxFilesize: 500, // Set the maximum file size to 500 MB
+              parallelUploads: 2,
+          }); //end drop zone
+
+          uploader.on("success", function (file, response) {
+              let str = response.replace(/\"/g, '');
+              imageDataArray.push(str)
+              fileList[i] = {
+                  "serverFileName": str,
+                  "fileName": file.name,
+                  "fileId": i
+              };
+              i += 1;
+          });
+
+          uploader.on("removedfile", function (file) {
+              var rmvFile = "";
+              for (var f = 0; f < fileList.length; f++) {
+
+                  if (fileList[f].fileName == file.name) {
+
+                      // remove file from original array by database image name
+                      imageDataArray.splice(imageDataArray.indexOf(fileList[f].serverFileName), 1);
+                      // $('#item_images').val(imageDataArray);
+
+                      // get removed database file name
+                      rmvFile = fileList[f].serverFileName;
+
+                      // get request to remove the uploaded file from server
+                      $.get("{{ route('album.remove') }}", {
+                              file: rmvFile
+                          })
+                          .done(function (data) {});
+                  }
+              }
+          });
+
+      });
+
+  </script>
 </body>
 </html>
 
