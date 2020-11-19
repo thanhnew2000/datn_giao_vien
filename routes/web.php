@@ -97,6 +97,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('storeAlbum', 'AlbumController@store')->name('album.store');
     Route::post('fileUpload', 'AlbumController@fileUpload')->name('album.upload');
     Route::get('removeUpload', 'AlbumController@removeUpload')->name('album.remove');
+    Route::post('removeImage', 'AlbumController@removeImage')->name('album.removeImage');
+    Route::post('updateTitle', 'AlbumController@updateTitle')->name('album.updateTitle');
+    Route::post('addImage', 'AlbumController@addImage')->name('album.addImage');
 });
 
 Route::view('OTP', 'auth.passwords.forgot_OTP')->name('otp.forget_password');

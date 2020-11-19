@@ -56,81 +56,12 @@
                             </li>
                             <li class="nav-item m-tabs__item">
                                 <a class="nav-link m-tabs__link" href="" data-toggle="modal" data-target="#modalNhapFile"">
-                                    <i class="flaticon-clipboard"></i>XUẤT FILE NHẬP HOẠT ĐỘNG
+                                    <i class="flaticon-clipboard"></i>NHẬP FILE HOẠT ĐỘNG
                                 </a>
                             </li>
 
                         </ul>
-                        <ul class="m-portlet__nav ">
-                            <li class="m-portlet__nav-item">
-                                <a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
-                                    <span>
-                                        <i class="la la-cart-plus"></i>
-                                        <span>New Order</span>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="m-portlet__nav-item"></li>
-                            <li class="m-portlet__nav-item">
-                                <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-                                    <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-                                        <i class="la la-ellipsis-h m--font-brand"></i>
-                                    </a>
-                                    <div class="m-dropdown__wrapper">
-                                        <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-                                        <div class="m-dropdown__inner">
-                                            <div class="m-dropdown__body">
-                                                <div class="m-dropdown__content">
-                                                    <ul class="m-nav">
-                                                        <li class="m-nav__section m-nav__section--first">
-                                                            <span class="m-nav__section-text">Quick Actions</span>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-share"></i>
-                                                                <span class="m-nav__link-text">Create Post</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-chat-1"></i>
-                                                                <span class="m-nav__link-text">Send Messages</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-multimedia-2"></i>
-                                                                <span class="m-nav__link-text">Upload File</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__section">
-                                                            <span class="m-nav__section-text">Useful Links</span>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-info"></i>
-                                                                <span class="m-nav__link-text">FAQ</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                <span class="m-nav__link-text">Support</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__separator m-nav__separator--fit m--hide">
-                                                        </li>
-                                                        <li class="m-nav__item m--hide">
-                                                            <a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">Submit</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                        
 
                     </div>
                     <div class="m-portlet__head-tools">
@@ -146,144 +77,33 @@
                     @endif
 
                     <div class="tab-content">
-                        <div class="tab-pane active" id="m_tabs_12_1" role="tabpanel">
-                            <div class="m-timeline-1 m-timeline-1--fixed">
-                                <div class="m-timeline-1__items">
-                                    <div class="m-timeline-1__marker"></div>
-                                    <div class="m-timeline-1__item m-timeline-1__item--left m-timeline-1__item--first">
-                                        <div class="m-timeline-1__item-circle">
-                                            <div class="m--bg-danger"></div>
-                                        </div>
-                                        <div class="m-timeline-1__item-arrow"></div>
-                                        <span class="m-timeline-1__item-time m--font-brand">08:00<span>AM</span></span>
-                                        <div class="m-timeline-1__item-content">
-                                            <div class="m-timeline-1__item-title">
-                                                Đón trẻ vào lớp
+                            <h3>Hoạt động của lớp : {{$ten_lop}}</h3>
+                            <div class="container-sm">
+                                <div class="row">
+                                @foreach ($arr_hd as $key => $nam)
+                                    <div class="col-md-3">
+                                            <div  class="card-header mb-3">
+                                                <h5>Năm {{$key}}</h5>
                                             </div>
-                                            <div class="m-timeline-1__item-body">
-                                                
-                                                <div class="m-timeline-1__item-body m--margin-top-15">
-                                                    Lorem ipsum dolor sit amit,consectetur eiusmdd<br>
-                                                    tempors labore et dolore.
-                                                </div>
-                                            </div>
-                                        </div>
+                                            @for ($i = 0; $i < count($arr_hd[$key]); $i++)
+                                              <a  onclick="oppenTabPdf('{{$arr_hd[$key][$i]->link_file_hd}}')" class="btn btn-primary text-light"> Tuần {{$arr_hd[$key][$i]->tuan}}</a>
+                                            @endfor
                                     </div>
-                                    <div class="m-timeline-1__item m-timeline-1__item--right">
-                                        <div class="m-timeline-1__item-circle">
-                                            <div class="m--bg-danger"></div>
-                                        </div>
-                                        <div class="m-timeline-1__item-arrow"></div>
-                                        <span class="m-timeline-1__item-time m--font-brand">09:00<span>PM</span></span>
-                                        <div class="m-timeline-1__item-content">
-                                            <div class="m-timeline-1__item-title">
-                                                Thể dục buổi sáng
-                                            </div>
-                                            <div class="m-timeline-1__item-body">
-                                                
-                                                <div class="m-timeline-1__item-body m--margin-top-15">
-                                                    Lorem ipsum dolor sit amit,consectetur eiusmdd<br>
-                                                    tempors labore et dolore.
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="m-timeline-1__item m-timeline-1__item--left">
-                                        <div class="m-timeline-1__item-circle">
-                                            <div class="m--bg-danger"></div>
-                                        </div>
-                                        <div class="m-timeline-1__item-arrow"></div>
-                                        <span class="m-timeline-1__item-time m--font-brand">11:00<span>PM</span></span>
-                                        <div class="m-timeline-1__item-content">
-                                            <div class="m-timeline-1__item-title">
-                                                Ăn trưa
-                                            </div>
-                                            <div class="m-timeline-1__item-body">
-                                                Lorem ipsum dolor sit amit,consectetur eiusmdd<br>
-                                                tempor incididunt ut labore et dolore magna enim<br>
-                                                ad minim veniam nostrud.
-                                            </div>
-                                            <div class="m-timeline-1__item-actions">
-                                                <a href="#" class="btn btn-sm btn-outline-brand m-btn m-btn--pill m-btn--custom">Read more...</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="m-timeline-1__item m-timeline-1__item--right">
-                                        <div class="m-timeline-1__item-circle">
-                                            <div class="m--bg-danger"></div>
-                                        </div>
-                                        <div class="m-timeline-1__item-arrow"></div>
-                                        <span class="m-timeline-1__item-time m--font-brand">12:00<span>PM</span></span>
-                                        <div class="m-timeline-1__item-content">
-                                            <div class="m-timeline-1__item-title">
-                                                Nghỉ trưa
-                                            </div>
-                                            <div class="m-timeline-1__item-body">
-                                                Lorem ipsum dolor sit amit,consectetur eiusmdd<br>
-                                                tempor incididunt ut labore et dolore magna enim<br>
-                                                ad minim veniam nostrud.
-                                            </div>
-                                            
-                                           
-                                        </div>
-                                    </div>
-                                    <div class="m-timeline-1__item m-timeline-1__item--left">
-                                        <div class="m-timeline-1__item-circle">
-                                            <div class="m--bg-danger"></div>
-                                        </div>
-                                        <div class="m-timeline-1__item-arrow"></div>
-                                        <span class="m-timeline-1__item-time m--font-brand">05:00<span>PM</span></span>
-                                        <div class="m-timeline-1__item-content">
-                                            <div class="media">
-                                                <img class="m--margin-right-20" src="../../assets/app/media/img/products/product1.jpg" title="">
-                                                <div class="media-body">
-                                                    <div class="m-timeline-1__item-title m--margin-top-10  ">
-                                                        Hoạt động thể chât
-                                                    </div>
-                                                    <div class="m-timeline-1__item-body">
-                                                        Cô cho các bé chơi các hoạt động thể chất...
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
-                        </div>
-                        <div class="tab-pane" id="m_tabs_12_2" role="tabpanel">
-                            <table id="table2"
-                                class="table table-striped- table-bordered table-hover table-checkable responsive no-wrap dataTable dtr-inline collapsed">
-                                <thead>
-                                    <tr>
-                                        <th>STT</th>
-                                        <th>Mã số</th>
-                                        <th>Họ và Tên</th>
-                                        <th>Ảnh</th>
-                                       
-                                        <th>Chi tiết</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Ram</td>
-                                        <td>21</td>
-                                        <td>Male</td>
-                                        <td>Doctor</td>
-                                        
-                                        <td><button type="button" class="btn btn-warning" data-toggle="modal"
-                                                data-target="#m_modal_4">Chi tiết</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ram</td>
-                                        <td>21</td>
-                                        <td>Male</td>
-                                        <td>Doctor</td>
-                                       
-                                        <td><button type="button" class="btn btn-warning" data-toggle="modal"
-                                                data-target="#m_modal_4">Chi tiết</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                {{-- <div  class="card-header mb-3">
+                                    <h5>Năm 2020</h5>
+                                </div>
+                                <button type="button" class="btn btn-primary mb-3">Tuần </button>
+                                <button type="button" class="btn btn-primary mb-3">Tuần </button>
+                                <button type="button" class="btn btn-primary mb-3">Tuần </button>
+                                <button type="button" class="btn btn-primary mb-3">Tuần </button>
+                                <button type="button" class="btn btn-primary mb-3">Tuần </button>
+                                <button type="button" class="btn btn-primary mb-3">Tuần </button>
+                                <button type="button" class="btn btn-primary mb-3">Tuần </button>
+                                <button type="button" class="btn btn-primary mb-3">Tuần </button>
+                                <button type="button" class="btn btn-primary mb-3">Tuần </button> --}}
+                        
                         </div>
                        
                     </div>
@@ -495,9 +315,12 @@
                         <div class="col-md-4">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Tuần</span>
+                                <span class="input-group-text" id="inputGroup-sizing-default">Tuần :</span>
                                 </div>
-                            <input type="text" value="{{$numberNextWeek}}" name="tuan" class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                
+                                <input type="text" value="{{$numberNextWeek}}"  disabled class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+
+                                <input type="text" value="{{$numberNextWeek}}" name="tuan" hidden class="form-control"  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                             </div>
                         </div>
                             <div class="input-group mb-3 ml-3">
@@ -529,6 +352,10 @@
 
 <!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
 <script>
+
+    function oppenTabPdf($arr){
+        window.open('http://127.0.0.1:8000/'+ $arr,'_blank');
+    };
     $(document).ready(function () {
         $('#table1').DataTable({
             "pageLength": 100

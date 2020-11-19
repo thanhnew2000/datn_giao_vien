@@ -139,4 +139,54 @@ class AlbumController extends Controller
         }
         return response()->json($image, Response::HTTP_OK);
     }
+
+    public function removeImage(Request $request)
+    {
+        $album = Album::find($request->id);
+        $item_images = json_decode($album->item_images);
+        $pos = array_search($request->image, $item_images);
+        unset($item_images[$pos]);
+        $array_images_new = [];
+        foreach($item_images as $image){
+            array_push($array_images_new, $image);
+        }
+        $album->item_images = $array_images_new;
+        $album->save();
+
+        $path = public_path() . '/' . $request->image;
+        if(File::exists($path)){
+            unlink($path);
+        }
+        if(!$album->item_images){
+            $album->delete();
+            return response()->json(['images' => $album->item_images, 'code' => 0], Response::HTTP_OK);
+        }
+        return response()->json(['images' => $album->item_images, 'code' => 1], Response::HTTP_OK);
+    }
+
+    public function updateTitle(Request $request)
+    {
+        $album = Album::find($request->id);
+        $album->title = $request->title != "" ? $request->title : $album->title;
+        $album->save();
+        return response()->json($album->title, Response::HTTP_OK);
+    }
+
+    public function addImage(Request $request)
+    {
+        $images_add = json_decode($request->images_add);
+        $album = Album::find($request->id);
+        $images_old = json_decode($album->item_images);
+
+        $images_new = array_merge($images_add, $images_old);
+        $album->item_images = $images_new;
+        $album->save();
+
+        // đoạn này di chuyển ảnh từ file tạm sang đúng album
+        foreach(json_decode($request->images_loop) as $image){
+            File::move(public_path() . '/albums/item_images/' . $image,
+                        $request->url_image . $image);
+        }
+        return response()->json(['images' => $album->item_images, 'code' => 1], Response::HTTP_OK);
+    }
 }
