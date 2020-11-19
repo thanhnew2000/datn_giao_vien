@@ -64,7 +64,7 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
     });
 });
 
-Route::prefix('quan-ly-suc_khoe')->group(function () {
+Route::prefix('quan-ly-suc-khoe')->group(function () {
     Route::get('/', 'SucKhoeController@index')->name('quan-suc-khoe-index');
     Route::post('/check-dot-kham-suc-khoe', 'SucKhoeController@checkdot')->name('quan-suc-khoe-check-dot');
     Route::get('/create', 'SucKhoeController@create')->name('quan-suc-khoe-create');
