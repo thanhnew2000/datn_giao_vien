@@ -25,6 +25,11 @@ class HoatDongRepository extends BaseModelRepository
     {
         return 'hoat_dong';
     }
-
+    public function getHoatDongByIdLop($lop_id){
+        return $this->model->where('lop_id',$lop_id)->get();
+    }
+    public function getNamOfHoatDongInLop($lop_id){
+        return $this->model->where('lop_id',$lop_id)->select('nam')->groupBy('nam')->get();
+    }
 
 }

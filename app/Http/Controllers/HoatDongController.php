@@ -16,6 +16,7 @@ use PhpOffice\PhpSpreadsheet\Style\Fill;
 use PhpOffice\PhpSpreadsheet\Style\Protection;
 
 use PhpOffice\PhpWord\Settings;
+use Illuminate\Support\Facades\Auth;
 
 
 class HoatDongController extends Controller
@@ -34,7 +35,23 @@ class HoatDongController extends Controller
     public function index(){
         $date = Carbon::now(); // or $date = new Carbon()
         $numberNextWeek = $date->weekOfYear + 1;
-        return view('hoat-dong-hoc.index',compact('numberNextWeek'));
+        $user_id = Auth::user()->id;
+        $giao_vien = $this->GiaoVienRepository->getGVTheoIdUser($user_id);
+        $ten_lop = $giao_vien->Lop->ten_lop;
+        $hoat_dong = $this->HoatDongRepository->getHoatDongByIdLop($giao_vien->lop_id);
+        $namArr = $this->HoatDongRepository->getNamOfHoatDongInLop($giao_vien->lop_id);
+        // dd($namArr);
+        $arr_hd=[];
+        for($i = 0; $i < count($namArr); $i++){
+            $arr = [];
+            for($j = 0 ; $j < count($hoat_dong) ; $j++){
+                if($hoat_dong[$j]->nam == $namArr[$i]->nam){
+                    array_push($arr,$hoat_dong[$j]);
+                }
+            }
+            $arr_hd[$namArr[$i]->nam] = $arr;
+        }
+        return view('hoat-dong-hoc.index',compact('numberNextWeek','ten_lop','arr_hd'));
     }
 
     function generateRandomString($length = 6) {
