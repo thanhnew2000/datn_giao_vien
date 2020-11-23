@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Repositories\DonDanThuoc;
+namespace App\Repositories\DonNghiHoc;
 
-use App\Models\DonDanThuoc;
+use App\Models\DonNghiHoc;
 use App\Repositories\BaseModelRepository;
 use Carbon\Carbon;
 
-class DonDanThuocRepository extends BaseModelRepository
+class DonNghiHocRepository extends BaseModelRepository
 {
     protected $model;
     public function __construct(
-        DonDanThuoc $model
+        DonNghiHoc $model
     ) {
         parent::__construct();
         $this->model = $model;
@@ -18,16 +18,16 @@ class DonDanThuocRepository extends BaseModelRepository
 
     public function getModel()
     {
-        return DonDanThuoc::class;
+        return DonNghiHoc::class;
     }
 
-    public function getDonDanThuocHomNay($lop_id)
+    public function getDonNghiHocHomNay($lop_id)
     {
         $ngay_hien_tai = Carbon::now()->format('yy-m-d');
         return $this->model->whereRaw('? between ngay_bat_dau and ngay_ket_thuc', [$ngay_hien_tai])->where('lop_id',$lop_id)->get();
     }
 
-    public function getLichSuDonDanThuoc($lop_id)
+    public function getLichSuDonNghiHoc($lop_id)
     {
         $ngay_hien_tai = Carbon::now()->format('yy-m-d');
         return $this->model->where('ngay_ket_thuc','<', $ngay_hien_tai)->where('lop_id',$lop_id)->get();

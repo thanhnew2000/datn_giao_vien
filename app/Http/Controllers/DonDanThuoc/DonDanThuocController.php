@@ -10,6 +10,7 @@ use App\Models\PhanHoiDonThuoc;
 use App\Repositories\HocSinh\HocSinhRepository;
 use App\Repositories\GiaoVien\GiaoVienRepository;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class DonDanThuocController extends Controller
@@ -38,11 +39,11 @@ class DonDanThuocController extends Controller
      */
     public function index()
     {
-        $don_dan_thuoc = $this->DonDanThuocRepository->getDonDanThuocHomNay();
-        // $test = $don_dan_thuoc[1]->PhanHoiDonThuoc()->where('type',2)->get();
-        // // dd($test[0]);
-        // // dd($don_dan_thuoc[0]->HocSinh);
-        return view('don-dan-thuoc.index',compact('don_dan_thuoc'));
+        $lop_id = Auth::user()->profile->lop_id;
+        $don_dan_thuoc = $this->DonDanThuocRepository->getDonDanThuocHomNay($lop_id);
+        $lich_su_don_dan_thuoc = $this->DonDanThuocRepository->getLichSuDonDanThuoc($lop_id);
+        // dd($lich_su_don_dan_thuoc);
+        return view('don-dan-thuoc.index',compact('don_dan_thuoc','lich_su_don_dan_thuoc'));
     }
 
     /**
