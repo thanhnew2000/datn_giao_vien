@@ -19,7 +19,8 @@
         $hours_end = \Carbon\Carbon::createFromFormat('H:i:s', '17:30:00')->toTimeString();
         @endphp
 
-        @if ($hours_start <= $hours_now && $hours_now <= $hours_end)
+        {{-- @if ($hours_start <= $hours_now && $hours_now <= $hours_end) --}}
+        @if (true)
 
         <div class="m-portlet__body">
 
@@ -62,7 +63,7 @@
                                 <td><input type="radio" value="3" name="{{ $item->id }}"></td>
                                 <td>
                                     @foreach ($nguoi_don_ho as $curros)
-                                    @if ($curros->user_id == $item->id)
+                                    @if ($curros->hoc_sinh_id == $item->id)
                                     <input type="hidden" name="nguoi_don_ho{{ $item->id }}" value="{{ $curros->id }}">
                                     <i style="cursor: pointer" class="text-warning flaticon-exclamation-1" data-toggle="modal" data-target="{{ '#m_modal_'.$item->id}}"></i>
                                         
@@ -96,7 +97,7 @@
                                         {{ ($item->trang_thai == 3)?'checked':'' }}></td>
                                 <td>
                                     @foreach ($nguoi_don_ho as $curros)
-                                    @if ($curros->user_id == $item->hoc_sinh_id)
+                                    @if ($curros->hoc_sinh_id == $item->hoc_sinh_id)
                                     <input type="hidden" name="nguoi_don_ho{{ $item->hoc_sinh_id }}" value="{{ $curros->hoc_sinh_id }}">
                                     <i style="cursor: pointer" class="text-warning flaticon-exclamation-1" data-toggle="modal" data-target="{{ '#m_modal_'.$item->hoc_sinh_id}}"></i>
                                        
@@ -130,7 +131,7 @@
                 $id_hoc_sinh = $item->hoc_sinh_id ? $item->hoc_sinh_id : $item->id;
             @endphp
             @foreach ($nguoi_don_ho as $curros)
-            @if ($curros->user_id == $id_hoc_sinh)
+            @if ($curros->hoc_sinh_id == $id_hoc_sinh)
             <div class="modal fade" id="{{ 'm_modal_'.$id_hoc_sinh }}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
