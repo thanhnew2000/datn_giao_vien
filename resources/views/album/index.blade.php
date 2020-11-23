@@ -51,6 +51,9 @@
         text-align: center;
         font-style: italic;
     }
+    .border-err{
+        border: 1px solid red;
+    }
 
 </style>
 
@@ -94,7 +97,7 @@
             @forelse ($data as $item)
             <div>
                 <a href="{{ route('album.show',['id'=>$item->id])}}"><img class='grid-item'
-                        src='{{ asset($item->item_images[0]) }}' alt=''></a>
+                        src='{{isset($item->item_images[0]) ? asset($item->item_images[0]) : "" }}' alt=''></a>
                 <p>"{{ $item->title ? $item->title : '' }}"</p>
                 <i class="pull-right pr-1">{{ $item->created_at }}</i>
             </div>
@@ -126,7 +129,7 @@
                                     placeholder="Hoạt động lớp hôm nay ?"></textarea>
                             </div>
                             <div class="form-group">
-                                <form action="" class="dropzone" method="post" enctype="multipart/form-data">
+                                <form action="" class="dropzone" method="post" enctype="multipart/form-data" id="form-upload-image">
                                     {!! csrf_field() !!}
                                     <div class="dz-message needsclick">
                                         <i class="la la-photo" style="font-size: 100px"></i>
@@ -161,19 +164,32 @@
     });
 
     function formSubmit() {
+        var err = true;
         if ($("[name='title']").val() != '') {
+            $("[name='title']").removeClass('is-invalid');
+        }else {
+            $("[name='title']").addClass('is-invalid');
+            err = false;
+        }
+        
+        if (imageDataArray.length > 0) {
+            $("#form-upload-image").removeClass('border-err');
+        } else {
+            $("#form-upload-image").addClass('border-err');
+            err = false;
+        }
+
+        if(err){
             let data = {
-                title: $("[name='title']").val(),
-                item_images: JSON.stringify(imageDataArray),
-                auth_id: "{{ Illuminate\Support\Facades\Auth::id() }}",
-                lop_id: "{{ Illuminate\Support\Facades\Auth::user()->profile->lop_id }}"
-            }
+                        title: $("[name='title']").val(),
+                        item_images: JSON.stringify(imageDataArray),
+                        auth_id: "{{ Illuminate\Support\Facades\Auth::id() }}",
+                        lop_id: "{{ Illuminate\Support\Facades\Auth::user()->profile->lop_id }}"
+                    }
             $.post("{{ route('album.store') }}", data)
                 .done(function (res) {
                     location.reload();
                 })
-        } else {
-            $("[name='title']").addClass('is-invalid')
         }
     }
 
@@ -198,6 +214,7 @@
         }); //end drop zone
 
         uploader.on("success", function (file, response) {
+            $("#form-upload-image").removeClass('border-err');
             let str = response.replace(/\"/g, '');
             imageDataArray.push(str)
             fileList[i] = {

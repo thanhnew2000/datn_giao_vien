@@ -68,7 +68,7 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
     });
 });
 
-Route::prefix('quan-ly-suc_khoe')->group(function () {
+Route::prefix('quan-ly-suc-khoe')->group(function () {
     Route::get('/', 'SucKhoeController@index')->name('quan-suc-khoe-index');
     Route::post('/check-dot-kham-suc-khoe', 'SucKhoeController@checkdot')->name('quan-suc-khoe-check-dot');
     Route::get('/create', 'SucKhoeController@create')->name('quan-suc-khoe-create');
@@ -101,6 +101,9 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('storeAlbum', 'AlbumController@store')->name('album.store');
     Route::post('fileUpload', 'AlbumController@fileUpload')->name('album.upload');
     Route::get('removeUpload', 'AlbumController@removeUpload')->name('album.remove');
+    Route::post('removeImage', 'AlbumController@removeImage')->name('album.removeImage');
+    Route::post('updateTitle', 'AlbumController@updateTitle')->name('album.updateTitle');
+    Route::post('addImage', 'AlbumController@addImage')->name('album.addImage');
 });
 
 Route::view('OTP', 'auth.passwords.forgot_OTP')->name('otp.forget_password');

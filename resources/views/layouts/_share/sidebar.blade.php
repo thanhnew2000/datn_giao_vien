@@ -83,7 +83,7 @@
                     <span class="m-menu__arrow"></span>
                     <ul class="m-menu__subnav">
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="" class="m-menu__link "><i
+                        <a href="{{route('quan-suc-khoe-index')}}" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Biểu đồ tăng trưởng</span></a>
                         </li>

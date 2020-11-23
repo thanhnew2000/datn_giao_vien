@@ -51,7 +51,7 @@ class HocSinhRepository extends BaseModelRepository
         $students = DB::table('hoc_sinh')
         ->join('suc_khoe', 'suc_khoe.hoc_sinh_id' , '=', 'hoc_sinh.id')
         ->select('hoc_sinh.*', 'suc_khoe.chieu_cao', 'suc_khoe.can_nang')
-        ->where('lop_id', $giao_vien_user->lop_id)
+        ->where('hoc_sinh.lop_id', $giao_vien_user->lop_id)
         ->where('suc_khoe.dot_id', $dot);
         if(isset($params['ma_hoc_sinh']) && $params['ma_hoc_sinh'] != null){
             $students->where('hoc_sinh.ma_hoc_sinh', $params['ma_hoc_sinh']);
