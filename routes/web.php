@@ -36,7 +36,11 @@ Route::prefix('quan-ly-khoi')->group(function () {
 
 Route::prefix('cong-viec-hang-ngay')->group(function () {
 
-    Route::view('/don-xin-nghi-hoc', 'don-xin-nghi-hoc.index')->name('test4');
+    // Route::get('/don-xin-nghi-hoc', 'd')->name('test4');
+    Route::group(['namespace' => 'DonNghiHoc'], function() {
+        Route::get('/don-nghi-hoc', 'DonNghiHocController@index')->name('don-xin-nghi-hoc');
+    });
+
     Route::group(['namespace' => 'DonDanThuoc'], function() {
         Route::get('/don-dan-thuoc', 'DonDanThuocController@index')->name('don-dan-thuoc');
         Route::post('/gui-phan-hoi-don-dan-thuoc', 'DonDanThuocController@guiPhanHoi')->name('gui-phan-hoi-don-dan-thuoc');

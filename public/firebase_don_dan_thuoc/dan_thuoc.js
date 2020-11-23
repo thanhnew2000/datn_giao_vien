@@ -13,37 +13,44 @@ firebase.database().ref("phan_hoi_don_thuoc").on("child_added", function(snapsho
                 if(snapshot.val().type == 2){
                     var anh_nguoi_phan_hoi = response.data.anh;
                     var ten_nguoi_phan_hoi = 'Giáo viên: '+response.data.ten;
+                    var class_trai_phai = 'm-messenger__message--out'
                 }else{
                     var anh_nguoi_phan_hoi = response.data.avatar;
                     var ten_nguoi_phan_hoi = 'Học sinh: '+response.data.ten;
+                    var class_trai_phai = 'm-messenger__message--in'
+
                 }
                 var class_phan_hoi_don = '#phan_hoi_don_'+snapshot.val().don_dan_thuoc_id
                 console.log('apitsst', response.data,class_phan_hoi_don)
                 let relativeTime = getMinimalisticRelativeTime(snapshot.val().created_at);
                 var htmlPhanHoi = `
-                   <div class="m-widget3__item">
-                    <div class="m-widget3__header">
-                        <div class="m-widget3__user-img">
-                            <img class="m-widget3__img" src="${host_name}+${anh_nguoi_phan_hoi}" alt="">
-                        </div>
-                        <div class="m-widget3__info">
-                            <span class="m-widget3__username">
+
+                <div class="m-messenger__wrapper">
+                <div class="m-messenger__message ${class_trai_phai}">
+                    <div class="m-messenger__message-body">
+                        
+                        <div class="m-messenger__message-content">
+                            <div class="m-messenger__message-username">
                                 ${ten_nguoi_phan_hoi}
-                            </span>
-                            <br>
-                            <span class="m-widget3__time">
-                                ${relativeTime}
-                            </span>
-                        </div>
-                    </div>
-                    <div class="m-widget3__body">
-                        <p class="m-widget3__text">
+                            </div>
+                            <div class="m-messenger__message-text">
                             ${snapshot.val().noi_dung}
-                        </p>
+                            </div>
+                        </div>
+                        <span class="m-widget3__time">
+                            ${relativeTime}
+                        </span>
                     </div>
                 </div>
+            </div>
                    `
                    $(class_phan_hoi_don).append(htmlPhanHoi)
+                   console.log($('.fix-scroll-bottom').height())
+                //    $('.fix-scroll-bottom').scrollTop($('.fix-scroll-bottom').height())
+                $('.fix-scroll-bottom').animate({ scrollTop:$('.fix-scroll-bottom').prop('scrollHeight')});
+                   $('#preload').css('display','none')
+                   $('.nhap_phan_hoi').val('')
+
             })
             .catch(function(error) {
                 // handle error
@@ -58,6 +65,8 @@ firebase.database().ref("phan_hoi_don_thuoc").on("child_added", function(snapsho
 firebase.database().ref("phan_hoi_don_thuoc").once("value", function(snapshot) {
     newItems = true
 })
+
+// alert()
 // db_phan_hoi_don_thuoc.on("value", (snap) => {
 //     var res = Object.values(snap.val());
 //     console.log(res);
