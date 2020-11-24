@@ -26,4 +26,14 @@ class HocSinh extends Model
     {
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
+
+    public function DonNghiHoc()
+    {
+        return $this->hasMany('App\Models\DonNghiHoc', 'hoc_sinh_id', 'id');
+    }
+
+    public function DonDanThuoc()
+    {
+        return $this->hasMany('App\Models\DonDanThuoc', 'hoc_sinh_id', 'id');
+    }
 }
