@@ -24,6 +24,7 @@
           });
 		</script>
 
+		<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
 		@section('style')
 			<style>
 				.m-body .m-content{

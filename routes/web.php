@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::get('/', function () { return view('index');})->middleware('auth', 'web')->name('app');
+Route::get('/', 'HomeController@index')->middleware('auth', 'web')->name('app');
 Auth::routes();
-Route::get('/home', function(){ return view('index');})->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['web','auth']], function () {
         Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('profile');
         Route::get('/doi-mat-khau','Auth\AuthController@changePasswordForm')->name('doi-mat-khau');

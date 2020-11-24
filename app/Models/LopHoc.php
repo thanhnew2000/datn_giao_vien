@@ -11,4 +11,9 @@ class LopHoc extends Model
     public function Student(){
         return $this->hasMany('App\Models\HocSinh', 'lop_id', 'id');
     }
+
+    public function DiemDanh()
+    {
+        return $this->hasMany('App\Models\DiemDanhDen', 'lop_id', 'id');
+    }
 }

@@ -12,6 +12,7 @@
         var res = Object.values(snap.val());
         console.log(res);
         var content = '';
+        var content2 = '';
         var count = 0;
         var flat = 0;
         for (let i = res.length - 1; i >= 0; i--) {
@@ -41,9 +42,18 @@
 								 </div>
 							</div>
 							`;
+
+                content2 += `
+                            <a href="${ route(JSON.parse(res[i].route).route_name, JSON.parse(res[i].route).params) }" class="m-list-timeline__item a_link_dashboard">
+                            <span class="m-list-timeline__badge  ${ i % 2 == 0 ? 'm-list-timeline__badge--success':'m-list-timeline__badge--info'}"></span>
+                            <span class="m-list-timeline__text">${ res[i].title }</span>
+                            <span class="m-list-timeline__time">${ relativeTime }</span>
+                            </a>
+							`;
             }
         }
         $('#box-notification').html(content);
+        $('#notify_dashboard').html(content2)
         var notifi_html = count ? `<span class="m-nav__link-badge m-badge m-badge--danger">${count}+</span>` : '';
         $('#count_number_notifi').html(notifi_html);
         flat == 1 ? $('.notify-bell').addClass('make-bellring') : $('.notify-bell').removeClass('make-bellring');
