@@ -58,7 +58,7 @@
                                     class="m-menu__link-text">Điểm danh về</span></a>
                         </li>
                         <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ route('test4') }}" class="m-menu__link "><i
+                            <a href="{{ route('don-xin-nghi-hoc') }}" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Đơn nghỉ học</span></a>
                         </li>
@@ -93,7 +93,7 @@
 
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle"><i
-                        class="m-menu__link-icon flaticon-presentation-1" style="color: greenyellow;"></i><span
+                        class="m-menu__link-icon flaticon-presentation-1" style="color: blue;"></i><span
                         class="m-menu__link-text">Lớp của tôi</span><i
                         class="m-menu__ver-arrow la la-angle-right"></i></a>
                 <div class="m-menu__submenu ">
@@ -113,31 +113,6 @@
                             <a href="{{ route('album.index') }}" class="m-menu__link "><i
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Album</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
-                <a href="javascript:;" class="m-menu__link m-menu__toggle"><i
-                        class="m-menu__link-icon flaticon-folder-1" style="color: #000000;"></i><span
-                        class="m-menu__link-text">Giáo trình</span><i
-                        class="m-menu__ver-arrow la la-angle-right"></i></a>
-                <div class="m-menu__submenu ">
-                    <span class="m-menu__arrow"></span>
-                    <ul class="m-menu__subnav">
-                        <li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
-                            <span class="m-menu__link"><span class="m-menu__link-text">item</span></span>
-                        </li>
-                        <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ route('quan-ly-hoc-sinh-index') }}" class="m-menu__link "><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">item</span></a>
-                        </li>
-                        <li class="m-menu__item " aria-haspopup="true">
-                            <a href="{{ route('quan-ly-hoc-sinh-create') }}" class="m-menu__link "><i
-                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
-                                    class="m-menu__link-text">item</span></a>
                         </li>
                     </ul>
                 </div>

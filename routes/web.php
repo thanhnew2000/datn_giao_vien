@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::get('/', function () { return view('index');})->middleware('auth', 'web')->name('app');
+Route::get('/', 'HomeController@index')->middleware('auth', 'web')->name('app');
 Auth::routes();
-Route::get('/home', function(){ return view('index');})->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['web','auth']], function () {
         Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('profile');
         Route::get('/doi-mat-khau','Auth\AuthController@changePasswordForm')->name('doi-mat-khau');
@@ -36,7 +36,11 @@ Route::prefix('quan-ly-khoi')->group(function () {
 
 Route::prefix('cong-viec-hang-ngay')->group(function () {
 
-    Route::view('/don-xin-nghi-hoc', 'don-xin-nghi-hoc.index')->name('test4');
+    // Route::get('/don-xin-nghi-hoc', 'd')->name('test4');
+    Route::group(['namespace' => 'DonNghiHoc'], function() {
+        Route::get('/don-nghi-hoc', 'DonNghiHocController@index')->name('don-xin-nghi-hoc');
+    });
+
     Route::group(['namespace' => 'DonDanThuoc'], function() {
         Route::get('/don-dan-thuoc', 'DonDanThuocController@index')->name('don-dan-thuoc');
         Route::post('/gui-phan-hoi-don-dan-thuoc', 'DonDanThuocController@guiPhanHoi')->name('gui-phan-hoi-don-dan-thuoc');

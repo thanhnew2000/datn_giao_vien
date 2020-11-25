@@ -19,7 +19,8 @@
             $hours_end = \Carbon\Carbon::createFromFormat('H:i:s', '09:00:00')->toTimeString();
         @endphp
 
-        @if ($hours_start <= $hours_now && $hours_now <= $hours_end)
+        {{-- @if ($hours_start <= $hours_now && $hours_now <= $hours_end) --}}
+        @if (true)
 
         <div class="m-portlet__body">
             <ul class="nav nav-tabs" role="tablist">
@@ -47,8 +48,9 @@
                                 <th>Avatar</th>
                                 <th>Ngày Sinh</th>
                                 <th>Đi Học</th>
-                                <th>Nghỉ Có Phép</th>
-                                <th>Nghỉ Không Phép</th>
+                                <th>Nghỉ Học</th>
+                                {{-- <th>Nghỉ Có Phép</th> --}}
+                                {{-- <th>Nghỉ Không Phép</th> --}}
                                 <th>Phiếu ăn</th>
                                 <th>Ghi chú</th>
 
@@ -70,7 +72,7 @@
                                         <td>{{ date_format($date,"d/m/Y") }}</td>
                                         <td><input type="radio" value="1" name="{{ $item->id }}" checked="true"></td>
                                         <td><input type="radio" value="2" name="{{ $item->id }}"></td>
-                                        <td><input type="radio" value="3" name="{{ $item->id }}"></td>
+                                        {{-- <td><input type="radio" value="3" name="{{ $item->id }}"></td> --}}
                                         <td><input type="checkbox" name="phieu_an_{{ $item->id }}" checked="true"></td>
                                         <td><textarea name="chu_thich_{{ $item->id }}"></textarea></td>
                                     </tr>
@@ -91,7 +93,7 @@
                                         <td>{{ date_format($date,"d/m/Y") }}</td>
                                         <td><input type="radio" value="1" name="{{ $item->id }}" {{ ($item->trang_thai == 1)?'checked':'' }}></td>
                                         <td><input type="radio" value="2" name="{{ $item->id }}" {{ ($item->trang_thai == 2)?'checked':'' }}></td>
-                                        <td><input type="radio" value="3" name="{{ $item->id }}" {{ ($item->trang_thai == 3)?'checked':'' }}></td>
+                                        {{-- <td><input type="radio" value="3" name="{{ $item->id }}" {{ ($item->trang_thai == 3)?'checked':'' }}></td> --}}
                                         <td><input type="checkbox" name="phieu_an_{{ $item->id }}" {{ ($item->phieu_an == 1)?'checked':'' }}></td>
                                         <td><textarea name="chu_thich_{{ $item->id }}">{{ $item->chu_thich ? $item->chu_thich : '' }}</textarea></td>
                                     </tr>
