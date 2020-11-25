@@ -32,17 +32,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">Mã học sinh</label>
+                                        <label class="col-lg-2 col-form-label">Học sinh</label>
                                         <div class="col-lg-8">
-                                            <select class="form-control select2" name="ma_hoc_sinh">
-                                                <option value="" selected>Chọn</option>
+                                            <select class="form-control select2" multiple="multiple" name="ma_hoc_sinh[]">
+                                               
                                                 @foreach ($hoc_sinh_theo_lop as $item)
                                                 <option 
                                                 @if (isset($params['ma_hoc_sinh']))
                                                     {{ ($params['ma_hoc_sinh'] == $item->ma_hoc_sinh) ? "selected" : "" }}
                                                 @endif
                                                 value="{{$item->ma_hoc_sinh}}">
-                                                {{$item->ma_hoc_sinh}}</option>
+                                                {{$item->ten}} - {{$item->ma_hoc_sinh}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -52,8 +52,8 @@
                                     <div class="form-group m-form__group row">
                                         <label for="" class="col-lg-2 col-form-label">Đợt</label>
                                         <div class="col-lg-8">
-                                            <select class="form-control select2" name="dot_id">
-                                                <option value="" selected>Chọn</option>
+                                            <select class="form-control " name="dot_id">
+                                                
                                                 @foreach ($getDotAll as $item)
                                                 <option
                                                 @if (isset($params['dot_id']))
@@ -69,25 +69,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-4">
-                                <div class="col-md-6">
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">Tên học sinh</label>
-                                        <div class="col-lg-8">
-                                            <select class="form-control select2" name="ten">
-                                                <option value="" selected>Chọn</option>
-                                                @foreach ($hoc_sinh_theo_lop as $item)
-                                                <option 
-                                                @if (isset($params['ten']))
-                                                    {{ ($params['ten'] == $item->ten) ? "selected" : "" }}
-                                                @endif
-                                                value="{{$item->ten}}">{{$item->ten}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="row justify-content-center">
