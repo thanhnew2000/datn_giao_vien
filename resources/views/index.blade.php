@@ -39,6 +39,58 @@
   .a_link_dashboard:hover {
     text-shadow: 2px 2px 3px pink;
   }
+  .loading {
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: row;
+  }
+  .loading__letter {
+    letter-spacing: 4px;
+    color: #fec468;
+    animation-name: bounce;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+
+  .loading__letter:nth-child(2) {
+    animation-delay: .1s; 
+  }
+  .loading__letter:nth-child(3) {
+    animation-delay: .2s;
+  }
+  .loading__letter:nth-child(4) {
+    animation-delay: .3s; 
+  }
+  .loading__letter:nth-child(5) {
+    animation-delay: .4s;
+  }
+  .loading__letter:nth-child(6) {
+    animation-delay: .5s; 
+  }
+  .loading__letter:nth-child(7) {
+    animation-delay: .6s;
+  }
+  .loading__letter:nth-child(8) {
+    animation-delay: .8s;
+  }
+  .loading__letter:nth-child(9) {
+    animation-delay: 1s;
+  }
+  .loading__letter:nth-child(10) {
+    animation-delay: 1.2s;
+  }
+  @keyframes bounce {
+    0% {
+      transform: translateY(0px)
+    }
+    40% {
+      transform: translateY(-8px);
+    }
+    80%,
+    100% {
+      transform: translateY(0px);
+    }
+  }
 </style>
     
 @endsection
@@ -73,14 +125,36 @@
                       @if ($danhSachDiemDanh->where('type', 1)->where('trang_thai', 1)->count())
                           <span class="h5 mb-0 font-weight-bold text-gray-800">{{ $danhSachDiemDanh->where('type', 1)->where('trang_thai', 1)->count() . '/' . $soLuongHocSinh }}</span>
                       @else
-                          <i class="text-success">...đang cập nhật</i>
+                          <div class="loading">
+                            <div class="loading__letter"><i>l</i></div>
+                            <div class="loading__letter"><i>o</i></div>
+                            <div class="loading__letter"><i>a</i></div>
+                            <div class="loading__letter"><i>d</i></div>
+                            <div class="loading__letter"><i>i</i></div>
+                            <div class="loading__letter"><i>n</i></div>
+                            <div class="loading__letter"><i>g</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                          </div>
                       @endif
                 </div>
                 <div>
                       @if ($danhSachDiemDanh->where('type', 2)->where('trang_thai', 1)->count())
                           <span class="h5 mb-0 font-weight-bold text-gray-800">{{ $danhSachDiemDanh->where('type', 2)->where('trang_thai', 1)->count() . '/' . $soLuongHocSinh }}</span>
                       @else
-                          <i class="text-success">...đang cập nhật</i>
+                          <div class="loading">
+                            <div class="loading__letter"><i>l</i></div>
+                            <div class="loading__letter"><i>o</i></div>
+                            <div class="loading__letter"><i>a</i></div>
+                            <div class="loading__letter"><i>d</i></div>
+                            <div class="loading__letter"><i>i</i></div>
+                            <div class="loading__letter"><i>n</i></div>
+                            <div class="loading__letter"><i>g</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                          </div>
                       @endif
                 </div>
             </div>
