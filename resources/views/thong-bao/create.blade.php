@@ -1,6 +1,5 @@
 @extends('layouts.main') @section('title', 'Thông báo') @section('content')
 @section('style')
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
 <style>
     #danh_sach_hoc_sinh{
             height: 300px;
@@ -76,7 +75,7 @@
                     </button>
                 </div>
                 <div class="modal-body" id="danh_sach_hoc_sinh">
-                    <table id="table_id" style="with: 100%">
+                    <table id="table_id">
                         <thead>
                             <tr>
                                 <th class="text-center">

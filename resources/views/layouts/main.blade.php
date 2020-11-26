@@ -12,7 +12,7 @@
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 		
-		<link rel="shortcut icon" type="image/x-icon" href="https://kidsonline.edu.vn/wp-content/themes/kids-online/assets/images/favicon.png" />
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
 		<!--begin::Web font -->
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 		<script>
@@ -97,7 +97,7 @@
 		<!-- end::Scroll Top -->
 
 		<!-- begin::Quick Nav -->
-		@include('layouts._share.quick_nav')
+		{{-- @include('layouts._share.quick_nav') --}}
 		<!-- begin::Quick Nav -->
 
 		  {{--  script  --}}

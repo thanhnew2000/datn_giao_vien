@@ -10,7 +10,7 @@
 
     db.on("value", (snap) => {
         var res = Object.values(snap.val());
-        console.log(res);
+        // console.log(res);
         var content = '';
         var content2 = '';
         var count = 0;
@@ -67,7 +67,7 @@
         let data_type = element.getAttribute('data-type');
         let str_after_replace = data_href.replace('http://', '');
         var href = str_after_replace.substr(str_after_replace.indexOf("/"), str_after_replace.length - 1)
-        console.log(route(link.route_name, link.params))
+        // console.log(route(link.route_name, link.params))
 
         window.location.href = route(link.route_name, link.params);
 

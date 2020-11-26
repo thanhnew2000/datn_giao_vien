@@ -64,8 +64,20 @@
 			$('body').show();
 			NProgress.start();
 			setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 2000);
+
+			if("{{ Illuminate\Support\Facades\Auth::user()->profile->lop_id }}"){
+				$('.isClass').removeClass("d-none");
+			}
+
+			$( function() {
+					$('#ul-home').draggable({ opacity: 0.7, helper: "clone" });
+					$( "#sortable" ).sortable({
+					revert: true
+					});
+			});
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/vi.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.16.0/firebase.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-analytics.js"></script>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{ asset('moment/vi.min.js')}}"></script>
+<script src="{{ asset('config_firebase/firebase.js')}}"></script>
+<script src="{{ asset('config_firebase/firebase-analytics.js')}}"></script>
+<script src="{{ asset('axios/axios.min.js')}}"></script>
+<script src="{{ asset('assets/jquery/jquery-ui.js')}}"></script>
