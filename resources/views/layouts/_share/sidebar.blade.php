@@ -5,18 +5,20 @@
     <!-- BEGIN: Aside Menu -->
     <div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-dark "
         m-menu-vertical="1" m-menu-scrollable="1" m-menu-dropdown-timeout="500" style="position: relative;">
-        <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
-            <li class="m-menu__item  m-menu__item--active" aria-haspopup="true">
+        <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow p-0" id="ul-home">
+            <li class="m-menu__item  m-menu__item--active isClass d-none" aria-haspopup="true">
                 <a href="{{ route('app') }}" class="m-menu__link "><i
                         class="m-menu__link-icon flaticon-home-2"></i><span class="m-menu__link-title">
                         <span class="m-menu__link-wrap">
                             <span class="m-menu__link-text">Trang chủ</span>
                         </span></span></a>
             </li>
-            <li class="m-menu__section ">
+            <li class="m-menu__section isClass d-none">
                 <h4 class="m-menu__section-text">Danh mục</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
+        </ul>
+        <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow p-0" id="sortable">
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle"><i
                         class="m-menu__link-icon flaticon-alert-2 text-warning"></i><span
@@ -37,7 +39,8 @@
                     </ul>
                 </div>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+        
+            <li class="m-menu__item  m-menu__item--submenu isClass d-none" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle"><i class="m-menu__link-icon flaticon-notes"
                         style="color: darkturquoise;"></i><span class="m-menu__link-text">Công việc hằng ngày</span><i
                         class="m-menu__ver-arrow la la-angle-right"></i></a>
@@ -75,7 +78,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <li class="m-menu__item  m-menu__item--submenu isClass d-none" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle"><i
                         class="m-menu__link-icon flaticon-black text-danger"></i><span class="m-menu__link-text">Sức
                         khỏe</span><i class="m-menu__ver-arrow la la-angle-right"></i></a>
@@ -91,7 +94,7 @@
                 </div>
             </li>
 
-            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+            <li class="m-menu__item  m-menu__item--submenu isClass d-none" aria-haspopup="true" m-menu-submenu-toggle="hover">
                 <a href="javascript:;" class="m-menu__link m-menu__toggle"><i
                         class="m-menu__link-icon flaticon-presentation-1" style="color: blue;"></i><span
                         class="m-menu__link-text">Lớp của tôi</span><i
@@ -114,11 +117,22 @@
                                     class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
                                     class="m-menu__link-text">Album</span></a>
                         </li>
+                        <li class="m-menu__item " aria-haspopup="true">
+                            <a href="{{ route('nhanxet.index') }}" class="m-menu__link "><i
+                                    class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i><span
+                                    class="m-menu__link-text">Nhận xét</span></a>
+                        </li>
                     </ul>
                 </div>
             </li>
         </ul>
     </div>
 
+
+
+
     <!-- END: Aside Menu -->
 </div>
+
+
+
