@@ -13,10 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::get('/', 'HomeController@index')->middleware('auth', 'web')->name('app');
+Route::get('/', 'HomeController@index')->middleware('auth', 'web', 'checkClass')->name('app');
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['middleware' => ['web','auth']], function () {
+Route::get('/home', 'HomeController@index')->middleware('auth', 'web', 'checkClass')->name('home');
+Route::group(['middleware' => ['web','auth','checkClass']], function () {
         Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('profile');
         Route::get('/doi-mat-khau','Auth\AuthController@changePasswordForm')->name('doi-mat-khau');
         Route::post('/update-mat-khau','Auth\AuthController@changePassword')->name('update-mat-khau');
@@ -68,16 +68,16 @@ Route::prefix('cong-viec-hang-ngay')->group(function () {
     });
 });
 
-Route::prefix('quan-ly-suc-khoe')->group(function () {
-    Route::get('/', 'SucKhoeController@index')->name('quan-suc-khoe-index');
-    Route::post('/check-dot-kham-suc-khoe', 'SucKhoeController@checkdot')->name('quan-suc-khoe-check-dot');
-    Route::get('/create', 'SucKhoeController@create')->name('quan-suc-khoe-create');
-    Route::post('/store', 'SucKhoeController@store')->name('quan-suc-khoe-store');
-    Route::get('/edit/{id}', 'SucKhoeController@edit')->name('quan-suc-khoe-edit');
-    Route::post('/update/{id}', 'SucKhoeController@update')->name('quan-suc-khoe-update');
-});
+Route::group(['middleware' => ['web', 'auth', 'checkClass']], function () {
+    Route::prefix('quan-ly-suc-khoe')->group(function () {
+        Route::get('/', 'SucKhoeController@index')->name('quan-suc-khoe-index');
+        Route::post('/check-dot-kham-suc-khoe', 'SucKhoeController@checkdot')->name('quan-suc-khoe-check-dot');
+        Route::get('/create', 'SucKhoeController@create')->name('quan-suc-khoe-create');
+        Route::post('/store', 'SucKhoeController@store')->name('quan-suc-khoe-store');
+        Route::get('/edit/{id}', 'SucKhoeController@edit')->name('quan-suc-khoe-edit');
+        Route::post('/update/{id}', 'SucKhoeController@update')->name('quan-suc-khoe-update');
+    });
 
-Route::group(['middleware' => ['web', 'auth']], function () {
     Route::prefix('danh-sach-lop')->group(function () {
         Route::get('/', 'LopController@index')->name('danh-sach-lop-index');
     });
@@ -104,9 +104,20 @@ Route::group(['middleware' => ['web', 'auth']], function () {
     Route::post('removeImage', 'AlbumController@removeImage')->name('album.removeImage');
     Route::post('updateTitle', 'AlbumController@updateTitle')->name('album.updateTitle');
     Route::post('addImage', 'AlbumController@addImage')->name('album.addImage');
+
+    Route::get('nhan_xet', 'NhanXetController@index')->name('nhanxet.index');  
+    Route::post('nhan_xet', 'NhanXetController@store')->name('nhanxet.store');  
+    Route::post('find', 'NhanXetController@find')->name('nhanxet.find');
 });
 
 Route::view('OTP', 'auth.passwords.forgot_OTP')->name('otp.forget_password');
 Route::post('send-otp', "Auth\SendOTPController@send")->name('otp.send');
 Route::post('check-otp', "Auth\SendOTPController@checkOTP")->name('otp.check');
 Route::post('reset-otp', "Auth\SendOTPController@resetOTP")->name('otp.reset');
+
+Route::get('chua-xep-lop', function(){
+    if (Auth::user()->profile->lop_id) {
+        return redirect('home');
+    }
+    return view('chua-xep-lop.chua-xep-lop');
+})->name('chua-xep-lop.chua-xep-lop')->middleware('auth', 'web');  
