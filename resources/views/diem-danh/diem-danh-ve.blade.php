@@ -199,7 +199,6 @@
 @endsection
 @section('script')
 
-<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
 <!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
 <script>
     $(document).ready(function () {
