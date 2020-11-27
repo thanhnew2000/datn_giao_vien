@@ -124,16 +124,19 @@ class DonDanThuocController extends Controller
         $thongbao=[];
         $thongbao['title'] ='Trả lời đơn dặn thuốc';
         $thongbao['content'] =$noi_dung;
-        $thongbao['route'] = 'route';
+        $thongbao['route'] = 'add_medicine';
         $thongbao['user_id'] =$thong_tin_nguoi_nhan->id;
         $thongbao['auth_id'] =$nguoi_phan_hoi_id;
         $this->NotificationRepository->create($thongbao);
         
-        $data_thong_bao['device'] = 'fiuTWIB5Rt6ZpPYn76zXVc:APA91bFmBH1cNZMx-ZqfXumM8ktE4UbGbJHKA02IQXCfI6KPeYFg75i9pyl8WE17IY_7aeM6iN-LAt4xsaioVGJqctiXpnE5PXMG5EynbMV1OO52LChV5sDBelAMO177RflYna52Ca_q';
+        $data_thong_bao['device'] = $don_thuoc->HocSinh->user->device;
         $data_thong_bao['title'] = 'Giáo viên đã phản hồi về đơn dặn thuốc của bạn';
         $data_thong_bao['content'] = $noi_dung;
-
-        $this->NotificationRepository->notificationApp($data_thong_bao);
+        $data_thong_bao['route'] = [
+            'name_route' => 'detail_medicine',
+            'id' => $don_thuoc->id
+        ];
+        $this->NotificationRepository->notificationApp([$data_thong_bao]);
         return 'thành công';
     }
 
