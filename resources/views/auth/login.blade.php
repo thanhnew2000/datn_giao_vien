@@ -118,7 +118,7 @@
                                     id="m_email" autocomplete="off">
                                 <div class="col m--align-right m-login__form-right">
                                         <a  href="{{ route('otp.forget_password') }}" class="m-link">
-                                            {{ __('Thử cách khác') }}
+                                            <i>{{ __('Thử cách khác') }}</i>
                                         </a>
                                 </div>
                             </div>
@@ -142,7 +142,7 @@
     <script src="{!! asset('assets/demo/base/scripts.bundle.js') !!}" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.5.1/sweetalert2.min.js"></script>
     <!--end::Global Theme Bundle -->
-
+    <script src="{!! asset('phao_hoa/phao_hoa.js') !!}"></script>
     <!--begin::Page Scripts -->
     <script src="{!! asset('assets/snippets/custom/pages/user/login.js') !!}" type="text/javascript"></script>
     <script>

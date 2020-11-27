@@ -118,7 +118,13 @@ mix.styles(
             "public/assets/vendors/custom/datatables/datatables.bundle.js",
             "public/assets/demo/default/custom/crud/datatables/basic/headers.js",
             "public/share/progressbar.js",
-            "public/share/nprogress.js"
+            "public/share/nprogress.js",
+            "public/moment/vi.min.js",
+            "public/config_firebase/firebase.js",
+            "public/config_firebase/firebase-analytics.js",
+            "public/axios/axios.min.js",
+            "public/assets/vendors/custom/jquery-ui/jquery-ui.bundle.js"
+
         ],
         "public/js/all.js"
     )

@@ -1,5 +1,99 @@
+@php
+    $lopHoc = Auth::user()->profile->Lop;
+    $soLuongHocSinh = $lopHoc->Student->count();
+    $danhSachDiemDanh = $lopHoc->DiemDanh->where('ngay_diem_danh_den', '=', date('Y-m-d'));
+
+    $countDonNghiHoc = 0;
+    $countDonDanThuoc = 0;
+    foreach ($lopHoc->Student as $key => $value) {
+      if($value->DonNghiHoc){
+          $countDonNghiHoc += $value->DonNghiHoc
+                              ->where('ngay_bat_dau', '<=', date('Y-m-d'))
+                              ->where('ngay_ket_thuc', '>=', date('Y-m-d'))
+                              ->count();        
+      }
+
+      if($value->DonDanThuoc){
+          $countDonDanThuoc += $value->DonDanThuoc
+                              ->where('ngay_bat_dau', '<=', date('Y-m-d'))
+                              ->where('ngay_ket_thuc', '>=', date('Y-m-d'))
+                              ->count();        
+      }
+    }
+@endphp
 @extends('layouts.main')
 @section('title', "Trang chủ")
+@section('style')
+<style>
+  body{
+    font-family: 'PT Sans Caption', sans-serif !important; 
+    
+  }
+  .card:hover {
+    box-shadow: 1px 3px 15px #000 !important; 
+  }
+  a:hover, a:visited, a:link, a:active
+  {
+      text-decoration: none;
+  }
+  .a_link_dashboard:hover {
+    text-shadow: 2px 2px 3px pink;
+  }
+  .loading {
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: row;
+  }
+  .loading__letter {
+    letter-spacing: 4px;
+    color: #fec468;
+    animation-name: bounce;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+
+  .loading__letter:nth-child(2) {
+    animation-delay: .1s; 
+  }
+  .loading__letter:nth-child(3) {
+    animation-delay: .2s;
+  }
+  .loading__letter:nth-child(4) {
+    animation-delay: .3s; 
+  }
+  .loading__letter:nth-child(5) {
+    animation-delay: .4s;
+  }
+  .loading__letter:nth-child(6) {
+    animation-delay: .5s; 
+  }
+  .loading__letter:nth-child(7) {
+    animation-delay: .6s;
+  }
+  .loading__letter:nth-child(8) {
+    animation-delay: .8s;
+  }
+  .loading__letter:nth-child(9) {
+    animation-delay: 1s;
+  }
+  .loading__letter:nth-child(10) {
+    animation-delay: 1.2s;
+  }
+  @keyframes bounce {
+    0% {
+      transform: translateY(0px)
+    }
+    40% {
+      transform: translateY(-8px);
+    }
+    80%,
+    100% {
+      transform: translateY(0px);
+    }
+  }
+</style>
+    
+@endsection
 @section('content')
 <!-- BEGIN: Subheader -->
 <div class="m-subheader ">
@@ -7,35 +101,62 @@
         <div class="mr-auto">
             <h3 class="m-subheader__title ">Dashboard</h3>
         </div>
-        <div>
-            <span class="m-subheader__daterange" id="m_dashboard_daterangepicker">
-                <span class="m-subheader__daterange-label">
-                    <span class="m-subheader__daterange-title"></span>
-                    <span class="m-subheader__daterange-date m--font-brand"></span>
-                </span>
-                <a href="#" class="btn btn-sm btn-brand m-btn m-btn--icon m-btn--icon-only m-btn--custom m-btn--pill">
-                    <i class="la la-angle-down"></i>
-                </a>
-            </span>
-        </div>
     </div>
 </div>
 <div class="m-content">
+
   <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible " role="alert">
     <div class="m-alert__icon">
     </div>
     <div class="m-alert__text d-flex justify-content-center">
-      <h3>LỚP HOA LY 2</h3>
+        <marquee width="50%">
+          <h3 style="font-family: 'Indie Flower', cursive !important; text-shadow:2px 2px 5px rgb(235, 144, 223)">{{ Auth::user()->profile->Lop->ten_lop }}</h3>
+          </marquee>
     </div>
   </div>
   <div class="row">
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-primary shadow h-100 py-2">
+    <div class="card border-left-primary shadow h-100 py-2" style="cursor: pointer" onclick="window.location.href = route('diem_danh_ban_sang.create')">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Điểm danh</div>
-              <div class="h5 mb-0 font-weight-bold text-red-800">10</div>
+                <div>
+                      @if ($danhSachDiemDanh->where('type', 1)->where('trang_thai', 1)->count())
+                          <span class="h5 mb-0 font-weight-bold text-gray-800">{{ $danhSachDiemDanh->where('type', 1)->where('trang_thai', 1)->count() . '/' . $soLuongHocSinh }}</span>
+                      @else
+                          <div class="loading">
+                            <div class="loading__letter"><i>l</i></div>
+                            <div class="loading__letter"><i>o</i></div>
+                            <div class="loading__letter"><i>a</i></div>
+                            <div class="loading__letter"><i>d</i></div>
+                            <div class="loading__letter"><i>i</i></div>
+                            <div class="loading__letter"><i>n</i></div>
+                            <div class="loading__letter"><i>g</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                          </div>
+                      @endif
+                </div>
+                <div>
+                      @if ($danhSachDiemDanh->where('type', 2)->where('trang_thai', 1)->count())
+                          <span class="h5 mb-0 font-weight-bold text-gray-800">{{ $danhSachDiemDanh->where('type', 2)->where('trang_thai', 1)->count() . '/' . $soLuongHocSinh }}</span>
+                      @else
+                          <div class="loading">
+                            <div class="loading__letter"><i>l</i></div>
+                            <div class="loading__letter"><i>o</i></div>
+                            <div class="loading__letter"><i>a</i></div>
+                            <div class="loading__letter"><i>d</i></div>
+                            <div class="loading__letter"><i>i</i></div>
+                            <div class="loading__letter"><i>n</i></div>
+                            <div class="loading__letter"><i>g</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                            <div class="loading__letter"><i>.</i></div>
+                          </div>
+                      @endif
+                </div>
             </div>
             <div class="col-auto">
               <i class="
@@ -46,12 +167,12 @@
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-success shadow h-100 py-2">
+      <div class="card border-left-success shadow h-100 py-2" style="cursor: pointer" onclick="window.location.href = route('don-xin-nghi-hoc')">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Đơn nghỉ học</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">15</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countDonNghiHoc }}</div>
             </div>
             <div class="col-auto">
               <i class="flaticon-interface-10 fa-2x text-gray-300"></i>
@@ -61,12 +182,12 @@
       </div>
     </div>
     <div class="col-xl-3 col-md-6 mb-4">
-      <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card border-left-warning shadow h-100 py-2" style="cursor: pointer" onclick="window.location.href = route('don-dan-thuoc')">
         <div class="card-body">
           <div class="row no-gutters align-items-center">
             <div class="col mr-2">
               <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Dặn thuốc</div>
-              <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $countDonDanThuoc }}</div>
             </div>
             <div class="col-auto">
               <i class="flaticon-statistics  fa-2x text-gray-300"></i>
@@ -106,14 +227,30 @@
           <div class="m-portlet__head-tools">
             <ul class="m-portlet__nav">
               <li class="m-portlet__nav-item">
-                <div
-                  class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
-                  m-dropdown-toggle="hover" aria-expanded="true">
-                  <a href="#"
-                    class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-                    <i class="la la-ellipsis-h m--font-brand"></i>
-                  </a>
-
+                <div>
+                  <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
+                    <a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--outline-2x m-btn--air m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
+                      <i class="la la-plus m--hide"></i>
+                      <i class="la la-ellipsis-h"></i>
+                    </a>
+                    <div class="m-dropdown__wrapper" style="z-index: 101;">
+                      <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 21.5px;"></span>
+                      <div class="m-dropdown__inner">
+                        <div class="m-dropdown__body">
+                          <div class="m-dropdown__content">
+                            <ul class="m-nav">
+                              <li class="m-nav__item">
+                                <a href="{{ route('danh-sach-lop-index') }}" class="m-nav__link">
+                                  <i class="m-nav__link-icon flaticon-presentation-1" style="color: blue"></i>
+                                  <span class="m-nav__link-text">Chi tiết lớp</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </li>
             </ul>
@@ -124,301 +261,45 @@
           <!--begin: Datatable -->
           <div id="m_table_2_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
             <div class="row">
-              <div class="col-sm-12 col-md-6">
-                <div class="dataTables_length" id="m_table_2_length"><label>Show <select name="m_table_2_length"
-                      aria-controls="m_table_2" class="custom-select custom-select-sm form-control form-control-sm">
-                      <option value="10">10</option>
-                      <option value="25">25</option>
-                      <option value="50">50</option>
-                      <option value="100">100</option>
-                    </select> entries</label></div>
-              </div>
-              <div class="col-sm-12 col-md-6">
-                <div id="m_table_2_filter" class="dataTables_filter"><label>Search:<input type="search"
-                      class="form-control form-control-sm" placeholder="" aria-controls="m_table_2"></label></div>
-              </div>
-            </div>
-            <div class="row">
               <div class="col-sm-12">
-                <div class="dataTables_scroll">
-                  <div class="dataTables_scrollHead"
-                    style="overflow: hidden; position: relative; border: 0px; width: 100%;">
-                    <div class="dataTables_scrollHeadInner"
-                      style="box-sizing: content-box; width: 2280.8px; padding-right: 17px;">
-                      <table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer"
-                        role="grid" style="margin-left: 0px; width: 2280.8px;">
-
-                      </table>
-                    </div>
-                  </div>
-                  <div class="dataTables_scrollBody"
-                    style="position: relative; overflow: auto; width: 100%; max-height: 50vh;">
                     <table class="table table-striped- table-bordered table-hover table-checkable dataTable no-footer"
-                      id="m_table_2" role="grid" aria-describedby="m_table_2_info" style="width: 2351px;">
+                      id="m_table_2_2">
                       <thead>
-                        <tr role="row">
-                          <th class="sorting_asc" tabindex="0" aria-controls="m_table_2" rowspan="1" colspan="1"
-                            style="width: 46.45px;" aria-sort="ascending"
-                            aria-label="Record ID: activate to sort column descending">Stt</th>
-                          <th class="sorting" tabindex="0" aria-controls="m_table_2" rowspan="1" colspan="1"
-                            style="width: 37.65px;" aria-label="Order ID: activate to sort column ascending">Mã học sinh
-                          </th>
-                          <th class="sorting" tabindex="0" aria-controls="m_table_2" rowspan="1" colspan="1"
-                            style="width: 52.85px;" aria-label="Ship Country: activate to sort column ascending">Họ tên
-                          </th>
-                          <th class="sorting" tabindex="0" aria-controls="m_table_2" rowspan="1" colspan="1"
-                            style="width: 46.45px;" aria-label="Ship City: activate to sort column ascending">Ảnh</th>
-                          <th class="sorting" tabindex="0" aria-controls="m_table_2" rowspan="1" colspan="1"
-                            style="width: 56.85px;" aria-label="Ship Name: activate to sort column ascending">Ngày sinh
-                          </th>
-
-                          <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 70.1px;"
-                            aria-label="Actions">Actions</th>
+                        <tr>
+                            <th>#</th>
+                            <th>Mã học sinh</th>
+                            <th>Họ tên</th>
+                            <th>Ảnh</th>
+                            <th>Ngày sinh</th>
+                            <th>Actions</th>
                         </tr>
                       </thead>
-
                       <tbody>
 
+                            @foreach ($lopHoc->Student as $key => $item)
+                              @php
+                                $date=date_create($item->ngay_sinh);
+                              @endphp
+                              <tr role="row" class="odd">
+                              <td class="sorting_1">{{ ++$key }}</td>
+                                <td>{{ $item->ma_hoc_sinh }}</td>
+                                <td>{{ $item->ten }}</td>
+                                <td><img width="100px" height="100px" src="{{ $item->avatar }}"></td>
+                                <td>{{ date_format($date,"d/m/Y") }}</td>
 
-                        <tr role="row" class="odd">
-                          <td class="sorting_1">1</td>
-                          <td>PH0001</td>
-                          <td>Nguyễn Thị Na</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-                          <td>1/1/2018</td>
-
-
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-
-                            </span>
-                          </td>
-                        </tr>
-                        <tr role="row" class="even">
-                          <td class="sorting_1">2</td>
-                          <td>PH0002</td>
-                          <td>Nguyễn Thị Bưởi</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-                          <td>2/2/2018</td>
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-
-                            </span>
-                          </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                          <td class="sorting_1">3</td>
-                          <td>PH0222</td>
-                          <td>Nguyễn Thị Táo</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-
-                          <td>3/5/2018</td>
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-                              <div class="dropdown-menu dropdown-menu-right">
-                                <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
-                                <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>
-                                <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
-                              </div>
-                            </span>
-                            <a href="#"
-                              class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                              title="View">
-                              <i class="la la-edit"></i>
-                            </a></td>
-                        </tr>
-                        <tr role="row" class="even">
-                          <td class="sorting_1">4</td>
-                          <td>PH0005</td>
-                          <td>Nguyễn Thị Mít</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-
-                          <td>4/8/2018</td>
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-
-                            </span>
-                          </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                          <td class="sorting_1">5</td>
-                          <td>31722-529</td>
-                          <td>AT</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-
-                          <td>Stehr-Kunde</td>
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-
-                            </span>
-                          </td>
-                        </tr>
-                        <tr role="row" class="even">
-                          <td class="sorting_1">6</td>
-                          <td>64117-168</td>
-                          <td>CN</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-
-                          <td>O'Hara LLC</td>
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-
-                            </span>
-                          </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                          <td class="sorting_1">7</td>
-                          <td>43857-0331</td>
-                          <td>CN</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-
-                          <td>Lebsack Group</td>
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-
-                            </span>
-                          </td>
-                        </tr>
-                        <tr role="row" class="even">
-                          <td class="sorting_1">8</td>
-                          <td>64980-196</td>
-                          <td>HR</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-
-                          <td>Gutkowski LLC</td>
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-
-                            </span>
-                          </td>
-                        </tr>
-                        <tr role="row" class="odd">
-                          <td class="sorting_1">9</td>
-                          <td>0404-0360</td>
-                          <td>CO</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-
-                          <td>Bartoletti, Howell and Jacobson</td>
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-
-                            </span>
-                          </td>
-                        </tr>
-                        <tr role="row" class="even">
-                          <td class="sorting_1">10</td>
-                          <td>52125-267</td>
-                          <td>TH</td>
-                          <td><img width="100px" height="100px"
-                              src="https://images.unsplash.com/photo-1601758004584-903c2a9a1abc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
-                              alt=""></td>
-
-                          <td>Schroeder-Champlin</td>
-
-                          <td nowrap="">
-                            <span class="dropdown">
-                              <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
-                                data-toggle="dropdown" aria-expanded="true">
-                                <i class="la la-ellipsis-h"></i>
-                              </a>
-
-                            </span>
-                          </td>
-                        </tr>
+                                <td nowrap="">
+                                  <span class="dropdown">
+                                    <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill"
+                                      data-toggle="dropdown" aria-expanded="true">
+                                      <i class="la la-ellipsis-h"></i>
+                                    </a>
+                                  </span>
+                                </td>
+                              </tr>
+                            @endforeach
+                        
                       </tbody>
                     </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12 col-md-5">
-                <div class="dataTables_info" id="m_table_2_info" role="status" aria-live="polite">Showing 1 to 10 of 50
-                  entries</div>
-              </div>
-              <div class="col-sm-12 col-md-7">
-                <div class="dataTables_paginate paging_simple_numbers" id="m_table_2_paginate">
-                  <ul class="pagination">
-                    <li class="paginate_button page-item previous disabled" id="m_table_2_previous"><a href="#"
-                        aria-controls="m_table_2" data-dt-idx="0" tabindex="0" class="page-link"><i
-                          class="la la-angle-left"></i></a></li>
-                    <li class="paginate_button page-item active"><a href="#" aria-controls="m_table_2" data-dt-idx="1"
-                        tabindex="0" class="page-link">1</a></li>
-                    <li class="paginate_button page-item "><a href="#" aria-controls="m_table_2" data-dt-idx="2"
-                        tabindex="0" class="page-link">2</a></li>
-                    <li class="paginate_button page-item "><a href="#" aria-controls="m_table_2" data-dt-idx="3"
-                        tabindex="0" class="page-link">3</a></li>
-                    <li class="paginate_button page-item "><a href="#" aria-controls="m_table_2" data-dt-idx="4"
-                        tabindex="0" class="page-link">4</a></li>
-                    <li class="paginate_button page-item "><a href="#" aria-controls="m_table_2" data-dt-idx="5"
-                        tabindex="0" class="page-link">5</a></li>
-                    <li class="paginate_button page-item next" id="m_table_2_next"><a href="#" aria-controls="m_table_2"
-                        data-dt-idx="6" tabindex="0" class="page-link"><i class="la la-angle-right"></i></a></li>
-                  </ul>
-                </div>
               </div>
             </div>
           </div>
@@ -434,30 +315,9 @@
           <div class="m-portlet__head-caption">
             <div class="m-portlet__head-title">
               <h3 class="m-portlet__head-text">
-                Tin tức
+                Thông báo
               </h3>
             </div>
-          </div>
-          <div class="m-portlet__head-tools">
-            <ul
-              class="nav nav-pills nav-pills--brand m-nav-pills--align-right m-nav-pills--btn-pill m-nav-pills--btn-sm"
-              role="tablist">
-              <li class="nav-item m-tabs__item">
-                <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_widget4_tab1_content" role="tab">
-                  Tron
-                </a>
-              </li>
-              <li class="nav-item m-tabs__item">
-                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget4_tab2_content" role="tab">
-                  Week
-                </a>
-              </li>
-              <li class="nav-item m-tabs__item">
-                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_widget4_tab3_content" role="tab">
-                  Month
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
         <div class="m-portlet__body">
@@ -466,104 +326,10 @@
               <div class="m-scrollable m-scroller ps ps--active-y" data-scrollable="true" data-height="400"
                 style="height: 400px; overflow: hidden;">
                 <div class="m-list-timeline m-list-timeline--skin-light">
-                  <div class="m-list-timeline__items">
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
-                      <span class="m-list-timeline__text">12 new users registered</span>
-                      <span class="m-list-timeline__time">Just now</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--info"></span>
-                      <span class="m-list-timeline__text">System shutdown <span
-                          class="m-badge m-badge--success m-badge--wide">pending</span></span>
-                      <span class="m-list-timeline__time">14 mins</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--danger"></span>
-                      <span class="m-list-timeline__text">New invoice received</span>
-                      <span class="m-list-timeline__time">20 mins</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--accent"></span>
-                      <span class="m-list-timeline__text">DB overloaded 80% <span
-                          class="m-badge m-badge--info m-badge--wide">settled</span></span>
-                      <span class="m-list-timeline__time">1 hr</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--warning"></span>
-                      <span class="m-list-timeline__text">System error - <a href="#" class="m-link">Check</a></span>
-                      <span class="m-list-timeline__time">2 hrs</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--brand"></span>
-                      <span class="m-list-timeline__text">Production server down</span>
-                      <span class="m-list-timeline__time">3 hrs</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--info"></span>
-                      <span class="m-list-timeline__text">Production server up</span>
-                      <span class="m-list-timeline__time">5 hrs</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
-                      <span href="" class="m-list-timeline__text">New order received <span
-                          class="m-badge m-badge--danger m-badge--wide">urgent</span></span>
-                      <span class="m-list-timeline__time">7 hrs</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
-                      <span class="m-list-timeline__text">12 new users registered</span>
-                      <span class="m-list-timeline__time">Just now</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--info"></span>
-                      <span class="m-list-timeline__text">System shutdown <span
-                          class="m-badge m-badge--success m-badge--wide">pending</span></span>
-                      <span class="m-list-timeline__time">14 mins</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--danger"></span>
-                      <span class="m-list-timeline__text">New invoice received</span>
-                      <span class="m-list-timeline__time">20 mins</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--accent"></span>
-                      <span class="m-list-timeline__text">DB overloaded 80% <span
-                          class="m-badge m-badge--info m-badge--wide">settled</span></span>
-                      <span class="m-list-timeline__time">1 hr</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--danger"></span>
-                      <span class="m-list-timeline__text">New invoice received</span>
-                      <span class="m-list-timeline__time">20 mins</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--accent"></span>
-                      <span class="m-list-timeline__text">DB overloaded 80% <span
-                          class="m-badge m-badge--info m-badge--wide">settled</span></span>
-                      <span class="m-list-timeline__time">1 hr</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--warning"></span>
-                      <span class="m-list-timeline__text">System error - <a href="#" class="m-link">Check</a></span>
-                      <span class="m-list-timeline__time">2 hrs</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--brand"></span>
-                      <span class="m-list-timeline__text">Production server down</span>
-                      <span class="m-list-timeline__time">3 hrs</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--info"></span>
-                      <span class="m-list-timeline__text">Production server up</span>
-                      <span class="m-list-timeline__time">5 hrs</span>
-                    </div>
-                    <div class="m-list-timeline__item">
-                      <span class="m-list-timeline__badge m-list-timeline__badge--success"></span>
-                      <span href="" class="m-list-timeline__text">New order received <span
-                          class="m-badge m-badge--danger m-badge--wide">urgent</span></span>
-                      <span class="m-list-timeline__time">7 hrs</span>
-                    </div>
+                  <div class="m-list-timeline__items" id="notify_dashboard">
+
+                    {{-- Nội dung thông báo --}}
+
                   </div>
                 </div>
                 <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
@@ -591,46 +357,53 @@
       <div class="row">
         <div class="col-10">
           <h3 class="m-section__heading">Album ảnh</h3>
-
         </div>
         <div class="col-2 pl-5">
-          <a href="#" class="btn btn-outline-accent btn-sm 	m-btn m-btn--icon m-btn--pill ml-5">
+          <a href="{{ route('album.index') }}" class="btn btn-outline-accent btn-sm 	m-btn m-btn--icon m-btn--pill ml-5">
             <span>
-              <i class="fa flaticon-apps"></i>
+              <i class="fa flaticon-book"></i>
               <span>Xem tất cả</span>
             </span>
           </a>
         </div>
       </div>
-      <div class="col-12 form-group m-form__group d-flex justify-content-end">
-        <div class="row row-cols-4">
-          <div class="col">
-            <img
-              src="https://images.pexels.com/photos/4925891/pexels-photo-4925891.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt="..." class="img-thumbnail">
+      <br>
+      <br>
+      <div class="row">
+        @forelse ($data as $key => $item)
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-3">
+            <a href="{{ route('album.show',['id'=>$item->id])}}">
+              <img src="{{isset($item->item_images[0]) ? asset($item->item_images[0]) : "" }}" class="img-thumbnail">
+            </a>
           </div>
-          <div class="col">
-            <img
-              src="https://images.pexels.com/photos/4925891/pexels-photo-4925891.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt="..." class="img-thumbnail">
+          @if ($key == 3)
+              @break
+          @endif   
+        @empty
+          <div class="col-12">
+            <center><a href="{{ route('album.index') }}" class="btn"><i style="font-size: 3rem; color: rgb(41, 225, 212)" class="flaticon-photo-camera"></i></a></center>
           </div>
-          <div class="col">
-            <img
-              src="https://images.pexels.com/photos/4925891/pexels-photo-4925891.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt="..." class="img-thumbnail">
-          </div>
-          <div class="col">
-            <img
-              src="https://images.pexels.com/photos/4925891/pexels-photo-4925891.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-              alt="..." class="img-thumbnail">
-          </div>
-        </div>
+        @endforelse
       </div>
-
-
 
     </div>
 
   </div>
 </div>
+
 @endsection 
+@section('script')
+<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
+<script>
+    $(document).ready(function () {
+        $('#m_table_2_2').DataTable({
+            "pageLength": 100,
+            "paging": false,
+            "scrollY": "400px",
+            "scrollCollapse": true,
+        });
+    });
+</script>
+<script src="{!! asset('phao_hoa/phao_hoa.js') !!}"></script>
+@endsection
+
