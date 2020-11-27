@@ -75,7 +75,7 @@
                     </button>
                 </div>
                 <div class="modal-body" id="danh_sach_hoc_sinh">
-                    <table id="table_id">
+                    <table id="table_id" class="table table-striped- table-bordered table-hover table-checkable responsive no-wrap dataTable dtr-inline display">
                         <thead>
                             <tr>
                                 <th class="text-center">
@@ -144,9 +144,7 @@
 </div>
 @endsection @section('script')
 <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{ asset('/sweetalert2/sweetalert2@10.js') }}"></script>
 <script>
      var dtable;
     $(document).ready(function () {

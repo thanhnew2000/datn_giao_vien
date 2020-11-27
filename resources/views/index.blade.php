@@ -393,7 +393,6 @@
 
 @endsection 
 @section('script')
-<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('#m_table_2_2').DataTable({

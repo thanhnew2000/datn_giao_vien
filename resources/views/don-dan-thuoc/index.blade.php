@@ -822,12 +822,6 @@
     var url_get_info_phan_hoi = "{{route('info-phan-hoi')}}";
 </script>
 <script src="{{ asset('firebase_don_dan_thuoc/dan_thuoc.js') }}"></script>
-
-<script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
-
-<!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
 <script>
     var url_gui_phan_hoi_dan_thuoc = "{{route('gui-phan-hoi-don-dan-thuoc')}}"
     $(document).ready(function () {
