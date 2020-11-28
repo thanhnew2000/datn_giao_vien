@@ -62,6 +62,8 @@ class ThongBaoController extends Controller
         unset($content['list_id_hoc_sinh']);
         $list_id_hoc_sinh = $request->list_id_hoc_sinh;
         $content['auth_id'] = Auth::id();
+        $content['role'] = Auth::user()->role;
+
         $content['type'] = 1;
         $content['route'] = 'tin_tuc';
 
