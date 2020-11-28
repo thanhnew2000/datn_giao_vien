@@ -108,8 +108,7 @@
 @endsection
 @section('script')
 
-<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="{{ asset('/sweetalert2/sweetalert2@10.js') }}"></script>
 <!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
 <script>
     $(document).ready(function () {
