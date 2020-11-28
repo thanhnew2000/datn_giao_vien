@@ -127,6 +127,7 @@ class DonDanThuocController extends Controller
         $thongbao['route'] = 'add_medicine';
         $thongbao['user_id'] =$thong_tin_nguoi_nhan->id;
         $thongbao['auth_id'] =$nguoi_phan_hoi_id;
+        $thongbao['role'] =Auth::user()->role;
         $this->NotificationRepository->create($thongbao);
         
         $data_thong_bao['device'] = $don_thuoc->HocSinh->user->device;
