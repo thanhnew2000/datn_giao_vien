@@ -17,6 +17,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->middleware('auth', 'web', 'checkClass')->name('home');
 Route::group(['middleware' => ['web','auth']], function () {
         Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('profile');
+        Route::post('/upload-avatar','Auth\AuthController@uploadAvatar')->name('upload-avatar');
         Route::get('/doi-mat-khau','Auth\AuthController@changePasswordForm')->name('doi-mat-khau');
         Route::post('/update-mat-khau','Auth\AuthController@changePassword')->name('update-mat-khau');
 });
