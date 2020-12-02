@@ -28,19 +28,55 @@
                     <!--begin::Section-->
                     <div class="m-section">
                         <div class="m-section__content">
+                           
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">Biểu đồ cân nặng</label>
+                                <div class="col-lg-6">
+    
+                                    <!--begin::Portlet-->
+                                    <div class="m-portlet m-portlet--tab">
+                                        <div class="m-portlet__head">
+                                            <div class="m-portlet__head-caption">
+                                                <div class="m-portlet__head-title">
+                                                    <span class="m-portlet__head-icon m--hide">
+                                                        <i class="la la-gear"></i>
+                                                    </span>
+                                                    <h3 class="m-portlet__head-text">
+                                                        Cân nặng (kg)
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-portlet__body">
+                                            <canvas id="myChart" width="200" height="200"></canvas>
+                                        </div>
                                     </div>
+    
+                                    <!--end::Portlet-->
                                 </div>
-                                <div class="col-md-6 ">
-                                    <div class="form-group m-form__group row">
-                                        <label for="" class="col-lg-2 col-form-label">Biểu đồ chiều cao</label>
+                                <div class="col-lg-6">
+    
+                                    <!--begin::Portlet-->
+                                    <div class="m-portlet m-portlet--tab">
+                                        <div class="m-portlet__head">
+                                            <div class="m-portlet__head-caption">
+                                                <div class="m-portlet__head-title">
+                                                    <span class="m-portlet__head-icon m--hide">
+                                                        <i class="la la-gear"></i>
+                                                    </span>
+                                                    <h3 class="m-portlet__head-text">
+                                                        Chiều cao (cm)
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="m-portlet__body">
+                                            <canvas id="myChart2" width="200" height="200"></canvas>
+                                        </div>
                                     </div>
+    
+                                    <!--end::Portlet-->
                                 </div>
                             </div>
-                           
                         </div>
                     </div>
 
@@ -123,15 +159,15 @@
                                     <div class="form-group">
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon3">Chiều cao (cm)</span>
+                                                <span class="input-group-text" >Chiều cao (cm)</span>
                                             </div>
-                                        <input type="text" name="chieu_cao" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="{{$value->chieu_cao}}">
+                                        <input type="text" name="chieu_cao" class="form-control"   value="{{$value->chieu_cao}}">
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text" id="basic-addon3">Cân nặng (kg)</span>
+                                                <span class="input-group-text" >Cân nặng (kg)</span>
                                             </div>
-                                        <input type="text" name="can_nang" class="form-control" id="basic-url" aria-describedby="basic-addon3" value="{{$value->can_nang}}">
+                                        <input type="text" name="can_nang" class="form-control"   value="{{$value->can_nang}}">
                                         </div>
                                     </div>
                                 </div>
@@ -162,10 +198,10 @@
     </div>
 </div>
 @endsection
-@if (session('thongbaoedit'))
-@section('script')
-<script>
 
+@section('script')
+@if (session('thongbaoedit'))
+<script>
    $("#thongbao").append(`
         <div class="alert alert-success alert-dismissible fade show" role="alert">
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
@@ -173,6 +209,90 @@
 		</div>
         `);
 </script>
-@endsection
 @endif
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+        var ctx = document.getElementById('myChart');
+        var ctx2 = document.getElementById('myChart2');
+        //Chiều cao
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    @forEach($dot_suc_khoe as $key => $item)
+                    "{{ $item }}",
+                    @endforeach
+                
+                ],
+                datasets: [{
+                    label: 'Cân nặng',
+                    data: [
+                        @forEach($can_nang as $key => $item)
+                        {{ $item }},
+                        @endforeach
+                        
+                        ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                    ],
+                    borderWidth: 1
+                }
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        //Cân nặng
+        var myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: [
+                    @forEach($dot_suc_khoe as $key => $item)
+                    "{{ $item }}",
+                    @endforeach
+                    // 22,11
+                ],
+                datasets: [{
+                    label: 'Chiều cao',
+                    data: [
+                        @forEach($chieu_cao as $key => $item)
+                        {{ $item }},
+                        @endforeach
+                        // 22,33  
+                        ],
+                    backgroundColor: [
+                       
+                        'rgba(75, 192, 192, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }
+                ]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+</script>
+@endsection
+
 
