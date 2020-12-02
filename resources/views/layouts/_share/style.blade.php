@@ -67,5 +67,8 @@
                 .respon_logo {
                 width: 100%;
                 }
+        }
+        .dataTables_info{
+                display: none;
         }     
 </style>

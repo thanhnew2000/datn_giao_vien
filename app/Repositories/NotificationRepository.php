@@ -40,7 +40,7 @@ class NotificationRepository extends BaseModelRepository
                     ],
                     "data"=> [
                       "story_id"=> "story_12345",
-                      'type'=>"add_donho"
+                      'route'=>$value['route']
                     ],
                     
                   

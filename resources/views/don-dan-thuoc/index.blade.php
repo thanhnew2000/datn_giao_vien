@@ -26,31 +26,6 @@
     <div class="d-flex align-items-center">
         <div class="mr-auto">
             <h3 class="m-subheader__title m-subheader__title--separator">Đơn dặn thuốc</h3>
-            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                <li class="m-nav__item m-nav__item--home">
-                    <a href="#" class="m-nav__link m-nav__link--icon">
-                        <i class="m-nav__link-icon la la-home"></i>
-                    </a>
-                </li>
-                <li class="m-nav__separator">-</li>
-                <li class="m-nav__item">
-                    <a href="" class="m-nav__link">
-                        <span class="m-nav__link-text">DataTables</span>
-                    </a>
-                </li>
-                <li class="m-nav__separator">-</li>
-                <li class="m-nav__item">
-                    <a href="" class="m-nav__link">
-                        <span class="m-nav__link-text">Basic</span>
-                    </a>
-                </li>
-                <li class="m-nav__separator">-</li>
-                <li class="m-nav__item">
-                    <a href="" class="m-nav__link">
-                        <span class="m-nav__link-text">Scrollable Tables</span>
-                    </a>
-                </li>
-            </ul>
         </div>
 
     </div>
@@ -847,12 +822,6 @@
     var url_get_info_phan_hoi = "{{route('info-phan-hoi')}}";
 </script>
 <script src="{{ asset('firebase_don_dan_thuoc/dan_thuoc.js') }}"></script>
-
-<script src="{{ asset('assets/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
-
-<!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
 <script>
     var url_gui_phan_hoi_dan_thuoc = "{{route('gui-phan-hoi-don-dan-thuoc')}}"
     $(document).ready(function () {
