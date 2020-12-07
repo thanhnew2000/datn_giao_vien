@@ -403,6 +403,6 @@
         });
     });
 </script>
-<script src="{!! asset('phao_hoa/phao_hoa.js') !!}"></script>
+{{-- <script src="{!! asset('phao_hoa/phao_hoa.js') !!}"></script> --}}
 @endsection
 

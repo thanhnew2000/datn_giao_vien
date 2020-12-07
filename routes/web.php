@@ -16,7 +16,7 @@ Route::get('/', 'HomeController@index')->middleware('auth', 'web', 'checkClass')
 Auth::routes();
 Route::get('/home', 'HomeController@index')->middleware('auth', 'web', 'checkClass')->name('home');
 Route::group(['middleware' => ['web','auth']], function () {
-        Route::get('profile', 'Auth\AuthController@profile')->middleware('auth', 'web')->name('profile');
+        Route::get('profile', 'Auth\AuthController@profile')->name('profile');
         Route::post('/upload-avatar','Auth\AuthController@uploadAvatar')->name('upload-avatar');
         Route::get('/doi-mat-khau','Auth\AuthController@changePasswordForm')->name('doi-mat-khau');
         Route::post('/update-mat-khau','Auth\AuthController@changePassword')->name('update-mat-khau');
@@ -113,3 +113,6 @@ Route::view('OTP', 'auth.passwords.forgot_OTP')->name('otp.forget_password');
 Route::post('send-otp', "Auth\SendOTPController@send")->name('otp.send');
 Route::post('check-otp', "Auth\SendOTPController@checkOTP")->name('otp.check');
 Route::post('reset-otp', "Auth\SendOTPController@resetOTP")->name('otp.reset');
+
+Route::get('mat-khau-reset', "Auth\QuenMatKhauController@showResetForm")->name('mat-khau.reset');
+Route::post('mat-khau-update', "Auth\QuenMatKhauController@reset")->name('mat-khau.update');

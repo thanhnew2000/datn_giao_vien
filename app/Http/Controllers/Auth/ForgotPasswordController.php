@@ -35,7 +35,8 @@ class ForgotPasswordController extends Controller
         }
         $token = Str::random(60).md5(time());
         $checkUser->token = $token;
-        $checkUser->time_code= Carbon::now();
+        $now  = Carbon::now();
+        $checkUser->time_code = $now->addMinutes(30);
         $checkUser->save();
         $toemail = $checkUser->email;
         
