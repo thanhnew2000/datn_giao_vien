@@ -275,7 +275,12 @@
                         </tr>
                       </thead>
                       <tbody>
-
+                        <script>
+                          function errorLoadAvatar(e){
+                              let ten = e.getAttribute('data-ten');
+                              e.setAttribute('src', "https://ui-avatars.com/api/?name=" + ten + "&background=random");
+                          }
+                        </script>
                             @foreach ($lopHoc->Student as $key => $item)
                               @php
                                 $date=date_create($item->ngay_sinh);
@@ -284,7 +289,7 @@
                               <td class="sorting_1">{{ ++$key }}</td>
                                 <td>{{ $item->ma_hoc_sinh }}</td>
                                 <td>{{ $item->ten }}</td>
-                                <td><img width="100px" height="100px" src="{{ $item->avatar }}"></td>
+                                <td><img width="100px" height="100px" src="{{ $item->avatar }}" onerror="errorLoadAvatar(this)" data-ten="{{ $item->ten }}"></td>
                                 <td>{{ date_format($date,"d/m/Y") }}</td>
 
                                 <td nowrap="">
