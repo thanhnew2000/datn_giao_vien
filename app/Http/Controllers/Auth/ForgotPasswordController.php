@@ -41,7 +41,7 @@ class ForgotPasswordController extends Controller
         $toemail = $checkUser->email;
         
     
-        $url = route('password.reset',['token'=>$checkUser->token,'email'=>$toemail]);
+        $url = route('mat-khau.reset',['token'=>$checkUser->token,'email'=>$toemail]);
         $data=[
             'route'=>$url,
             'title'=>"Lấy lại mật khẩu"
