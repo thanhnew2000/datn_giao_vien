@@ -127,6 +127,12 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <script>
+                        function errorLoadAvatar(e){
+                            let ten = e.getAttribute('data-ten');
+                            e.setAttribute('src', "https://ui-avatars.com/api/?name=" + ten + "&background=random");
+                        }
+                    </script>
                     @php
                     $i = !isset($_GET['page']) ? 1 : ($limit * ($_GET['page']-1) + 1);
                     @endphp
@@ -135,12 +141,7 @@
                         <th scope="row">{{$i++}}</th>
                         <td>{{$item->ma_hoc_sinh}}</td>
                         <td>{{$item->ten}}</td>
-                        @if ($item->avatar == "")
-                        <td><img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png"
-                                height="100px" width="85px" alt=""></td>
-                        @else
-                        <td><img src="{{ Storage::url($item->avatar)}}" height="100px" width="75px" alt=""></td>
-                        @endif
+                        <td><img width="70px" height="70px" src="{{ $item->avatar }}" onerror="errorLoadAvatar(this)" data-ten="{{ $item->ten }}"></td>
                         <td>
                             @if (isset($params['dot_id']) && $params['dot_id'] != null)
                                 @php
