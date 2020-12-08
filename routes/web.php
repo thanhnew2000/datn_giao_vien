@@ -90,6 +90,7 @@ Route::group(['middleware' => ['web', 'auth', 'checkClass']], function () {
     Route::post('removeImage', 'AlbumController@removeImage')->name('album.removeImage');
     Route::post('updateTitle', 'AlbumController@updateTitle')->name('album.updateTitle');
     Route::post('addImage', 'AlbumController@addImage')->name('album.addImage');
+    Route::post('removeAlbum','AlbumController@removeAlbum')->name('album.removeAlbum');
 
     Route::get('nhan_xet', 'NhanXetController@index')->name('nhanxet.index');  
     Route::post('nhan_xet', 'NhanXetController@store')->name('nhanxet.store');  

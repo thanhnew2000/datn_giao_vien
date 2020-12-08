@@ -40,7 +40,7 @@
     font-size: 1rem;
     color: #404040;
     font-family: Montserrat, sans-serif;
-    background-image: linear-gradient(to bottom right, #ff9eaa 0% 10%, #e860ff 95% 100%);
+    /* background-image: linear-gradient(to bottom right, #ff9eaa 0% 10%, #e860ff 95% 100%); */
  }
 
 </style>
