@@ -10,6 +10,7 @@ use App\Models\PhanHoiDonThuoc;
 use App\Repositories\HocSinh\HocSinhRepository;
 use App\Repositories\GiaoVien\GiaoVienRepository;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class DonDanThuocController extends Controller
@@ -38,11 +39,11 @@ class DonDanThuocController extends Controller
      */
     public function index()
     {
-        $don_dan_thuoc = $this->DonDanThuocRepository->getDonDanThuocHomNay();
-        // $test = $don_dan_thuoc[1]->PhanHoiDonThuoc()->where('type',2)->get();
-        // // dd($test[0]);
-        // // dd($don_dan_thuoc[0]->HocSinh);
-        return view('don-dan-thuoc.index',compact('don_dan_thuoc'));
+        $lop_id = Auth::user()->profile->lop_id;
+        $don_dan_thuoc = $this->DonDanThuocRepository->getDonDanThuocHomNay($lop_id);
+        $lich_su_don_dan_thuoc = $this->DonDanThuocRepository->getLichSuDonDanThuoc($lop_id);
+        // dd($lich_su_don_dan_thuoc);
+        return view('don-dan-thuoc.index',compact('don_dan_thuoc','lich_su_don_dan_thuoc'));
     }
 
     /**
@@ -123,16 +124,20 @@ class DonDanThuocController extends Controller
         $thongbao=[];
         $thongbao['title'] ='Trả lời đơn dặn thuốc';
         $thongbao['content'] =$noi_dung;
-        $thongbao['route'] = 'route';
+        $thongbao['route'] = 'add_medicine';
         $thongbao['user_id'] =$thong_tin_nguoi_nhan->id;
         $thongbao['auth_id'] =$nguoi_phan_hoi_id;
+        $thongbao['role'] =Auth::user()->role;
         $this->NotificationRepository->create($thongbao);
         
-        $data_thong_bao['device'] = 'fiuTWIB5Rt6ZpPYn76zXVc:APA91bFmBH1cNZMx-ZqfXumM8ktE4UbGbJHKA02IQXCfI6KPeYFg75i9pyl8WE17IY_7aeM6iN-LAt4xsaioVGJqctiXpnE5PXMG5EynbMV1OO52LChV5sDBelAMO177RflYna52Ca_q';
+        $data_thong_bao['device'] = $don_thuoc->HocSinh->user->device;
         $data_thong_bao['title'] = 'Giáo viên đã phản hồi về đơn dặn thuốc của bạn';
         $data_thong_bao['content'] = $noi_dung;
-
-        $this->NotificationRepository->notificationApp($data_thong_bao);
+        $data_thong_bao['route'] = [
+            'name_route' => 'detail_medicine',
+            'id' => $don_thuoc->id
+        ];
+        $this->NotificationRepository->notificationApp([$data_thong_bao]);
         return 'thành công';
     }
 

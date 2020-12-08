@@ -1,5 +1,8 @@
 @extends('layouts.main')
 @section('title', "Thông tin cá nhân")
+@section('style')
+<link rel="stylesheet" href="{{ asset('change_avatar/change_avatar.css')}}">
+@endsection
 @section('content')
 <div class="m-content">
 						<div class="row">
@@ -11,8 +14,19 @@
 												Your Profile
 											</div>
 											<div class="m-card-profile__pic">
-												<div class="m-card-profile__pic-wrapper">
-													<img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : 'https://ui-avatars.com/api/?name=' . Auth::user()->name . '&background=random' }}" class="m--img-rounded m--marginless" alt="" />
+												<div class="image-input image-input-outline image-input-circle" id="kt_image_3">
+													<div class="image-input-wrapper"
+														style="background-image: url('{{ Auth::user()->avatar}}'), url('https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=random')">
+													</div>
+													<label
+														class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+														data-action="change" data-toggle="tooltip" title=""
+														data-original-title="Change avatar">
+														<i class="la la-pencil text-muted"></i>
+														<input type="file" name="profile_avatar"
+															accept="image/*" onchange="changeAvatar(this)">
+														<input type="hidden" name="profile_avatar_remove">
+													</label>
 												</div>
 											</div>
 											<div class="m-card-profile__details">
@@ -155,6 +169,8 @@
 			</div>
 @endsection
 @section('script')
+<script src="{{ asset('change_avatar/scripts.bundle.js')}}"></script>
+<script src="{{ asset('change_avatar/image-input.js')}}"></script>
 <script>
 	$("#target_thongtincanhan").click(function() {
 		$([document.documentElement, document.body]).animate({
@@ -166,5 +182,27 @@
 			scrollTop: $("#hocvan").offset().top
 		}, 2000);
 	});
+
+	function changeAvatar(file){
+        let srcAvatar = URL.createObjectURL(file.files[0]);
+		$(".error_avatar").attr("src", srcAvatar);
+		var form = new FormData();
+            form.append("image", file.files[0]);
+            $.ajax({
+                "url": "https://api.imgbb.com/1/upload?key=87b235f7be4c2a2271db6c21bbf93bda",
+                "method": "POST",
+                "timeout": 0,
+                "processData": false,
+                "mimeType": "multipart/form-data",
+                "contentType": false,
+                "data": form
+            }).done(function (response) {
+                let rs = JSON.parse(response);
+                let url = rs.data.display_url;
+				axios.post("{{ route('upload-avatar')}}",{"avatar": url})
+				.then(res => {
+				})
+            });
+	}
 </script>
 @endsection

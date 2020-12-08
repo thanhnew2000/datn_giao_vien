@@ -21,9 +21,15 @@ class DonDanThuocRepository extends BaseModelRepository
         return DonDanThuoc::class;
     }
 
-    public function getDonDanThuocHomNay()
+    public function getDonDanThuocHomNay($lop_id)
     {
         $ngay_hien_tai = Carbon::now()->format('yy-m-d');
-        return $this->model->whereRaw('? between ngay_bat_dau and ngay_ket_thuc', [$ngay_hien_tai])->get();
+        return $this->model->whereRaw('? between ngay_bat_dau and ngay_ket_thuc', [$ngay_hien_tai])->where('lop_id',$lop_id)->get();
+    }
+
+    public function getLichSuDonDanThuoc($lop_id)
+    {
+        $ngay_hien_tai = Carbon::now()->format('yy-m-d');
+        return $this->model->where('ngay_ket_thuc','<', $ngay_hien_tai)->where('lop_id',$lop_id)->get();
     }
 }

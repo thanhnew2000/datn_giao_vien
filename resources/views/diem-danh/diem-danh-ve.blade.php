@@ -1,6 +1,12 @@
 @extends('layouts.main')
 @section('title', "Điểm danh về")
 @section('content')
+<script>
+    function errorLoadAvatar(e){
+        let name_avatar = e.getAttribute('data-name_avatar');
+        e.setAttribute('src', "https://ui-avatars.com/api/?name=" + name_avatar + "&background=random");
+    }
+</script>
 <div class="m-content">
     <!--begin::Portlet-->
     <div class="m-portlet m-portlet--mobile">
@@ -15,11 +21,12 @@
         </div>
         @php
         $hours_now = \Carbon\Carbon::now()->toTimeString();
-        $hours_start = \Carbon\Carbon::createFromFormat('H:i:s', '12:30:00')->toTimeString();
-        $hours_end = \Carbon\Carbon::createFromFormat('H:i:s', '17:30:00')->toTimeString();
+        $hours_start = \Carbon\Carbon::createFromFormat('H:i:s', '12:00:00')->toTimeString();
+        $hours_end = \Carbon\Carbon::createFromFormat('H:i:s', '18:00:00')->toTimeString();
         @endphp
 
-        @if ($hours_start <= $hours_now && $hours_now <= $hours_end)
+        {{-- @if ($hours_start < $hours_now && $hours_now < $hours_end) --}}
+        @if (true)
 
         <div class="m-portlet__body">
 
@@ -55,14 +62,14 @@
                                     <input type="hidden" name="user_{{ $item->id }}"  value="{{ $item->user_id }}"></td>
                                 <td>{{ $item->ma_hoc_sinh }}</td>
                                 <td>{{ $item->ten }}</td>
-                                <td><img src="{{ $item->avatar }}" alt="avatar"  width="60" class="img-thumbnail"></td>
+                                <td><img src="{{ $item->avatar }}" alt="avatar" data-name_avatar="{{ $item->ten }}" onerror="errorLoadAvatar(this)"  width="60" class="img-thumbnail"></td>
                                 <td>{{ date_format($date,"d/m/Y") }}</td>
                                 <td><input type="radio" value="1" name="{{ $item->id }}" checked="true"></td>
                                 <td><input type="radio" value="2" name="{{ $item->id }}"></td>
                                 <td><input type="radio" value="3" name="{{ $item->id }}"></td>
                                 <td>
                                     @foreach ($nguoi_don_ho as $curros)
-                                    @if ($curros->user_id == $item->id)
+                                    @if ($curros->hoc_sinh_id == $item->id)
                                     <input type="hidden" name="nguoi_don_ho{{ $item->id }}" value="{{ $curros->id }}">
                                     <i style="cursor: pointer" class="text-warning flaticon-exclamation-1" data-toggle="modal" data-target="{{ '#m_modal_'.$item->id}}"></i>
                                         
@@ -86,7 +93,7 @@
                                     <input type="hidden" name="user_{{ $item->id }}"  value="{{ $item->user_id }}"></td>
                                 <td>{{ $item->student->ma_hoc_sinh }}</td>
                                 <td>{{ $item->student->ten }}</td>
-                                <td><img src="{{ $item->student->avatar }}" alt="avatar"  width="60" class="img-thumbnail"></td>
+                                <td><img src="{{ $item->student->avatar }}" alt="avatar" data-name_avatar="{{ $item->student->ten }}" onerror="errorLoadAvatar(this)" width="60" class="img-thumbnail"></td>
                                 <td>{{ date_format($date,"d/m/Y") }}</td>
                                 <td><input type="radio" value="1" name="{{ $item->id }}"
                                         {{ ($item->trang_thai == 1)?'checked':'' }}></td>
@@ -96,7 +103,7 @@
                                         {{ ($item->trang_thai == 3)?'checked':'' }}></td>
                                 <td>
                                     @foreach ($nguoi_don_ho as $curros)
-                                    @if ($curros->user_id == $item->hoc_sinh_id)
+                                    @if ($curros->hoc_sinh_id == $item->hoc_sinh_id)
                                     <input type="hidden" name="nguoi_don_ho{{ $item->hoc_sinh_id }}" value="{{ $curros->hoc_sinh_id }}">
                                     <i style="cursor: pointer" class="text-warning flaticon-exclamation-1" data-toggle="modal" data-target="{{ '#m_modal_'.$item->hoc_sinh_id}}"></i>
                                        
@@ -130,7 +137,7 @@
                 $id_hoc_sinh = $item->hoc_sinh_id ? $item->hoc_sinh_id : $item->id;
             @endphp
             @foreach ($nguoi_don_ho as $curros)
-            @if ($curros->user_id == $id_hoc_sinh)
+            @if ($curros->hoc_sinh_id == $id_hoc_sinh)
             <div class="modal fade" id="{{ 'm_modal_'.$id_hoc_sinh }}" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -197,8 +204,8 @@
 
 @endsection
 @section('script')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-<script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
 <!-- https://viblo.asia/p/tim-hieu-jquery-datatables-co-ban-trong-10-phut-07LKXp4eKV4 -->
 <script>
     $(document).ready(function () {
@@ -232,7 +239,44 @@
             '_token': "{{ csrf_token() }}",
             'data': JSON.stringify(data)
         }, function (dt) {
-            location.reload() 
+            if(dt.code == 288){
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'error',
+                title: 'Điểm danh thất bại'
+                })
+                setTimeout(function(){
+                    location.reload() 
+                },2000);
+            }else{
+                const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'success',
+                title: 'Điểm danh thành công'
+                })
+            }
         })
     }
 

@@ -46,8 +46,9 @@ class SucKhoeController extends Controller
         $params = "";
         $getHocSinh = $this->HocSinhRepository->getHocSinhInClass();
         $dot = $this->SucKhoeRepository->getDotMoiNhat();
+        $lop_id_gv = $this->GiaoVienRepository->teacherInClass();
         $checkdot = $this->HocSinhRepository->getHocSinhInClassTheoDot($dot->id, $params);
-        $data = view('suc-khoe.create', compact('getHocSinh', 'dot'));
+        $data = view('suc-khoe.create', compact('getHocSinh', 'dot', 'lop_id_gv'));
         if(count($checkdot) > 0){
             $data = redirect()->route('quan-suc-khoe-index')->with('thongbao', 'Hoan thanh');
         }
@@ -68,7 +69,15 @@ class SucKhoeController extends Controller
     public function edit($id)
     {   
         $data = $this->SucKhoeRepository->getSucKhoeTheoHocSinh($id);
-        return view('suc-khoe.edit', compact('data', 'id'));
+        $dot_suc_khoe = [];
+        $chieu_cao = [];
+        $can_nang = [];
+        foreach($data as $item){
+            array_unshift($dot_suc_khoe, $item->ten_dot);
+            array_unshift($chieu_cao, $item->chieu_cao);
+            array_unshift($can_nang, $item->can_nang);
+        }
+        return view('suc-khoe.edit', compact('data', 'id', 'dot_suc_khoe', 'chieu_cao', 'can_nang'));
     }
 
     public function update(Request $request, $id)

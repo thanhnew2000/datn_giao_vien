@@ -42,7 +42,8 @@ class ThongBaoController extends Controller
     public function showThongBao($id)
     {
         $data = $this->NoiDungThongBaoRepository->findById($id);
-        if ($data && ($data->thuocThongBao->user_id == Auth::id() || $data->thuocThongBao->user_id == 0)) {
+        $check = $data->thuocThongBao->where('user_id', Auth::id())->where('thongbao_id', $id)->first();
+        if ($check && ($check->user_id == Auth::id() || $check->user_id == 0)) {
             return view('thong-bao.chitiet', compact('data'));
         } else {
             return redirect()->route('thong-bao.index');
@@ -61,6 +62,8 @@ class ThongBaoController extends Controller
         unset($content['list_id_hoc_sinh']);
         $list_id_hoc_sinh = $request->list_id_hoc_sinh;
         $content['auth_id'] = Auth::id();
+        $content['role'] = Auth::user()->role;
+
         $content['type'] = 1;
         $content['route'] = 'tin_tuc';
 
@@ -93,7 +96,7 @@ class ThongBaoController extends Controller
         // ThongBao::insert($list_id_hoc_sinh_save_thong_bao);
         // dd(1);
 
-        JobGuiThongBao::dispatch($list_id_hoc_sinh_save_noti,$list_id_hoc_sinh_save_thong_bao,$list_device->toArray(),$content,$this->NotificationRepository);
+        JobGuiThongBao::dispatch($list_id_hoc_sinh_save_noti,$list_id_hoc_sinh_save_thong_bao,$list_device->toArray(),$content,$this->NotificationRepository)->onQueue('giao_vien');
         return 'thành công';
     }
 
@@ -135,7 +138,7 @@ class ThongBaoController extends Controller
     public function showThongBaoGuiDi($id)
     {
         $data = $this->NoiDungThongBaoRepository->findById($id);
-        if ($data && $data->isShow == 1) {
+        if ($data && $data->isShow == 1 && $data->auth_id == Auth::id()) {
             return view('thong-bao.chi_tiet_thong_bao_da_gui', compact('data'));
         } else {
             return redirect()->route('thong-bao.index');

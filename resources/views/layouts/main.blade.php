@@ -12,7 +12,7 @@
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 		
-		<link rel="shortcut icon" type="image/x-icon" href="https://kidsonline.edu.vn/wp-content/themes/kids-online/assets/images/favicon.png" />
+		<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
 		<!--begin::Web font -->
 		<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
 		<script>
@@ -24,6 +24,7 @@
           });
 		</script>
 
+		<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Caption&display=swap" rel="stylesheet">
 		@section('style')
 			<style>
 				.m-body .m-content{
@@ -68,7 +69,7 @@
 					<!--start content -->
 					@yield('content')
 					<!--end content -->		
-					<div class="zalo-chat-widget" data-oaid="4538938343804913592" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="350" data-height="420"></div>
+					{{-- <div class="zalo-chat-widget" data-oaid="4538938343804913592" data-welcome-message="Rất vui khi được hỗ trợ bạn!" data-autopopup="0" data-width="350" data-height="420"></div> --}}
 
 				</div>
 			</div>
@@ -96,7 +97,7 @@
 		<!-- end::Scroll Top -->
 
 		<!-- begin::Quick Nav -->
-		@include('layouts._share.quick_nav')
+		{{-- @include('layouts._share.quick_nav') --}}
 		<!-- begin::Quick Nav -->
 
 		  {{--  script  --}}
@@ -110,9 +111,9 @@
 		{{--  endscript  --}}
 		
 		@yield('script')
-     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
-	 <script type="text/javascript" src="{{asset('pjax/jquery.pjax.js')}}"></script>
-	 <script type="text/javascript" src="{{asset('pjax/setup-pjax.js')}}"></script>
+     {{-- <script src="https://sp.zalo.me/plugins/sdk.js"></script> --}}
+	 <!-- <script type="text/javascript" src="{{asset('pjax/jquery.pjax.js')}}"></script> -->
+	 <!-- <script type="text/javascript" src="{{asset('pjax/setup-pjax.js')}}"></script> -->
 	</body>
 
 	<!-- end::Body -->
