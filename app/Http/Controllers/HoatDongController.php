@@ -81,9 +81,15 @@ class HoatDongController extends Controller
                 $link_file_pdf = 'file_pdf/excel/'.$nameFile.'.pdf';
         }else{
                 $domPdfPath = base_path('vendor/dompdf/dompdf');
+                $Content = \PhpOffice\PhpWord\IOFactory::load($_FILES['file']['tmp_name']);
+                // $languageEnGb = new \PhpOffice\PhpWord\Style\Language(\PhpOffice\PhpWord\Style\Language::EN_GB_ID);
+                // $lang = new \PhpOffice\PhpWord\Style\Language();
+                // $lang->setLangId(\PhpOffice\PhpWord\Style\Language::EN_GB_ID);
+                // $Content->getSettings()->setThemeFontLang($languageEnGb);
+                // $Content->getSettings()->setThemeFontLang($languageEnGb);
                 \PhpOffice\PhpWord\Settings::setPdfRendererPath($domPdfPath);
                 \PhpOffice\PhpWord\Settings::setPdfRendererName('DomPDF');
-                $Content = \PhpOffice\PhpWord\IOFactory::load($_FILES['file']['tmp_name']);
+
                 $PDFWriter = \PhpOffice\PhpWord\IOFactory::createWriter($Content,'PDF');
                 $PDFWriter->save('file_pdf/word/'.$nameFile.'.pdf'); 
                 $link_file_pdf = 'file_pdf/word/'.$nameFile.'.pdf';
