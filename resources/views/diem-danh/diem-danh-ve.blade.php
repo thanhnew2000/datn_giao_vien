@@ -167,7 +167,9 @@
                                     readonly>
                             </div>
                             <div class="form-group">
-                                <img src="{{ $curros->anh_nguoi_don_ho }}" width="100%" alt="ảnh">
+                                @if ($curros->anh_nguoi_don_ho)
+                                    <img src="{{ $curros->anh_nguoi_don_ho }}" width="100%" alt="ảnh">
+                                @endif
                             </div>
                         </div>
                         <div class="modal-footer pull-center">
